@@ -20,8 +20,9 @@ class Program
 
             if (userInput == "1")
             {
+                PromptGenerator prompt = new PromptGenerator();
                 Entry entry1 = new Entry();
-                entry1._prompt = RandomPrompt();
+                entry1._prompt = prompt.RandomPrompt();
                 Console.WriteLine(entry1._prompt);
                 entry1._userEntry = Console.ReadLine();
 
@@ -36,7 +37,7 @@ class Program
             }
             else if (userInput == "3")
             {
-                Reader reader1 = new Reader();
+                File reader1 = new File();
                 Console.Write("What is the file name? ");
                 string filename = Console.ReadLine();
                 reader1._filename = filename;
@@ -45,7 +46,7 @@ class Program
             }
             else if (userInput == "4")
             {
-                Writer writer1 = new Writer();
+                File writer1 = new File();
                 Console.Write("Enter the file name: ");
                 string fileName = Console.ReadLine();
                 writer1._filename = fileName;
@@ -53,27 +54,5 @@ class Program
                 writer1.SaveFile();
             }
         } while (userInput != "5");
-        
-        static string RandomPrompt()
-        {
-            List<string> prompts = new List<string>() {
-                "What was the most random thing that happened today?",
-                "What is something new you've leared today?",
-                "What was the most productive thing you've done today?",
-                "What do you wish you would've done today?",
-                "Who was the most interesting person I interacted with today?",
-                "What was the best part of my day?",
-                "How did I see the hand of the Lord in my life today?",
-                "What was the strongest emotion I felt today?",
-                "If I had one thing I could do over today, what would it be?"
-                };
-
-                Random randomGenerator = new Random();
-                int magicNum = randomGenerator.Next(1, prompts.Count);
-
-                string randomString = prompts[magicNum];
-
-            return randomString;
-        }
     }
 }
