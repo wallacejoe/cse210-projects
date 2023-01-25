@@ -14,7 +14,7 @@ public class File
             }
         }
     }
-    public List<string> CreateFile()
+    public List<string> LoadFile()
     {    string[] lines = System.IO.File.ReadAllLines(_filename);
 
         foreach (string line in lines)

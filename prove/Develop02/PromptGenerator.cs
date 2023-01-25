@@ -2,9 +2,7 @@ using System;
 using System.IO;
 public class PromptGenerator
 {
-    public string RandomPrompt()
-    {
-        List<string> prompts = new List<string>() {
+    public List<string> _prompts = new List<string>() {
             "What was the most random thing that happened today?",
             "What is something new you've leared today?",
             "What was the most productive thing you've done today?",
@@ -15,11 +13,12 @@ public class PromptGenerator
             "What was the strongest emotion I felt today?",
             "If I had one thing I could do over today, what would it be?"
         };
-
+    public string RandomPrompt()
+    {
         Random randomGenerator = new Random();
-        int magicNum = randomGenerator.Next(1, prompts.Count);
+        int magicNum = randomGenerator.Next(1, _prompts.Count);
 
-        string randomString = prompts[magicNum];
+        string randomString = _prompts[magicNum];
 
         return randomString;
     }

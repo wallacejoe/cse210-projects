@@ -6,7 +6,7 @@ class Program
     static void Main(string[] args)
     {
         string userInput;
-        List<string> entries = new List<string>();
+        Journal journal1 = new Journal();
 
         do
         {
@@ -26,14 +26,11 @@ class Program
                 Console.WriteLine(entry1._prompt);
                 entry1._userEntry = Console.ReadLine();
 
-                entries.Add(entry1.FullJournalEntry());
+                journal1._entries.Add(entry1.FullJournalEntry());
             }
             else if (userInput == "2")
             {
-                foreach (string line in entries)
-                {
-                    Console.WriteLine(line);
-                }
+                journal1.Display();
             }
             else if (userInput == "3")
             {
@@ -42,7 +39,7 @@ class Program
                 string filename = Console.ReadLine();
                 reader1._filename = filename;
 
-                entries = reader1.CreateFile();
+                journal1._entries = reader1.LoadFile();
             }
             else if (userInput == "4")
             {
@@ -50,7 +47,7 @@ class Program
                 Console.Write("Enter the file name: ");
                 string fileName = Console.ReadLine();
                 writer1._filename = fileName;
-                writer1._entries = entries;
+                writer1._entries = journal1._entries;
                 writer1.SaveFile();
             }
         } while (userInput != "5");
