@@ -38,6 +38,7 @@ class Program
                 Console.Write("What is the file name? ");
                 string filename = Console.ReadLine();
                 reader1._filename = filename;
+                reader1._entries = journal1._entries;
 
                 journal1._entries = reader1.LoadFile();
             }

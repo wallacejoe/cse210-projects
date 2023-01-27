@@ -1,21 +1,25 @@
 using System;
+using System.IO;
+using System.Text;
 
 public class File
 {
     public string _filename = "";
 
+    private string separator = ",";
+
     public List<string> _entries = new List<string>();
     public void SaveFile()
-    {    using (StreamWriter outputFile = new StreamWriter(_filename))
+    {    
+        using (StreamWriter outputFile = new StreamWriter(_filename))
+        foreach (string line in _entries)
         {
-            foreach (string line in _entries)
-            {
-                outputFile.WriteLine(line);
-            }
+            outputFile.WriteLine(line);
         }
     }
     public List<string> LoadFile()
-    {    string[] lines = System.IO.File.ReadAllLines(_filename);
+    {    
+        string[] lines = System.IO.File.ReadAllLines(_filename);
 
         foreach (string line in lines)
         {
