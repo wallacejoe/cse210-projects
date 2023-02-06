@@ -11,7 +11,8 @@ public class Entry
         string dateText = currentTime.ToShortDateString();
         string saveTime = currentTime.ToShortTimeString();
 
-        string journalEntry = $@"{saveTime},{dateText},Prompt: ""{_prompt}"",""{_userEntry}""";
+        string journalEntry = $"{saveTime},{dateText},";
+        journalEntry = journalEntry + $"\"{_prompt}\"" + "," + $@"""{_userEntry}""";
 
         return journalEntry;
     }

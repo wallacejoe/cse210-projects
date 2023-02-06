@@ -1,0 +1,31 @@
+Reference:
+-Formats the provided text to be usable by the Scripture class, will likely be formatted as a single string.
+-Stores the full scripture reference, incase it should be needed again, such as for a restart option.
+-This class will be used at the start of the program to give the scripture class needed data
+it may not have much use after that.
+
+Scripture:
+-The initial constructor will parse the string, provided by the Reference class, and save it to an attribute.
+-The hiddenNum attribute will contain the number of 'hidden' strings. This should allow me
+to determine when all of the text is hidden.
+-Will end the program when all text is hidden.
+-It may keep two string variables, one list type and one generic string. Is a generic string necessary/useful?
+-Hidden words will be replaced with the underscore (_) character.
+-Will keep track of hidden words somehow.
+
+Word:
+-Will be responsible for hiding random words, while avoiding already hidden words.
+-Stores all words, as either hidden or shown, to an array.
+-Returns the array to the Scripture class.
+-Increases the hiddenNum attribute of the Scripture class.
+
+Use Word or Scripture for the primary display class?
+All attribute, and most methods, will be kept private for more compact classes.
+
+Clear screen:
+-Whichever class is used for displaying will clear the screen just befor display.
+
+File Reading:
+-I may add file reading capabilities to the Program, this would allow for greater scripture variety.
+-Would like to make it CSV compatible, if I can manage it.
+-An additional method would be required to read and format the files content.

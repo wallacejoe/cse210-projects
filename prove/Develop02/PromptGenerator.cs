@@ -18,7 +18,7 @@ public class PromptGenerator
         Random randomGenerator = new Random();
         int magicNum = randomGenerator.Next(1, _prompts.Count);
 
-        string randomString = _prompts[magicNum];
+        string randomString = $"Prompt: {_prompts[magicNum]}";
 
         return randomString;
     }

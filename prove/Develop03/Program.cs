@@ -4,6 +4,13 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello Develop03 World!");
+        string userInput;
+
+        do {
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("Press enter to continue or type 'quit' to finish:");
+            userInput = Console.ReadLine();
+        } while (userInput != "quit");
     }
 }
