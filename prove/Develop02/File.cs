@@ -6,8 +6,6 @@ public class File
 {
     public string _filename = "";
 
-    private string separator = ",";
-
     public List<string> _entries = new List<string>();
     public void SaveFile()
     {    
