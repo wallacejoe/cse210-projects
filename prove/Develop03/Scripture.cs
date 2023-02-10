@@ -4,23 +4,94 @@ public class Scripture
 {
     private string[] _words;
     private string _text;
-    private int _hiddenNum;
+    private string _fullRef;
+    private List<int> _hiddenWords = new List<int>();
     private bool _initialDisplay = true;
+    private string HideWords()
+    {
+        string newText = "";
+        int currentNum = 0;
+        List<int> hideOptions = new List<int>();
+        _words = _text.Split(" ");
+        foreach (string line in _words)
+        {
+            bool hidden = false;
+            for (int i = 0; i < _hiddenWords.Count(); i++)
+            {
+                if (currentNum == _hiddenWords[i])
+                {
+                    hidden = true;
+                }
+            }
+            if (!hidden)
+            {
+                hideOptions.Add(currentNum);
+            }
+            currentNum += 1;
+        }
+        if (hideOptions.Count() > 4)
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                Random getRandomNum = new Random();
+                int randomNum = getRandomNum.Next(0, hideOptions.Count());
+                int hideNewWord = hideOptions[randomNum];
+                hideOptions.Remove(hideNewWord);
+                _hiddenWords.Add(hideNewWord);
+            }
+        }
+        else
+        {
+            foreach (int number in hideOptions)
+            {
+                _hiddenWords.Add(number);
+            }
+        }
+        currentNum = 0;
+        foreach (string line in _words)
+        {
+            bool hidden = false;
+            for (int i = 0; i < _hiddenWords.Count(); i++)
+            {
+                if (currentNum == _hiddenWords[i])
+                {
+                    hidden = true;
+                }
+            }
+            if (currentNum == _words.Count() - 1)
+            {
+                currentNum += 1;
+                Word hideWord = new Word(line, hidden);
+                newText += hideWord.GetRenderedText();
+            }
+            else
+            {
+                currentNum += 1;
+                Word hideWord = new Word(line, hidden);
+                newText += $"{hideWord.GetRenderedText()} ";
+            }
+        }
+        return newText;
+    }
 
     public string GetRenderedText()
     {
         if (_initialDisplay)
         {
-            return _text;
+            string fullText = $"{_fullRef} {_text}";
+            return fullText;
         }
         else
         {
-            HideWords();
-            return _text;
+            string fullText = $"{_fullRef} {HideWords()}";
+            return fullText;
         }
     }
     public string IsCompletelyHidden()
     {
+        Console.Clear();
+        Console.WriteLine((GetRenderedText()));
+        Console.WriteLine("");
         string userInput;
         if (_initialDisplay)
         {
@@ -31,7 +102,7 @@ public class Scripture
         }
         else
         {
-            if (_hiddenNum >= _words.Count())
+            if (_hiddenWords.Count() >= _words.Count())
             {
                 return "quit";
             }
@@ -40,22 +111,14 @@ public class Scripture
             return userInput;
         }
     }
-    //Initially this method was supposed to return a string.
-    //I realized that was unnecessary and made it void.
-    private void HideWords()
-    {
-        _words = _text.Split(" ");
-        Word newWords = new Word(_words);
-        _text = newWords.GetRenderedText();
-        _hiddenNum = newWords.GetNumHidden();
-    }
 
     /*Constructors*/
     //Takes a single 'string' input. Was originally going to
     //store the reference (book and chapter) but I realized it
     //had no reason to interact with that element.
-    public Scripture(string verse)
+    public Scripture(string[] fullText)
     {
-        _text = verse;
+        _text = fullText[1];
+        _fullRef = fullText[0];
     }
 }

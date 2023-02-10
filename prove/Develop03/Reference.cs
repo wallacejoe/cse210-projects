@@ -11,10 +11,11 @@ public class Reference
     //private String[] _verses;
 
     //Format the full scripture reference, the '_book' and '_chapter'.
-    public string FullReference()
+    public string[] FullReference()
     {
         string fullRef = $"{_book} {_chapter}";
-        return fullRef;
+        string[] fullText = {fullRef, _verse};
+        return fullText;
     }
 
     public string GetVerse()
@@ -38,9 +39,18 @@ public class Reference
     {
         _book = book;
         _chapter = chapter;
+        int currentNum = 1;
         foreach (string line in verses)
         {
-            _verse += line + " ";
+            if (currentNum == verses.Count())
+            {
+                _verse += line;
+            }
+            else
+            {
+                _verse += line + " ";
+            }
+            currentNum += 1;
         }
     }
 }
