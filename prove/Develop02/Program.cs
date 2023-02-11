@@ -21,12 +21,12 @@ class Program
             if (userInput == "1")
             {
                 PromptGenerator prompt = new PromptGenerator();
-                Entry entry1 = new Entry();
-                entry1._prompt = prompt.RandomPrompt();
-                Console.WriteLine(entry1._prompt);
-                entry1._userEntry = Console.ReadLine();
+                string chosenPrompt = prompt.RandomPrompt();
+                Console.WriteLine(chosenPrompt);
+                string userEntry = Console.ReadLine();
+                Entry entry1 = new Entry(chosenPrompt, userEntry);
 
-                journal1._entries.Add(entry1.FullJournalEntry());
+                journal1.AddEntries(entry1.FullJournalEntry());
             }
             else if (userInput == "2")
             {
@@ -34,22 +34,17 @@ class Program
             }
             else if (userInput == "3")
             {
-                File reader1 = new File();
                 Console.Write("What is the file name? ");
                 string filename = Console.ReadLine();
-                reader1._filename = filename;
-                reader1._entries = journal1._entries;
-
-                journal1._entries = reader1.LoadFile();
+                File reader = new File(filename, journal1.GetEntries());
+                journal1.SetEntries(reader.ParseFile());
             }
             else if (userInput == "4")
             {
-                File writer1 = new File();
                 Console.Write("Enter the file name: ");
-                string fileName = Console.ReadLine();
-                writer1._filename = fileName;
-                writer1._entries = journal1._entries;
-                writer1.SaveFile();
+                string filename = Console.ReadLine();
+                File writer = new File(filename, journal1.GetEntries());
+                writer.SaveFile();
             }
         } while (userInput != "5");
     }

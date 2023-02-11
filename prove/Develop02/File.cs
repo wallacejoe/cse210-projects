@@ -4,25 +4,42 @@ using System.Text;
 
 public class File
 {
-    public string _filename = "";
+    private string _filename = "";
 
-    public List<string> _entries = new List<string>();
+    private List<string> _entries = new List<string>();
     public void SaveFile()
     {    
-        using (StreamWriter outputFile = new StreamWriter(_filename))
-        foreach (string line in _entries)
+        try
         {
-            outputFile.WriteLine(line);
-        }
+            using (StreamWriter outputFile = new StreamWriter(_filename))
+            foreach (string line in _entries)
+            {
+                outputFile.WriteLine(line);
+            }
+        } catch {Console.WriteLine("Error: Could not save to the chosen file.");}
     }
-    public List<string> LoadFile()
+    public List<string> ParseFile()
     {    
-        string[] lines = System.IO.File.ReadAllLines(_filename);
-
-        foreach (string line in lines)
+        try
         {
-            _entries.Add(line);
-        }
-        return _entries;
+            string[] lines = System.IO.File.ReadAllLines(_filename);
+
+            foreach (string line in lines)
+            {
+                _entries.Add(line);
+            }
+            return _entries;
+        } catch {
+            Console.WriteLine("Error: could not load the chosen file.");
+            _entries.Add("The chosen file could not be loaded.");
+            return _entries;
+            }
     }  
+
+    /*Constructor*/
+    public File(string filename, List<string> entries)
+    {
+        _filename = filename;
+        _entries = entries;
+    }
 }

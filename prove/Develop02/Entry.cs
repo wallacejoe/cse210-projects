@@ -2,8 +2,8 @@ using System;
 
 public class Entry
 {
-    public string _prompt = "";
-    public string _userEntry = "";
+    private string _prompt;
+    private string _userEntry;
     
     public string FullJournalEntry()
     {
@@ -15,5 +15,12 @@ public class Entry
         journalEntry = journalEntry + $"\"{_prompt}\"" + "," + $@"""{_userEntry}""";
 
         return journalEntry;
+    }
+
+    /*Constructor*/
+    public Entry(string prompt, string userEntry)
+    {
+        _prompt = prompt;
+        _userEntry = userEntry;
     }
 }

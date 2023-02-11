@@ -2,9 +2,9 @@ using System;
 using System.IO;
 public class PromptGenerator
 {
-    public List<string> _prompts = new List<string>() {
+    private List<string> _prompts = new List<string>() {
             "What was the most random thing that happened today?",
-            "What is something new you've leared today?",
+            "What is something new you've learned today?",
             "What was the most productive thing you've done today?",
             "What do you wish you would've done today?",
             "Who was the most interesting person I interacted with today?",
