@@ -7,6 +7,7 @@ public class Scripture
     private string _fullRef;
     private List<int> _hiddenWords = new List<int>();
     private bool _initialDisplay = true;
+    
     private string HideWords()
     {
         string newText = "";
@@ -15,15 +16,8 @@ public class Scripture
         _words = _text.Split(" ");
         foreach (string line in _words)
         {
-            bool hidden = false;
-            for (int i = 0; i < _hiddenWords.Count(); i++)
-            {
-                if (currentNum == _hiddenWords[i])
-                {
-                    hidden = true;
-                }
-            }
-            if (!hidden)
+            Word findHidden = new Word(currentNum);
+            if (!findHidden.IsHidden(_hiddenWords))
             {
                 hideOptions.Add(currentNum);
             }
@@ -50,24 +44,17 @@ public class Scripture
         currentNum = 0;
         foreach (string line in _words)
         {
-            bool hidden = false;
-            for (int i = 0; i < _hiddenWords.Count(); i++)
-            {
-                if (currentNum == _hiddenWords[i])
-                {
-                    hidden = true;
-                }
-            }
+            Word hideWord = new Word(line, currentNum);
+            hideWord.IsHidden(_hiddenWords);
+            
             if (currentNum == _words.Count() - 1)
             {
                 currentNum += 1;
-                Word hideWord = new Word(line, hidden);
                 newText += hideWord.GetRenderedText();
             }
             else
             {
                 currentNum += 1;
-                Word hideWord = new Word(line, hidden);
                 newText += $"{hideWord.GetRenderedText()} ";
             }
         }
@@ -89,9 +76,6 @@ public class Scripture
     }
     public string IsCompletelyHidden()
     {
-        Console.Clear();
-        Console.WriteLine((GetRenderedText()));
-        Console.WriteLine("");
         string userInput;
         if (_initialDisplay)
         {

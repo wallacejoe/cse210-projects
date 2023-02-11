@@ -64,6 +64,9 @@ class Program
 
         //Loops the program until the user enters 'quit'.
         while (userInput != "quit") {
+            Console.Clear();
+            Console.WriteLine(scrip.GetRenderedText());
+            Console.WriteLine();
             userInput = scrip.IsCompletelyHidden();
         }
     }
