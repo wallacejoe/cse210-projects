@@ -52,9 +52,9 @@ class Program
         }
         else
         {
-            scriptureBook = "Proverbs";
-            scriptureChapter = "3:5-6";
-            string[] scriptureText = {"Trust in the Lord with all thine heart and lean not unto thine own understanding;", "in all thy ways acknowledge him, and he shall direct thy paths."};
+            scriptureBook = "James";
+            scriptureChapter = "1:5";
+            string scriptureText = "If any of you lack wisdom, let him ask of God, that giveth to all men liberally, and upbraideth not; and it shall be given him.";
             Reference scripRef = new Reference(scriptureBook, scriptureChapter, scriptureText);
             fullScripRef = scripRef.FullReference();
         }
