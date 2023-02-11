@@ -3,7 +3,25 @@ using System.Text;
 
 public class Journal
 {
-    public List<string> _entries = new List<string>();
+    private List<string> _entries = new List<string>();
+
+    /*Getters and Setters*/
+    public List<string> GetEntries()
+    {
+        return _entries;
+    }
+
+    public void SetEntries(List<string> entries)
+    {
+        _entries = entries;
+    }
+
+    public void AddEntries(string entry)
+    {
+        _entries.Add(entry);
+    }
+
+    /*Display Method*/
 
     public void Display()
     {
