@@ -7,95 +7,82 @@ public class Scripture
     private string _fullRef;
     private List<int> _hiddenWords = new List<int>();
     private bool _initialDisplay = true;
+
+    /*Methods, public and private*/
+    //In conjunction with the Word class, this method hides a set number
+    //of words that are not already hidden.
     private string HideWords()
     {
         string newText = "";
         int currentNum = 0;
         List<int> hideOptions = new List<int>();
         _words = _text.Split(" ");
-        foreach (string line in _words)
+        if (!_initialDisplay)
         {
-            bool hidden = false;
-            for (int i = 0; i < _hiddenWords.Count(); i++)
+            foreach (string line in _words)
             {
-                if (currentNum == _hiddenWords[i])
+                Word findHidden = new Word(currentNum);
+                if (!findHidden.IsHidden(_hiddenWords))
                 {
-                    hidden = true;
+                    hideOptions.Add(currentNum);
+                }
+                currentNum += 1;
+            }
+            if (hideOptions.Count() > 4)
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    Random getRandomNum = new Random();
+                    int randomNum = getRandomNum.Next(0, hideOptions.Count());
+                    int hideNewWord = hideOptions[randomNum];
+                    hideOptions.Remove(hideNewWord);
+                    _hiddenWords.Add(hideNewWord);
                 }
             }
-            if (!hidden)
+            else
             {
-                hideOptions.Add(currentNum);
-            }
-            currentNum += 1;
-        }
-        if (hideOptions.Count() > 4)
-        {
-            for (int i = 0; i < 4; i++)
-            {
-                Random getRandomNum = new Random();
-                int randomNum = getRandomNum.Next(0, hideOptions.Count());
-                int hideNewWord = hideOptions[randomNum];
-                hideOptions.Remove(hideNewWord);
-                _hiddenWords.Add(hideNewWord);
-            }
-        }
-        else
-        {
-            foreach (int number in hideOptions)
-            {
-                _hiddenWords.Add(number);
+                foreach (int number in hideOptions)
+                {
+                    _hiddenWords.Add(number);
+                }
             }
         }
         currentNum = 0;
         foreach (string line in _words)
         {
-            bool hidden = false;
-            for (int i = 0; i < _hiddenWords.Count(); i++)
-            {
-                if (currentNum == _hiddenWords[i])
-                {
-                    hidden = true;
-                }
-            }
+            Word hideWord = new Word(line, currentNum);
+            hideWord.IsHidden(_hiddenWords);
+            
             if (currentNum == _words.Count() - 1)
             {
                 currentNum += 1;
-                Word hideWord = new Word(line, hidden);
                 newText += hideWord.GetRenderedText();
             }
             else
             {
                 currentNum += 1;
-                Word hideWord = new Word(line, hidden);
                 newText += $"{hideWord.GetRenderedText()} ";
             }
         }
         return newText;
     }
 
+    //Gets and returns the complete rendered text, including the reference.
     public string GetRenderedText()
     {
-        if (_initialDisplay)
-        {
-            string fullText = $"{_fullRef} {_text}";
-            return fullText;
-        }
-        else
-        {
-            string fullText = $"{_fullRef} {HideWords()}";
-            return fullText;
-        }
+        string fullText = $"{_fullRef} {HideWords()}";
+        return fullText;
     }
+
+    //Determines if all words are hidden. Either takes the users input,
+    //or terminates the program if all words are hidden.
     public string IsCompletelyHidden()
     {
-        Console.Clear();
-        Console.WriteLine((GetRenderedText()));
-        Console.WriteLine("");
         string userInput;
         if (_initialDisplay)
         {
             _initialDisplay = false;
+            Console.WriteLine("Type 'reset' to start over or 'back' to undo recently hidden words.");
             Console.WriteLine("Press enter to continue or type 'quit' to finish:");
             userInput = Console.ReadLine();
             return userInput;
@@ -106,10 +93,31 @@ public class Scripture
             {
                 return "quit";
             }
+            Console.WriteLine("Type 'reset' to start over or 'back' to undo recently hidden words.");
             Console.WriteLine("Press enter to continue or type 'quit' to finish:");
             userInput = Console.ReadLine();
             return userInput;
         }
+    }
+
+    //Reveals the last set of words to be hidden.
+    public void Undo()
+    {
+        try
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                _hiddenWords.RemoveAt(_hiddenWords.Count() - 1);
+            }
+        } catch {}
+        _initialDisplay = true;
+    }
+
+    //'Restarts' the program by clearing the list keeping track of hidden words.
+    public void Reset()
+    {
+        _hiddenWords.Clear();
+        _initialDisplay = true;
     }
 
     /*Constructors*/
