@@ -68,6 +68,14 @@ class Program
             Console.WriteLine(scrip.GetRenderedText());
             Console.WriteLine();
             userInput = scrip.IsCompletelyHidden();
+            if (userInput == "reset")
+            {
+                scrip.Reset();
+            }
+            else if (userInput == "back")
+            {
+                scrip.Undo();
+            }
         }
     }
 }
