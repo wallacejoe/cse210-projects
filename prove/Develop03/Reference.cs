@@ -8,7 +8,6 @@ public class Reference
 
     /*I realized that if I was returning a string regardless
      it would be easier to convert within the constructor*/
-    //private String[] _verses;
 
     //Format the full scripture reference, the '_book' and '_chapter'.
     public string[] FullReference()
