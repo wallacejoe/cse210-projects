@@ -1,0 +1,33 @@
+Activity:
+-This class stores the basic name, description and duration required by each subclass.
+-Contains the basic start and end messages/methods required by each class.
+-The start message will take user input setting the value of the duration attribute.
+-Will contain the functionallity of the pause spinner and countdown. I don't know much
+about these processes yet, but I imagine they will need to return strings, TBD.
+
+BreathingActivity:
+-Will display the "Breathe in"/"Breathe out" text.
+-Will pause after each display, and display the countdown.
+-The constructor will take no input and will set the value of each Activity attribute.
+Note: the duration attribute will be a default, if the user enters a valid number
+the default will not be used.
+
+ReflectingActivity:
+-This class will store lists of both questions and prompts. If both are not provided
+with the constructor, default lists will be used.
+-This class will display a random prompt, followed by multiple random questions.
+Questions will continue to display until the time runs out.
+-Before the prompt is replaced with questions, the user will receive a countdown.
+-Between questions the spinner method will display. I haven't yet decide for how long.
+-The constructor will set the value of each Activity attribute.
+
+ListingActivity:
+-This class will store a list of prompts. If no list is provided to the constructor,
+a default list will be used.
+-This class will display a random prompt.
+-The user will receive a countdown before starting to enter their answers.
+-The user will enter as many answers to the prompt as they can think of in the
+provided time.
+-This class will store the number of answers the user inputs and display the total at
+the end.
+-The constructor will set the value of each Activity attribute.
