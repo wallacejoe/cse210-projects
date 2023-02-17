@@ -25,11 +25,18 @@ class Program
             }
             else if (userInput == "2")
             {
-
+                ReflectingActivity reflectingActivity = new ReflectingActivity("Reflecting Activity", "This activity will help you reflect on times in your life when you have shown strength and resilience. This will help you recognize the power you have and how you can use it in other aspects of your life.", 30);
+                reflectingActivity.DisplayStartMessage();
+                reflectingActivity.DisplayEndMessage();
             }
             else if (userInput == "3")
             {
-                
+                ListingActivity listingActivity = new ListingActivity("Listing Activity", "This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.", 30);
+                listingActivity.DisplayStartMessage();
+                listingActivity.DisplayPrompt();
+                listingActivity.DisplayUserInput();
+                listingActivity.DisplayListNum();
+                listingActivity.DisplayEndMessage();
             }
             else if (userInput != "4")
             {
