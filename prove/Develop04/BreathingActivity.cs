@@ -2,6 +2,10 @@ using System;
 
 public class BreathingActivity : Activity
 {
+    /*Constructor*/
+    public BreathingActivity(string name, string description, int duration) : base(name, description, duration){}
+    
+    /*Class Methods*/
     //I added a another method to loop through the Displays and
     //keep track of the time. I realized the breathe methods would
     //be hard pressed to accomplish this task themselves.
@@ -33,7 +37,4 @@ public class BreathingActivity : Activity
         PauseCountdown(6);
         Console.WriteLine();
     }
-
-    /*Constructor*/
-    public BreathingActivity(string name, string description, int duration) : base(name, description, duration){}
 }

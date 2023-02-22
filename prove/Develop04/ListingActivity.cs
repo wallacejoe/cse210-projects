@@ -5,6 +5,26 @@ public class ListingActivity : Activity
     private int _numListed = 0;
     private List<string> _prompts = new List<string>();
 
+    /*Constructors*/
+    public ListingActivity(string name, string description, int duration) : base(name, description, duration)
+    {
+        string[] defaultPrompts = {
+            "Who are people that you appreciate?",
+            "What are personal strengths of yours?",
+            "Who are people that you have helped this week?",
+            "When have you felt the Holy Ghost this month?",
+            "Who are some of your personal heroes?"
+        };
+        foreach (string prompt in defaultPrompts)
+            _prompts.Add(prompt);
+    }
+
+    public ListingActivity(List<string> prompts, string name, string description, int duration) : base(name, description, duration)
+    {
+        _prompts = prompts;
+    }
+    
+    /*Class Methods*/
     private string PromptGenerator()
     {
         Random randomGenerator = new Random();
@@ -39,24 +59,5 @@ public class ListingActivity : Activity
             _numListed += 1;
             currentTime = DateTime.Now;
         }
-    }
-
-    /*Constructors*/
-    public ListingActivity(string name, string description, int duration) : base(name, description, duration)
-    {
-        string[] defaultPrompts = {
-            "Who are people that you appreciate?",
-            "What are personal strengths of yours?",
-            "Who are people that you have helped this week?",
-            "When have you felt the Holy Ghost this month?",
-            "Who are some of your personal heroes?"
-        };
-        foreach (string prompt in defaultPrompts)
-            _prompts.Add(prompt);
-    }
-
-    public ListingActivity(List<string> prompts, string name, string description, int duration) : base(name, description, duration)
-    {
-        _prompts = prompts;
     }
 }
