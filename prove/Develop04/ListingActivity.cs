@@ -2,7 +2,7 @@ using System;
 
 public class ListingActivity : Activity
 {
-    private int _numListed = 0;
+    private int _numListed;
     private List<string> _prompts = new List<string>();
     private List<string> _initialPrompts = new List<string>();
 
@@ -20,6 +20,9 @@ public class ListingActivity : Activity
             _prompts.Add(prompt);
     }
 
+    //I added options to allow for more input because they would
+    //be convenient to have in many situations. I will only use
+    //the default options for the assignment though.
     public ListingActivity(List<string> prompts, string name, string description, int duration) : base(name, description, duration)
     {
         _prompts = prompts;
@@ -28,12 +31,12 @@ public class ListingActivity : Activity
     /*Class Methods*/
     private string PromptGenerator()
     {
-        if (_prompts.Count() < 1)
+        if (_prompts.Count() < 0)
         {
             _prompts = _initialPrompts;
         }
         Random randomGenerator = new Random();
-        int magicNum = randomGenerator.Next(1, _prompts.Count());
+        int magicNum = randomGenerator.Next(0, _prompts.Count());
         string chosenPrompt = _prompts[magicNum];
         _prompts.RemoveAt(magicNum);
 
@@ -56,6 +59,7 @@ public class ListingActivity : Activity
 
     public void DisplayUserInput()
     {
+        _numListed = 0;
         DateTime futureTime = DateTime.Now.AddSeconds(_duration);
 
         DateTime currentTime = DateTime.Now;
