@@ -10,6 +10,17 @@ public class Circle : Shape
         _radius = radius;
     }
 
+    /*Getters/Setters*/
+    public double getRadius()
+    {
+        return _radius;
+    }
+
+    public void setRadius(double radius)
+    {
+        _radius = radius;
+    }
+
     /*Override Method*/
     public override double getArea()
     {
