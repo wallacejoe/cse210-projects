@@ -4,6 +4,7 @@ public class ListingActivity : Activity
 {
     private int _numListed = 0;
     private List<string> _prompts = new List<string>();
+    private List<string> _initialPrompts = new List<string>();
 
     /*Constructors*/
     public ListingActivity(string name, string description, int duration) : base(name, description, duration)
@@ -23,14 +24,20 @@ public class ListingActivity : Activity
     {
         _prompts = prompts;
     }
-    
+
     /*Class Methods*/
     private string PromptGenerator()
     {
+        if (_prompts.Count() < 1)
+        {
+            _prompts = _initialPrompts;
+        }
         Random randomGenerator = new Random();
         int magicNum = randomGenerator.Next(1, _prompts.Count());
+        string chosenPrompt = _prompts[magicNum];
+        _prompts.RemoveAt(magicNum);
 
-        return _prompts[magicNum];
+        return chosenPrompt;
     }
 
     public void DisplayPrompt()
