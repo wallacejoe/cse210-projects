@@ -57,7 +57,14 @@ public class ListingActivity : Activity
 
     public void DisplayListNum()
     {
-        Console.WriteLine($"You listed {_numListed} items!\n");
+        if (_numListed == 1)
+        {
+            Console.WriteLine($"You listed {_numListed} item!\n");
+        }
+        else
+        {
+            Console.WriteLine($"You listed {_numListed} items!\n");
+        }
     }
 
     public void DisplayUserInput()
