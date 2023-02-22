@@ -22,7 +22,7 @@ public class Circle : Shape
     }
 
     /*Override Method*/
-    public override double getArea()
+    public override double GetArea()
     {
         double area = _radius * _radius * 3.14;
         return area;

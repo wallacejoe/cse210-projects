@@ -22,5 +22,5 @@ public abstract class Shape
     }
     
     /*Abstract Method*/
-    public abstract double getArea();
+    public abstract double GetArea();
 }
