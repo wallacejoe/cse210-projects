@@ -18,6 +18,8 @@ public class ListingActivity : Activity
         };
         foreach (string prompt in defaultPrompts)
             _prompts.Add(prompt);
+        foreach (string prompt in defaultPrompts)
+            _initialPrompts.Add(prompt);
     }
 
     //I added options to allow for more input because they would
@@ -26,12 +28,13 @@ public class ListingActivity : Activity
     public ListingActivity(List<string> prompts, string name, string description, int duration) : base(name, description, duration)
     {
         _prompts = prompts;
+        _initialPrompts = prompts;
     }
 
     /*Class Methods*/
     private string PromptGenerator()
     {
-        if (_prompts.Count() < 0)
+        if (!_prompts.Any())
         {
             _prompts = _initialPrompts;
         }
