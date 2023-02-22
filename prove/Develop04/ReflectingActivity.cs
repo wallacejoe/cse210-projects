@@ -64,8 +64,9 @@ public class ReflectingActivity : Activity
             updatedQuestions = _questions;
         }
         Random randomGenerator = new Random();
-        int magicNum = randomGenerator.Next(1, updatedQuestions.Count());
+        int magicNum = randomGenerator.Next(0, updatedQuestions.Count());
         string chosenQuestion = updatedQuestions[magicNum];
+        updatedQuestions.RemoveAt(magicNum);
 
         return chosenQuestion;
     }
@@ -80,7 +81,7 @@ public class ReflectingActivity : Activity
 
     public void DisplayQuestion()
     {
-        List<string> updatedQuestions = _questions;
+        List<string> updatedQuestions = new List<string>(_questions);
         Console.WriteLine("Now ponder on each of the following questions as they related to this experience.");
         Console.Write("You may begin in: ");
         PauseCountdown(5);
