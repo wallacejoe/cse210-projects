@@ -21,5 +21,6 @@ public abstract class Shape
         _color = color;
     }
     
-    public abstract float getArea();
+    /*Abstract Method*/
+    public abstract double getArea();
 }
