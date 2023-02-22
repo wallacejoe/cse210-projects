@@ -5,6 +5,49 @@ public class ReflectingActivity : Activity
     private List<string> _prompts = new List<string>();
     private List<string> _questions = new List<string>();
 
+    private string PromptGenerator()
+    {
+        Random randomGenerator = new Random();
+        int magicNum = randomGenerator.Next(1, _prompts.Count());
+
+        string randomPrompt = _prompts[magicNum];
+        return randomPrompt;
+    }
+
+    private string RandomQuestion()
+    {
+        Random randomGenerator = new Random();
+        int magicNum = randomGenerator.Next(1, _questions.Count());
+        return _questions[magicNum];
+    }
+
+    public void DisplayPrompt()
+    {
+        Console.WriteLine("Consider the following prompt:");
+        Console.WriteLine($"\n --- {PromptGenerator()} ---");
+        Console.WriteLine($"\nWhen you have something in mind, press enter to contiue.");
+        Console.ReadLine();
+    }
+
+    public void DisplayQuestion()
+    {
+        Console.WriteLine("Now ponder on each of the following questions as they related to this experience.");
+        Console.Write("You may begin in: ");
+        PauseCountdown(5);
+        Console.Clear();
+
+        DateTime futureTime = DateTime.Now.AddSeconds(_duration);
+        DateTime currentTime = DateTime.Now;
+        while (currentTime < futureTime)
+        {
+            Console.Write($"> {RandomQuestion()} ");
+            PauseSpinner(30);
+            Console.WriteLine();
+            currentTime = DateTime.Now;
+        }
+        Console.WriteLine();
+    }
+
     /*Constructors*/
     public ReflectingActivity(string name, string description, int duration) : base(name, description, duration)
     {
@@ -30,5 +73,11 @@ public class ReflectingActivity : Activity
         };
         foreach (string question in defaultQuestions)
             _questions.Add(question);
+    }
+
+    public ReflectingActivity(List<string> prompts, List<string> questions, string name, string description, int duration) : base(name, description, duration)
+    {
+        _prompts = prompts;
+        _questions = questions;
     }
 }

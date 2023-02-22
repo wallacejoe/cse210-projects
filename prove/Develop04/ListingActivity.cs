@@ -10,8 +10,7 @@ public class ListingActivity : Activity
         Random randomGenerator = new Random();
         int magicNum = randomGenerator.Next(1, _prompts.Count());
 
-        string randomPrompt = _prompts[magicNum];
-        return randomPrompt;
+        return _prompts[magicNum];
     }
 
     public void DisplayPrompt()
