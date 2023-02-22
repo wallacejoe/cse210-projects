@@ -12,6 +12,27 @@ public class Rectangle : Shape
         _width = width;
     }
 
+    /*Getters/Setters*/
+    public double getLength()
+    {
+        return _length;
+    }
+
+    public void setLength(double length)
+    {
+        _length = length;
+    }
+
+    public double getWidth()
+    {
+        return _width;
+    }
+
+    public void setWidth(double width)
+    {
+        _width = width;
+    }
+
     /*Override Method*/
     public override double getArea()
     {
