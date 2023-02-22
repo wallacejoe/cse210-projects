@@ -57,6 +57,9 @@ public class ReflectingActivity : Activity
         return chosenPrompt;
     }
 
+    //I wanted each question to be able to display once each time
+    //they ran the activity, rather than each session. So, that's
+    //why I made it a little different from the PromptGenerator.
     private string RandomQuestion(List<string> updatedQuestions)
     {
         if (!updatedQuestions.Any())
