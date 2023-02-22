@@ -3,6 +3,7 @@ using System;
 public class ReflectingActivity : Activity
 {
     private List<string> _prompts = new List<string>();
+    private List<string> _initialPrompts = new List<string>();
     private List<string> _questions = new List<string>();
 
     /*Constructors*/
@@ -16,6 +17,8 @@ public class ReflectingActivity : Activity
         };
         foreach (string prompt in defaultPrompts)
             _prompts.Add(prompt);
+        foreach (string prompt in defaultPrompts)
+            _initialPrompts.Add(prompt);
 
         string[] defaultQuestions = {
             "Why was this experience meaningful to you?",
@@ -35,17 +38,23 @@ public class ReflectingActivity : Activity
     public ReflectingActivity(List<string> prompts, List<string> questions, string name, string description, int duration) : base(name, description, duration)
     {
         _prompts = prompts;
+        _initialPrompts = prompts;
         _questions = questions;
     }
-    
+
     /*Class Methods*/
     private string PromptGenerator()
     {
+        if (!_prompts.Any())
+        {
+            _prompts = _initialPrompts;
+        }
         Random randomGenerator = new Random();
-        int magicNum = randomGenerator.Next(1, _prompts.Count());
+        int magicNum = randomGenerator.Next(0, _prompts.Count());
+        string chosenPrompt = _prompts[magicNum];
+        _prompts.RemoveAt(magicNum);
 
-        string randomPrompt = _prompts[magicNum];
-        return randomPrompt;
+        return chosenPrompt;
     }
 
     private string RandomQuestion()
