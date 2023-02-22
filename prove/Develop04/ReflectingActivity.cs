@@ -57,11 +57,17 @@ public class ReflectingActivity : Activity
         return chosenPrompt;
     }
 
-    private string RandomQuestion()
+    private string RandomQuestion(List<string> updatedQuestions)
     {
+        if (!updatedQuestions.Any())
+        {
+            updatedQuestions = _questions;
+        }
         Random randomGenerator = new Random();
-        int magicNum = randomGenerator.Next(1, _questions.Count());
-        return _questions[magicNum];
+        int magicNum = randomGenerator.Next(1, updatedQuestions.Count());
+        string chosenQuestion = updatedQuestions[magicNum];
+
+        return chosenQuestion;
     }
 
     public void DisplayPrompt()
@@ -74,6 +80,7 @@ public class ReflectingActivity : Activity
 
     public void DisplayQuestion()
     {
+        List<string> updatedQuestions = _questions;
         Console.WriteLine("Now ponder on each of the following questions as they related to this experience.");
         Console.Write("You may begin in: ");
         PauseCountdown(5);
@@ -83,7 +90,7 @@ public class ReflectingActivity : Activity
         DateTime currentTime = DateTime.Now;
         while (currentTime < futureTime)
         {
-            Console.Write($"> {RandomQuestion()} ");
+            Console.Write($"> {RandomQuestion(updatedQuestions)} ");
             PauseSpinner(30);
             Console.WriteLine();
             currentTime = DateTime.Now;
