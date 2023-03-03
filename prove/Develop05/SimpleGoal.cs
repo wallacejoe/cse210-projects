@@ -36,6 +36,6 @@ public class SimpleGoal : Goal
 
     public override void DisplayGoal()
     {
-        Console.WriteLine(_description);
+        Console.WriteLine($"{_name} ({_description})");
     }
 }

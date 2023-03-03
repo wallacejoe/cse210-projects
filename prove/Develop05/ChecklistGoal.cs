@@ -21,5 +21,8 @@ public class ChecklistGoal : Goal
     }
 
     /*Override Methods*/
-
+    public override void DisplayGoal()
+    {
+        Console.WriteLine($"{_name} ({_description}) -- Currently completed {_completion}/{_numToCompletion}");
+    }
 }
