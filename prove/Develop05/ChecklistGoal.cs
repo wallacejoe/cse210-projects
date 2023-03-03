@@ -21,6 +21,29 @@ public class ChecklistGoal : Goal
     }
 
     /*Override Methods*/
+    public override int RecordEvent()
+    {
+        if (!IsComplete())
+        {
+            _completion += 1;
+            if (IsComplete())
+            {
+                return _points + _pointBonus;
+            }
+            return _points;
+        }
+        return 0;
+    }
+
+    public override bool IsComplete()
+    {
+        if (_completion < _numToCompletion)
+        {
+            return false;
+        }
+        return true;
+    }
+
     public override void DisplayGoal()
     {
         Console.WriteLine($"{_name} ({_description}) -- Currently completed {_completion}/{_numToCompletion}");
