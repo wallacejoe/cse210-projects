@@ -5,9 +5,9 @@ public class SimpleGoal : Goal
     private bool _completion = false;
 
     /*Constructors*/
-    public SimpleGoal(string description, int points) : base(description, points){}
+    public SimpleGoal(string description, string name, int points) : base(description, name, points){}
 
-    public SimpleGoal(bool completion, string description, int points) : base(description, points)
+    public SimpleGoal(bool completion, string description, string name, int points) : base(description, name, points)
     {
         _completion = completion;
     }

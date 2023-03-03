@@ -2,20 +2,12 @@ using System;
 
 public class EternalGoal : Goal
 {
-    private int _completion = 0;
-
-    /*Constructors*/
-    public EternalGoal(string description, int points) : base(description, points){}
-
-    public EternalGoal(int completion, string description, int points) : base(description, points)
-    {
-        _completion = completion;
-    }
+    /*Constructor*/
+    public EternalGoal(string description, string name, int points) : base(description, name, points){}
 
     /*Override Methods*/
     public override int RecordEvent()
     {
-        _completion += 1;
         return _points;
     }
 

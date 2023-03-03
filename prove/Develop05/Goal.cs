@@ -3,12 +3,14 @@ using System;
 public abstract class Goal
 {
     protected string _description;
+    protected string _name;
     protected int _points;
 
     /*Constructor*/
-    public Goal(string description, int points)
+    public Goal(string description, string name, int points)
     {
         _description = description;
+        _name = name;
         _points = points;
     }
 
