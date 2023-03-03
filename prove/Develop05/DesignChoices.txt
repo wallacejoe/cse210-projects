@@ -1,0 +1,37 @@
+Goal:
+-This class stores the basic description and points attribute required by each class.
+-Contains 3 abstract methods that will be overridden by the subclasses.
+-Gets the point value of the recorded event. This will look different for each class.
+-Determines whether a goal is completed/it's state of completion.
+-Displays the goal. Again, this will work differentely depending on the class.
+
+SimpleGoal:
+-Tracks whether the goal is complete or incomplete.
+-Allows the user to mark the goal as done, giving the user points for completion.
+-Displays the goal description, completion state (complete/incomplete), and point value.
+
+EternalGoal:
+-Tracks how many times the goal has been "completed".
+-Allows the user to increase the number of times this goal has been completed.
+-Displays the goal description, number of completions, and point value per completion.
+
+ChecklistGoal:
+-Tracks the state of completion for the goal, how many recorded events are required
+for completion, and bonus points for completing the goal.
+-Allows the user to increase the number of times the required event has been met.
+-Displays the goal description, state of completion, point value per event, and final
+bonus value.
+
+File:
+-This class will serialize the attributes of each initialized subclass as a string.
+The values will be separated by characters unlikely to naturally appear in the string (Something like ||).
+-It will de-serialize the string into its individual attributes, and initialize new
+classes for each one. Will need a way to determine which subclass to create.
+-Will save/load a specific file, set by the user.
+
+-Each class will likely need some getters for their attributes. These will get the
+required information to save/serialize the file. Setters might not be necessary since
+the constructor generally takes care of setting the attributes.
+
+-The basic Program will handle the options menu and the initialization/creation of
+another class. It will then store that class to a list.
