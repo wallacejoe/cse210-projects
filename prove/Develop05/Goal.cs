@@ -18,4 +18,15 @@ public abstract class Goal
     public abstract int RecordEvent();
     public abstract bool IsComplete();
     public abstract void DisplayGoal();
+    public void CheckBox()
+    {
+        if (IsComplete())
+        {
+            Console.Write("[X] ");
+        }
+        else
+        {
+            Console.Write("[ ] ");
+        }
+    }
 }

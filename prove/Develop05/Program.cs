@@ -5,48 +5,50 @@ class Program
     static void Main(string[] args)
     {
         int points = 0;
+        string userInput = "";
 
-        void CheckBox(bool stateOfCompletion)
+        while (userInput != "6")
         {
-            if (stateOfCompletion)
+            Console.Clear();
+            Console.WriteLine($"You have {points} points\n");
+        
+            Console.WriteLine("Menu Options:");
+            Console.WriteLine(" 1. Create New Goal");
+            Console.WriteLine(" 2. List Goals");
+            Console.WriteLine(" 3. Save Goals");
+            Console.WriteLine(" 4. Load Goals");
+            Console.WriteLine(" 5. Record Event");
+            Console.WriteLine(" 6. Quit");
+            Console.Write("Select a choice from the menu: ");
+            userInput = Console.ReadLine();
+
+            if (userInput == "1")
             {
-                Console.Write("[X] ");
+
             }
+            else if (userInput == "2")
+            {
+
+            }
+            else if (userInput == "3")
+            {
+                
+            }
+            else if (userInput == "4")
+            {
+                
+            }
+            else if (userInput == "5")
+            {
+                
+            }
+            else if (userInput == "6"){}
             else
             {
-                Console.Write("[ ] ");
+                Console.WriteLine("That input is not valid.");
+                Console.Write("Press enter to continue:");
+                Console.ReadLine();
             }
         }
-
-        SimpleGoal simpleGoal = new SimpleGoal("Participate in any temple ordinance", "Go to the temple", 100);
-        CheckBox(simpleGoal.IsComplete());
-        simpleGoal.DisplayGoal();
-        Console.Write("Press enter to mark complete:");
-        Console.ReadLine();
-        points += simpleGoal.RecordEvent();
-        CheckBox(simpleGoal.IsComplete());
-        simpleGoal.DisplayGoal();
-        Console.WriteLine($"points: {points}");
-
-        EternalGoal eternalGoal = new EternalGoal("Study the scriptures for at least 10 minutes", "Daily scripture study", 20);
-        CheckBox(eternalGoal.IsComplete());
-        eternalGoal.DisplayGoal();
-        Console.Write("Press enter to mark complete:");
-        Console.ReadLine();
-        points += eternalGoal.RecordEvent();
-        CheckBox(eternalGoal.IsComplete());
-        eternalGoal.DisplayGoal();
-        Console.WriteLine($"points: {points}");
-
-        ChecklistGoal checklistGoal = new ChecklistGoal(500, 5, "Get any investigator to attend church with you", "Investigator attendance", 50);
-        CheckBox(checklistGoal.IsComplete());
-        checklistGoal.DisplayGoal();
-        Console.Write("Press enter to mark complete:");
-        Console.ReadLine();
-        points += checklistGoal.RecordEvent();
-        CheckBox(checklistGoal.IsComplete());
-        checklistGoal.DisplayGoal();
-        Console.WriteLine($"points: {points}");
-    
     }
 }
