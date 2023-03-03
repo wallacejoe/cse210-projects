@@ -21,22 +21,11 @@ public class EternalGoal : Goal
 
     public override bool IsComplete()
     {
-        if (_completion == 0)
-        {
-            return false;
-        }
-        return true;
+        return false;
     }
 
     public override void DisplayGoal()
     {
-        if (IsComplete())
-        {
-            Console.WriteLine($"Recorded completions: {_completion}");
-        }
-        else
-        {
-            Console.WriteLine("No recorded completions");
-        }
+        Console.WriteLine(_description);
     }
 }

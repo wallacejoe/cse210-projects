@@ -16,6 +16,7 @@ public class SimpleGoal : Goal
     {
         if (!IsComplete())
         {
+            _completion = true;
             return _points;
         }
         else
@@ -30,22 +31,11 @@ public class SimpleGoal : Goal
         {
             return true;
         }
-        else
-        {
-            _completion = true;
-        }
         return false;
     }
 
     public override void DisplayGoal()
     {
-        if (_completion)
-        {
-            Console.WriteLine($"{_description} [X]");
-        }
-        else
-        {
-            Console.WriteLine($"{_description} [ ]");
-        }
+        Console.WriteLine(_description);
     }
 }
