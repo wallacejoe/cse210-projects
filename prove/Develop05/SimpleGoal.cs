@@ -2,7 +2,7 @@ using System;
 
 public class SimpleGoal : Goal
 {
-    private bool _completion;
+    private bool _completion = false;
 
     /*Constructors*/
     public SimpleGoal(string description, int points) : base(description, points){}
@@ -12,5 +12,40 @@ public class SimpleGoal : Goal
         _completion = completion;
     }
     /*Override Methods*/
-    
+    public override int RecordEvent()
+    {
+        if (!IsComplete())
+        {
+            return _points;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
+    public override bool IsComplete()
+    {
+        if (_completion)
+        {
+            return true;
+        }
+        else
+        {
+            _completion = true;
+        }
+        return false;
+    }
+
+    public override void DisplayGoal()
+    {
+        if (_completion)
+        {
+            Console.WriteLine($"{_description} [X]");
+        }
+        else
+        {
+            Console.WriteLine($"{_description} [ ]");
+        }
+    }
 }
