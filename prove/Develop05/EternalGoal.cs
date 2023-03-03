@@ -13,4 +13,30 @@ public class EternalGoal : Goal
     }
 
     /*Override Methods*/
+    public override int RecordEvent()
+    {
+        _completion += 1;
+        return _points;
+    }
+
+    public override bool IsComplete()
+    {
+        if (_completion == 0)
+        {
+            return false;
+        }
+        return true;
+    }
+
+    public override void DisplayGoal()
+    {
+        if (IsComplete())
+        {
+            Console.WriteLine($"Recorded completions: {_completion}");
+        }
+        else
+        {
+            Console.WriteLine("No recorded completions");
+        }
+    }
 }
