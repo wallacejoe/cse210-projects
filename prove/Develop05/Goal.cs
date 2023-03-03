@@ -29,4 +29,10 @@ public abstract class Goal
             Console.Write("[ ] ");
         }
     }
+
+    /*Getters*/
+    public string GetName()
+    {
+        return _name;
+    }
 }
