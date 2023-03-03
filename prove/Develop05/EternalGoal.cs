@@ -3,7 +3,7 @@ using System;
 public class EternalGoal : Goal
 {
     /*Constructor*/
-    public EternalGoal(string description, string name, int points) : base(description, name, points){}
+    public EternalGoal(string description, string name, string type, int points) : base(description, name, type, points){}
 
     /*Override Methods*/
     public override int RecordEvent()
@@ -19,5 +19,11 @@ public class EternalGoal : Goal
     public override void DisplayGoal()
     {
         Console.WriteLine($"{_name} ({_description})");
+    }
+
+    public override string SerializedGoal()
+    {
+        string serializedString = $"{_type}{_name}{_description}{_points}";
+        return serializedString;
     }
 }

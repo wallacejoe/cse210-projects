@@ -43,7 +43,7 @@ class Program
                         string goalDescription = Console.ReadLine();
                         Console.Write("What is the amount of points associated with this goal? ");
                         int goalPoints = int.Parse(Console.ReadLine());
-                        goals.Add(new SimpleGoal(goalDescription, goalName, goalPoints));
+                        goals.Add(new SimpleGoal(goalDescription, goalName, "SimpleGoal", goalPoints));
                     } catch{Console.WriteLine("Your input did not match the required format");}
                 }
                 else if (goalChoice == "2")
@@ -56,7 +56,7 @@ class Program
                         string goalDescription = Console.ReadLine();
                         Console.Write("What is the amount of points associated with this goal? ");
                         int goalPoints = int.Parse(Console.ReadLine());
-                        goals.Add(new EternalGoal(goalDescription, goalName, goalPoints));
+                        goals.Add(new EternalGoal(goalDescription, goalName, "EternalGoal", goalPoints));
                     } catch{Console.WriteLine("Your input did not match the required format");}
                 }
                 else if (goalChoice == "3")
@@ -73,7 +73,7 @@ class Program
                         int requiredNum = int.Parse(Console.ReadLine());
                         Console.Write("What is the bonus for accomplishing it that many times? ");
                         int goalBonus = int.Parse(Console.ReadLine());
-                        goals.Add(new ChecklistGoal(goalBonus, requiredNum, goalDescription, goalName, goalPoints));
+                        goals.Add(new ChecklistGoal(goalBonus, requiredNum, goalDescription, goalName, "ChecklistGoal", goalPoints));
                     } catch{Console.WriteLine("Your input did not match the required format");}
                 }
                 else
@@ -91,7 +91,13 @@ class Program
             }
             else if (userInput == "3")
             {
-                
+                Console.Write("What is the filename for the goal file? ");
+                File file = new File(Console.ReadLine());
+                file.WriteToFile(points.ToString());
+                foreach (Goal goal in goals)
+                {
+                    file.WriteToFile(goal.SerializedGoal());
+                }
             }
             else if (userInput == "4")
             {

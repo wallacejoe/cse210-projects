@@ -7,13 +7,13 @@ public class ChecklistGoal : Goal
     private int _pointBonus;
 
     /*Constructors*/
-    public ChecklistGoal(int pointBonus, int numToCompletion, string description, string name, int points) : base(description, name, points)
+    public ChecklistGoal(int pointBonus, int numToCompletion, string description, string name, string type, int points) : base(description, name, type, points)
     {
         _pointBonus = pointBonus;
         _numToCompletion = numToCompletion;
     }
 
-    public ChecklistGoal(int completion, int pointBonus, int numToCompletion, string description, string name, int points) : base(description, name, points)
+    public ChecklistGoal(int completion, int pointBonus, int numToCompletion, string description, string name, string type, int points) : base(description, name, type, points)
     {
         _completion = completion;
         _pointBonus = pointBonus;
@@ -47,5 +47,11 @@ public class ChecklistGoal : Goal
     public override void DisplayGoal()
     {
         Console.WriteLine($"{_name} ({_description}) -- Currently completed {_completion}/{_numToCompletion}");
+    }
+
+    public override string SerializedGoal()
+    {
+        string serializedString = $"{_type}{_name}{_description}{_points}{_completion}{_numToCompletion}{_pointBonus}";
+        return serializedString;
     }
 }

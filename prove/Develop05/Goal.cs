@@ -5,12 +5,14 @@ public abstract class Goal
     protected string _description;
     protected string _name;
     protected int _points;
+    protected string _type;
 
     /*Constructor*/
-    public Goal(string description, string name, int points)
+    public Goal(string description, string name, string type, int points)
     {
         _description = description;
         _name = name;
+        _type = type;
         _points = points;
     }
 
@@ -18,6 +20,7 @@ public abstract class Goal
     public abstract int RecordEvent();
     public abstract bool IsComplete();
     public abstract void DisplayGoal();
+    public abstract string SerializedGoal();
     public void CheckBox()
     {
         if (IsComplete())

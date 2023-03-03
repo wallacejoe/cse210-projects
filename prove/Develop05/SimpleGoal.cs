@@ -5,9 +5,9 @@ public class SimpleGoal : Goal
     private bool _completion = false;
 
     /*Constructors*/
-    public SimpleGoal(string description, string name, int points) : base(description, name, points){}
+    public SimpleGoal(string description, string name, string type, int points) : base(description, name, type, points){}
 
-    public SimpleGoal(bool completion, string description, string name, int points) : base(description, name, points)
+    public SimpleGoal(bool completion, string description, string name, string type, int points) : base(description, name, type, points)
     {
         _completion = completion;
     }
@@ -37,5 +37,11 @@ public class SimpleGoal : Goal
     public override void DisplayGoal()
     {
         Console.WriteLine($"{_name} ({_description})");
+    }
+
+    public override string SerializedGoal()
+    {
+        string serializedString = $"{_type}{_name}{_description}{_points}{_completion}";
+        return serializedString;
     }
 }
