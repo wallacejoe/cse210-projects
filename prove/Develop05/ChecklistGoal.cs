@@ -51,7 +51,7 @@ public class ChecklistGoal : Goal
 
     public override string SerializedGoal()
     {
-        string serializedString = $"{_type}{_name}{_description}{_points}{_completion}{_numToCompletion}{_pointBonus}";
+        string serializedString = $"{_type}|/^|{_name}|/^|{_description}|/^|{_points}|/^|{_completion}|/^|{_numToCompletion}|/^|{_pointBonus}";
         return serializedString;
     }
 }

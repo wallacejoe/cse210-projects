@@ -41,7 +41,7 @@ public class SimpleGoal : Goal
 
     public override string SerializedGoal()
     {
-        string serializedString = $"{_type}{_name}{_description}{_points}{_completion}";
+        string serializedString = $"{_type}|/^|{_name}|/^|{_description}|/^|{_points}|/^|{_completion}";
         return serializedString;
     }
 }

@@ -23,7 +23,7 @@ public class EternalGoal : Goal
 
     public override string SerializedGoal()
     {
-        string serializedString = $"{_type}{_name}{_description}{_points}";
+        string serializedString = $"{_type}|/^|{_name}|/^|{_description}|/^|{_points}";
         return serializedString;
     }
 }
