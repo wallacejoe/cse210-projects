@@ -99,7 +99,17 @@ class Program
             }
             else if (userInput == "5")
             {
-                
+                int goalInteger = 1;
+                Console.WriteLine("The goals are:");
+                foreach (Goal goal in goals)
+                {
+                    Console.Write($" {goalInteger}. ");
+                    goal.DisplayGoal();
+                    goalInteger += 1;
+                }
+                Console.Write("Which goal did you accomplish? ");
+                int chosenGoal = int.Parse(Console.ReadLine()) - 1;
+                points += goals[chosenGoal].RecordEvent();
             }
             else if (userInput == "6"){}
             else
