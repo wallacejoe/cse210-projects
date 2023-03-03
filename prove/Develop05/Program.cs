@@ -83,7 +83,11 @@ class Program
             }
             else if (userInput == "2")
             {
-
+                foreach (Goal goal in goals)
+                {
+                    goal.CheckBox();
+                    goal.DisplayGoal();
+                }
             }
             else if (userInput == "3")
             {
