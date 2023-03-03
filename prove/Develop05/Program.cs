@@ -18,7 +18,7 @@ class Program
             }
         }
 
-        SimpleGoal simpleGoal = new SimpleGoal("Go to the temple", 100);
+        SimpleGoal simpleGoal = new SimpleGoal("Participate in any temple ordinance", "Go to the temple", 100);
         CheckBox(simpleGoal.IsComplete());
         simpleGoal.DisplayGoal();
         Console.Write("Press enter to mark complete:");
@@ -28,7 +28,7 @@ class Program
         simpleGoal.DisplayGoal();
         Console.WriteLine($"points: {points}");
 
-        EternalGoal eternalGoal = new EternalGoal("Daily scripture study", 20);
+        EternalGoal eternalGoal = new EternalGoal("Study the scriptures for at least 10 minutes", "Daily scripture study", 20);
         CheckBox(eternalGoal.IsComplete());
         eternalGoal.DisplayGoal();
         Console.Write("Press enter to mark complete:");
@@ -37,5 +37,16 @@ class Program
         CheckBox(eternalGoal.IsComplete());
         eternalGoal.DisplayGoal();
         Console.WriteLine($"points: {points}");
+
+        ChecklistGoal checklistGoal = new ChecklistGoal(500, 5, "Get any investigator to attend church with you", "Investigator attendance", 50);
+        CheckBox(checklistGoal.IsComplete());
+        checklistGoal.DisplayGoal();
+        Console.Write("Press enter to mark complete:");
+        Console.ReadLine();
+        points += checklistGoal.RecordEvent();
+        CheckBox(checklistGoal.IsComplete());
+        checklistGoal.DisplayGoal();
+        Console.WriteLine($"points: {points}");
+    
     }
 }
