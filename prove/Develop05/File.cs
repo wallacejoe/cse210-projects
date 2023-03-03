@@ -15,11 +15,14 @@ public class File
     //I decided to serialize directely from the classes, I kept
     //the file class in order to condence reading and writing
     //to a file.
-    public void WriteToFile(string output)
+    public void WriteToFile(List<string> values)
     {
         using (StreamWriter outputFile = new StreamWriter(_filename))
         {
-            outputFile.WriteLine(output);
+            foreach (string output in values)
+            {
+                outputFile.WriteLine(output);
+            }
         }
     }
 }

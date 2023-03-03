@@ -1,0 +1,2 @@
+0
+SimpleGoal|/^|Hello World|/^|hello world|/^|100|/^|False

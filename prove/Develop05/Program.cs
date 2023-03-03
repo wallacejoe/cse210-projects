@@ -93,11 +93,13 @@ class Program
             {
                 Console.Write("What is the filename for the goal file? ");
                 File file = new File(Console.ReadLine());
-                file.WriteToFile(points.ToString());
+                List<string> serializedGoals = new List<string>();
+                serializedGoals.Add(points.ToString());
                 foreach (Goal goal in goals)
                 {
-                    file.WriteToFile(goal.SerializedGoal());
+                    serializedGoals.Add(goal.SerializedGoal());
                 }
+                file.WriteToFile(serializedGoals);
             }
             else if (userInput == "4")
             {
