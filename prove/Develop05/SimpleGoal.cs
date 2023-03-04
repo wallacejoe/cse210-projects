@@ -2,12 +2,12 @@ using System;
 
 public class SimpleGoal : Goal
 {
-    private bool _completion = false;
+    private string _completion = "false";
 
     /*Constructors*/
     public SimpleGoal(string description, string name, string type, int points) : base(description, name, type, points){}
 
-    public SimpleGoal(bool completion, string description, string name, string type, int points) : base(description, name, type, points)
+    public SimpleGoal(string completion, string description, string name, string type, int points) : base(description, name, type, points)
     {
         _completion = completion;
     }
@@ -16,7 +16,7 @@ public class SimpleGoal : Goal
     {
         if (!IsComplete())
         {
-            _completion = true;
+            _completion = "true";
             return _points;
         }
         else
@@ -27,7 +27,7 @@ public class SimpleGoal : Goal
 
     public override bool IsComplete()
     {
-        if (_completion)
+        if (_completion == "true")
         {
             return true;
         }

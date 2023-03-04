@@ -103,7 +103,10 @@ class Program
             }
             else if (userInput == "4")
             {
-                
+                Console.Write("What is the filename for the goal file? ");
+                File file = new File(Console.ReadLine());
+                goals = file.DeserializeFile();
+                points = file.GetPoints();
             }
             else if (userInput == "5")
             {
