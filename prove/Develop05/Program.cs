@@ -114,10 +114,10 @@ class Program
                 Console.WriteLine("The goals are:");
                 foreach (Goal goal in goals)
                 {
-                    Console.Write($" {goalInteger}. {goal.GetName()}");
+                    Console.WriteLine($" {goalInteger}. {goal.GetName()}");
                     goalInteger += 1;
                 }
-                Console.Write($"\nWhich goal did you accomplish? ");
+                Console.Write("Which goal did you accomplish? ");
                 int chosenGoal = int.Parse(Console.ReadLine()) - 1;
                 points += goals[chosenGoal].RecordEvent();
             }

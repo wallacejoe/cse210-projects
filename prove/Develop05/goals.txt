@@ -1,2 +1,4 @@
-0
-SimpleGoal|/^|Hello World|/^|hello world|/^|100|/^|False
+50
+SimpleGoal|/^|Attend the Temple|/^|Perform any temple ordinance|/^|100|/^|false
+EternalGoal|/^|Scripture study|/^|Study the scriptures for at least 10 minutes|/^|25
+ChecklistGoal|/^|Invite others to church|/^|Invite any non-member to church|/^|50|/^|1|/^|5|/^|500
