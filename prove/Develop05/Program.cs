@@ -10,6 +10,7 @@ class Program
 
         while (userInput != "6")
         {
+            Console.WriteLine($"\nCurrent Rank: {DetermineRank(points)}");
             Console.WriteLine($"You have {points} points\n");
         
             Console.WriteLine("Menu Options:");
@@ -127,6 +128,39 @@ class Program
                 Console.WriteLine("That input is not valid.");
                 Console.Write("Press enter to continue:");
                 Console.ReadLine();
+            }
+        }
+
+        string DetermineRank(int points)
+        {
+            if (points < 2000)
+            {
+                points = points / 1000;
+                return $"Beginner {points + 1}";
+            }
+            else if (points < 6000)
+            {
+                points -= 2000;
+                points = points / 1000;
+                return $"Novice {points + 1}";
+            }
+            else if (points < 12000)
+            {
+                points -= 6000;
+                points = points / 1000;
+                return $"Intermediate {points + 1}";
+            }
+            else if (points < 20000)
+            {
+                points -= 12000;
+                points = points / 1000;
+                return $"Advanced {points + 1}";
+            }
+            else
+            {
+                points -= 20000;
+                points = points / 1000;
+                return $"Master of Goals {points + 1}";
             }
         }
     }
