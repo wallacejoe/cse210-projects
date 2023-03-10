@@ -139,7 +139,7 @@ class Program
                         Console.WriteLine($"\nYou get {goalStreak * 10} points for your goal streak, log in every day to increase your streak!");
                         Console.WriteLine($"Current streak: {goalStreak}\n");
                     }
-                    else if (dateTime.AddDays(2) < currentTime)
+                    else if (dateTime.AddDays(1) < currentTime)
                     {
                         dateTime = currentTime;
                         goalStreak = 0;

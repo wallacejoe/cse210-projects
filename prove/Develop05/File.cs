@@ -47,7 +47,7 @@ public class File
             }
             else if (parts[0] == "ChecklistGoal")
             {
-                loadedGoals.Add(new ChecklistGoal(int.Parse(parts[6]), int.Parse(parts[5]), parts[2], parts[1], parts[0], int.Parse(parts[3])));
+                loadedGoals.Add(new ChecklistGoal(int.Parse(parts[4]), int.Parse(parts[6]), int.Parse(parts[5]), parts[2], parts[1], parts[0], int.Parse(parts[3])));
                 //{_type}|/^|{_name}|/^|{_description}|/^|{_points}|/^|{_completion}|/^|{_numToCompletion}|/^|{_pointBonus}
             }
             else if (parts[0] == "Points")

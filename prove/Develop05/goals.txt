@@ -1,4 +1,6 @@
-50
-SimpleGoal|/^|Attend the Temple|/^|Perform any temple ordinance|/^|100|/^|false
+Points|/^|25
+Streak|/^|0
+Date|/^|3/10/2023 12:00:00 AM
+SimpleGoal|/^|Attend the temple|/^|Perform any temple ordinance|/^|100|/^|false
 EternalGoal|/^|Scripture study|/^|Study the scriptures for at least 10 minutes|/^|25
-ChecklistGoal|/^|Invite others to church|/^|Invite any non-member to church|/^|50|/^|1|/^|5|/^|500
+ChecklistGoal|/^|Invite non-member to church|/^|Invite any non-member to attend church|/^|50|/^|0|/^|5|/^|100
