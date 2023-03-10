@@ -113,6 +113,7 @@ class Program
             }
             else if (userInput == "5")
             {
+                int currentPoints = points;
                 int goalInteger = 1;
                 Console.WriteLine("The goals are:");
                 foreach (Goal goal in goals)
@@ -124,18 +125,21 @@ class Program
                 int chosenGoal = int.Parse(Console.ReadLine()) - 1;
                 points += goals[chosenGoal].RecordEvent();
                 DateTime currentTime = DateTime.Today;
-                if (dateTime.AddDays(1) <= currentTime && dateTime.AddDays(2) > currentTime)
+                if (currentPoints < points)
                 {
-                    goalStreak += 1;
-                    points += goalStreak * 10;
-                    dateTime = currentTime;
-                    Console.WriteLine($"\nYou get {goalStreak * 10} points for your goal streak, log in every day to increase your streak!");
-                    Console.WriteLine($"Current streak: {goalStreak}\n");
-                }
-                else if (dateTime.AddDays(2) < currentTime)
-                {
-                    dateTime = currentTime;
-                    goalStreak = 0;
+                    if (dateTime.AddDays(1) <= currentTime && dateTime.AddDays(2) > currentTime)
+                    {
+                        goalStreak += 1;
+                        points += goalStreak * 10;
+                        dateTime = currentTime;
+                        Console.WriteLine($"\nYou get {goalStreak * 10} points for your goal streak, log in every day to increase your streak!");
+                        Console.WriteLine($"Current streak: {goalStreak}\n");
+                    }
+                    else if (dateTime.AddDays(2) < currentTime)
+                    {
+                        dateTime = currentTime;
+                        goalStreak = 0;
+                    }
                 }
             }
             else if (userInput == "6"){}
