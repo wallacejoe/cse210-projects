@@ -5,6 +5,8 @@ public class File
 {
     private string _filename;
     private int _points;
+    private int _streak;
+    private DateTime _date;
 
     /*Constructor*/
     public File(string filename)
@@ -48,14 +50,31 @@ public class File
                 loadedGoals.Add(new ChecklistGoal(int.Parse(parts[6]), int.Parse(parts[5]), parts[2], parts[1], parts[0], int.Parse(parts[3])));
                 //{_type}|/^|{_name}|/^|{_description}|/^|{_points}|/^|{_completion}|/^|{_numToCompletion}|/^|{_pointBonus}
             }
-            else
+            else if (parts[0] == "Points")
             {
-                _points = int.Parse(parts[0]);
+                _points = int.Parse(parts[1]);
+            }
+            else if (parts[0] == "Streak")
+            {
+                _streak = int.Parse(parts[1]);
+            }
+            else if (parts[0] == "Date")
+            {
+                _date = DateTime.Parse(parts[1]);
             }
         }
         return loadedGoals;
     }
 
+    /*Getters*/
+    public DateTime GetDate()
+    {
+        return _date;
+    }
+    public int GetStreak()
+    {
+        return _streak;
+    }
     public int GetPoints()
     {
         return _points;

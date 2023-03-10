@@ -97,7 +97,9 @@ class Program
                 Console.Write("What is the filename for the goal file? ");
                 File file = new File(Console.ReadLine());
                 List<string> serializedGoals = new List<string>();
-                serializedGoals.Add(points.ToString());
+                serializedGoals.Add($"Points|/^|{points.ToString()}");
+                serializedGoals.Add($"Streak|/^|{goalStreak.ToString()}");
+                serializedGoals.Add($"Date|/^|{dateTime.ToString()}");
                 foreach (Goal goal in goals)
                 {
                     serializedGoals.Add(goal.SerializedGoal());
@@ -110,6 +112,8 @@ class Program
                 File file = new File(Console.ReadLine());
                 goals = file.DeserializeFile();
                 points = file.GetPoints();
+                goalStreak = file.GetStreak();
+                dateTime = file.GetDate();
             }
             else if (userInput == "5")
             {
