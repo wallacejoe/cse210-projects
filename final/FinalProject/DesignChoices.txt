@@ -1,0 +1,63 @@
+Environment:
+-The primary UI (user interface) for the player. It will display a list of player options.
+-This class will store instances of the Location class.
+-Options will include saving/loading to/from files, changing locations, combat, and looting.
+Other options will be added as needed.
+
+Location:
+-Will track mobs in the area, and display any options relating to those mobs.
+-Will track loot in the area, including mob loot.
+-This class will display text defining the location.
+
+Character:
+-This class will store the players stats, skills, armor, weapons and loot/equipment.
+-Information from this class should not be stored in other locations.
+
+Mobs:
+-On creation (of class) determines which mob it will create.
+-Stores the stats of the mob.
+-Tracks whether the mob is living or dead (true or false).
+
+
+Loot:
+-On class initialization, randomly generates loot.
+-Generated loot will be stored in this class.
+-The player may remove loot from this class. Removed loot will be returned to use
+in other classes.
+
+MobLoot:
+-Possible loot will be determined based on several factors relating to the mob.
+
+ChestLoot:
+-Possible loot will be determined based on locational factors.
+
+
+Combat:
+-Allows the player to use combat skills and different types of attack.
+-Will randomly operate mob combat choices.
+-Will implement relevant armor, weapon, and equipment effects.
+-This class will track and store active combat effects.
+-Combat results will be stored with relevant classes.
+
+PhysicalCombat:
+-Determines the defenders physical protection.
+-Determines the attackers physical attack.
+-Calculates the results of physical combat.
+
+MagicCombat:
+-Determines the defenders magic protection.
+-Determines the attackers magic attack.
+-Calculates the results of magic combat.
+
+PsychicCombat:
+-Determines the defenders psychic protection.
+-Determines the attackers psychic attack.
+-Calculates the results of psychic combat.
+
+
+File:
+-Will take serialized input from other classes and save it to a file.
+-Will deseralize data from a file and return it to its respective classes.
+
+
+-Each class that contains data to be saved, will have its own serialize method.
