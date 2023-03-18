@@ -10,7 +10,7 @@ Location:
 -This class will display text defining the location.
 
 Character:
--This class will store the players stats, skills, armor, weapons and loot/equipment.
+-This class will store the players stats, skills and loot/equipment.
 -Information from this class should not be stored in other locations.
 
 Mobs:
