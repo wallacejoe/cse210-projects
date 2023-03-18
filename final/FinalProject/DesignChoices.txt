@@ -12,6 +12,8 @@ Location:
 Character:
 -This class will store the players stats, skills and loot/equipment.
 -Information from this class should not be stored in other locations.
+-This class will also handle leveling-up and increasing stats.
+-Will contain a method for equiping items/loot.
 
 Mobs:
 -On creation (of class) determines which mob it will create.
