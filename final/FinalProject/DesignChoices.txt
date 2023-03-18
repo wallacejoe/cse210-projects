@@ -8,6 +8,7 @@ Location:
 -Will track mobs in the area, and display any options relating to those mobs.
 -Will track loot in the area, including mob loot.
 -This class will display text defining the location.
+-Allows the user to interact with the loot in the area.
 
 Character:
 -This class will store the players stats, skills and loot/equipment.
@@ -16,7 +17,7 @@ Character:
 -Will contain a method for equiping items/loot.
 
 Mobs:
--On creation (of class) determines which mob it will create.
+-On creation (of class) determines which mob it will create, based on location.
 -Stores the stats of the mob.
 -Tracks whether the mob is living or dead (true or false).
 
@@ -44,11 +45,13 @@ Combat:
 PhysicalCombat:
 -Determines the defenders physical protection.
 -Determines the attackers physical attack.
+-Adjusts characters stamina based on skill cost (not sure how this will work yet).
 -Calculates the results of physical combat.
 
 MagicCombat:
 -Determines the defenders magic protection.
 -Determines the attackers magic attack.
+-Adjusts characters mana based on spell cost (not sure how this will work yet).
 -Calculates the results of magic combat.
 
 PsychicCombat:
