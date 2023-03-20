@@ -7,6 +7,7 @@ public class Environment
     /*Constructors*/
     public Environment()
     {
+        InitializeLocations();
         _currentLocal = _allLocations[0];
     }
 
@@ -32,7 +33,7 @@ public class Environment
 
             if (userInput == "1")
             {
-
+                _currentLocal.InteractionMenu();
             }
             else if (userInput == "2")
             {

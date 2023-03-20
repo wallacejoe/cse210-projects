@@ -35,7 +35,8 @@ public class Location
         string userInput = "";
         while (userInput != "1")
         {
-            Console.WriteLine("Location menu:");
+            LocationDescription();
+            Console.WriteLine($"\nLocation menu:");
             Console.WriteLine("  1. Return to Environment menu");
             Console.WriteLine("  2. Interact with loot");
             Console.WriteLine("  3. Combat");

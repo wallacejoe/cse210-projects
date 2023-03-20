@@ -8,7 +8,7 @@ public abstract class Loot
     /*Methods*/
     public List<string> ClaimLoot()
     {
-
+        return new List<string>();
     }
 
     public void DisplayLoot()

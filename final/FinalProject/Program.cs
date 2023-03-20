@@ -4,6 +4,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello FinalProject World!");
+        Environment environment = new Environment();
+        environment.ActionMenu();
     }
 }

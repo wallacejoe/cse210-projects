@@ -12,6 +12,6 @@ public class ChestLoot : Loot
     /*Methods*/
     public override List<string> RandomLoot()
     {
-
+        throw new NotImplementedException();
     }
 }
