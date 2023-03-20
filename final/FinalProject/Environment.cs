@@ -5,7 +5,10 @@ public class Environment
     private List<Location> _allLocations = new List<Location>();
 
     /*Constructors*/
-    public Environment(){}
+    public Environment()
+    {
+        _currentLocal = _allLocations[0];
+    }
 
     public Environment(Location currentLocal)
     {
