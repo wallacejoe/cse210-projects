@@ -1,7 +1,7 @@
 using System;
 public abstract class Loot
 {
-    private List<string> _loot = new List<string>();
+    protected List<string> _loot = new List<string>();
     protected string _lootContainer;
 
     /*Constructors*/
@@ -12,7 +12,7 @@ public abstract class Loot
         Console.Write("Select which loot you'd like to take: ");
         int userInput = int.Parse(Console.ReadLine());
         string chosenLoot = _loot[userInput - 1];
-        _loot.Remove(chosenLoot);
+        _loot.RemoveAt(userInput - 1);
         return chosenLoot;
     }
 
@@ -26,7 +26,7 @@ public abstract class Loot
         }
     }
 
-    public abstract List<string> RandomLoot();
+    public abstract void RandomLoot();
 
     /*Getters and setters*/
     public string GetLootContainer()

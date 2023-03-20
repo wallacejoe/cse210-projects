@@ -8,11 +8,15 @@ public class MobLoot : Loot
     {
         _lootContainer = "Corpse";
         _mob = mob;
+        RandomLoot();
     }
 
     /*Methods*/
-    public override List<string> RandomLoot()
+    public override void RandomLoot()
     {
-        throw new NotImplementedException();
+        if (_mob == "")
+        {
+
+        }
     }
 }
