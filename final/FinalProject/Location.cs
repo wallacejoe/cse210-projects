@@ -32,7 +32,7 @@ public class Location
         Console.WriteLine(_description);
     }
 
-    public void InteractionMenu()
+    public void InteractionMenu(Character player)
     {
         string userInput = "";
         while (userInput != "1")
@@ -42,6 +42,7 @@ public class Location
             Console.WriteLine("  1. Return to Environment menu");
             Console.WriteLine("  2. Interact with loot");
             Console.WriteLine("  3. Combat");
+            Console.WriteLine("  4. Rest");
             Console.Write("Select a choice from the menu: ");
             userInput = Console.ReadLine();
 
@@ -64,13 +65,17 @@ public class Location
                         lootInput = int.Parse(Console.ReadLine()) - 1;
                         
                         _loot[lootInput].DisplayLoot();
-                        _loot[lootInput].ClaimLoot();
+                        player.AddEquipment(_loot[lootInput].ClaimLoot());
                     }
                 } catch {}
             }
             else if (userInput == "3")
             {
                 
+            }
+            else if (userInput == "4")
+            {
+
             }
         }
     }

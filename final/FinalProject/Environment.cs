@@ -30,7 +30,7 @@ public class Environment
 
             if (userInput == "1")
             {
-                _currentLocal.InteractionMenu();
+                _currentLocal.InteractionMenu(_playerCharacter);
             }
             else if (userInput == "2")
             {
@@ -46,19 +46,7 @@ public class Environment
             }
             else if (userInput == "3")
             {
-                string characterChoice = "";
-                while (characterChoice != "")
-                {
-                    Console.Clear();
-                    Console.WriteLine("Character menu:");
-                    Console.WriteLine("  1. Character stats");
-                    Console.WriteLine("  2. Character skills");
-                    Console.WriteLine("  3. Character spells");
-                    Console.WriteLine("  4. Character equipment");
-                    Console.WriteLine("  5. Exit Character menu");
-                    Console.Write("Select a choice from the menu: ");
-                    characterChoice = Console.ReadLine();
-                }
+                _playerCharacter.CharacterMenu();
             }
             else if (userInput == "4")
             {

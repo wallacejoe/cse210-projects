@@ -55,18 +55,75 @@ public class Character
     }
 
     /*Methods*/
-    public void AcquireSkill()
+    public void CharacterMenu()
+    {
+        string userInput = "";
+        while (userInput != "5")
+        {
+            Console.Clear();
+            Console.WriteLine("Character menu:");
+            Console.WriteLine("  1. Character stats");
+            Console.WriteLine("  2. Character skills");
+            Console.WriteLine("  3. Character spells");
+            Console.WriteLine("  4. Character equipment");
+            Console.WriteLine("  5. Exit Character menu");
+            Console.Write("Select a choice from the menu: ");
+            userInput = Console.ReadLine();
+
+            if (userInput == "1")
+            {
+                Console.Clear();
+                Console.WriteLine($"Health: {_health}");
+                Console.WriteLine($"Mana: {_mana}");
+                Console.WriteLine($"Stamina: {_stamina}");
+                Console.WriteLine($"Experience: {_xp}");
+                Console.Write("Press enter to continue:");
+                Console.ReadLine();
+            }
+            else if (userInput == "2")
+            {
+
+            }
+            else if (userInput == "3")
+            {
+
+            }
+            else if (userInput == "4")
+            {
+                Console.Clear();
+                foreach (string item in _equipment)
+                {
+                    Console.WriteLine(item);
+                }
+                Console.Write("Press enter to continue:");
+                Console.ReadLine();
+            }
+        }
+    }
+
+    private void AcquireSkill()
     {
 
     }
 
-    public void EquipArmor()
+    private void EquipArmor()
     {
 
     }
 
-    public void EquipWeapon()
+    private void EquipWeapon()
     {
 
+    }
+
+    /*Getters and setters*/
+    public List<string> GetEquipment()
+    {
+        return _equipment;
+    }
+
+    public void AddEquipment(string equipment)
+    {
+        _equipment.Add(equipment);
     }
 }
