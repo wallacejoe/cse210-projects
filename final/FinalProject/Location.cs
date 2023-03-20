@@ -53,4 +53,10 @@ public class Location
             }
         }
     }
+
+    /*Getters and setters*/
+    public string GetLocationName()
+    {
+        return _locationName;
+    }
 }

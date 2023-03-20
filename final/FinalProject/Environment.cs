@@ -37,7 +37,15 @@ public class Environment
             }
             else if (userInput == "2")
             {
-
+                int listNum = 0;
+                foreach (Location local in _allLocations)
+                {
+                    listNum += 1;
+                    Console.WriteLine($"  {listNum}. {local.GetLocationName()}");
+                }
+                Console.Write("Enter the location you'd like to move to: ");
+                int chosenLocal = int.Parse(Console.ReadLine()) - 1;
+                _currentLocal = _allLocations[chosenLocal];
             }
             else if (userInput == "3")
             {
