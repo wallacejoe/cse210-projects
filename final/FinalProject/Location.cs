@@ -11,6 +11,8 @@ public class Location
     {
         _description = description;
         _locationName = locationName;
+        _mobs.Add(new Mobs(_locationName));
+        _loot.Add(new ChestLoot(_locationName));
     }
 
     public Location(string locationName, string description, List<Mobs> mobs, List<Loot> loot)
@@ -45,7 +47,22 @@ public class Location
 
             if (userInput == "2")
             {
-                
+                Console.Clear();
+                int lootNum = 0;
+                int lootInput;
+                foreach (Loot loot in _loot)
+                {
+                    lootNum += 1;
+                    Console.WriteLine($"  {lootNum}. {loot.GetLootContainer()}");
+                }
+                Console.WriteLine($"  {lootNum += 1}. Exit loot menu");
+                Console.Write("Select a choice from the menu: ");
+                lootInput = int.Parse(Console.ReadLine()) - 1;
+                try
+                {
+                    _loot[lootInput].DisplayLoot();
+                    _loot[lootInput].ClaimLoot();
+                } catch {}
             }
             else if (userInput == "3")
             {

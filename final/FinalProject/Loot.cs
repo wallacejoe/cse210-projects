@@ -2,19 +2,35 @@ using System;
 public abstract class Loot
 {
     private List<string> _loot = new List<string>();
+    protected string _lootContainer;
 
     /*Constructors*/
 
     /*Methods*/
-    public List<string> ClaimLoot()
+    public string ClaimLoot()
     {
-        return new List<string>();
+        Console.Write("Select which loot you'd like to take: ");
+        int userInput = int.Parse(Console.ReadLine());
+        string chosenLoot = _loot[userInput - 1];
+        _loot.Remove(chosenLoot);
+        return chosenLoot;
     }
 
     public void DisplayLoot()
     {
-
+        int lootNum = 0;
+        foreach (string loot in _loot)
+        {
+            lootNum += 1;
+            Console.WriteLine($"  {lootNum}. {loot}");
+        }
     }
 
     public abstract List<string> RandomLoot();
+
+    /*Getters and setters*/
+    public string GetLootContainer()
+    {
+        return _lootContainer;
+    }
 }

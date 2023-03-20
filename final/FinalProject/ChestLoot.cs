@@ -6,6 +6,7 @@ public class ChestLoot : Loot
     /*Constructors*/
     public ChestLoot(string currentLocal)
     {
+        _lootContainer = "Chest";
         _currentLocal = currentLocal;
     }
 

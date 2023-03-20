@@ -6,6 +6,7 @@ public class MobLoot : Loot
     /*Constructors*/
     public MobLoot(string mob)
     {
+        _lootContainer = "Corpse";
         _mob = mob;
     }
 
