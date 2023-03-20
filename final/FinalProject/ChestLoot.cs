@@ -2,7 +2,7 @@ using System;
 public class ChestLoot : Loot
 {
     private string _currentLocal;
-    private List<string> potentialLoot = new List<string>();
+    private List<string[]> potentialLoot = new List<string[]>();
 
     /*Constructors*/
     public ChestLoot(string currentLocal)
@@ -17,20 +17,20 @@ public class ChestLoot : Loot
     {
         if (_currentLocal == "forest")
         {
-            potentialLoot.Add("Wooden Club");
-            AddMultiple(5, "arrow");
-            AddMultiple(3, "Bandage");
-            potentialLoot.Add("Torch");
-            AddMultiple(3, "Weak Poison");
-            potentialLoot.Add("Leather Armor");
-            potentialLoot.Add("Wooden Sheild");
-            potentialLoot.Add("Potion of Poison Resistance");
+            AddItems(1, "Wooden Club", "weapon");
+            AddItems(5, "Arrow", "arrow");
+            AddItems(3, "Bandage", "loot");
+            AddItems(1, "Torch", "equipment");
+            AddItems(3, "Weak Poison", "poison");
+            AddItems(1, "Leather Armor", "armor");
+            AddItems(1, "Wooden Sheild", "equipment");
+            AddItems(1, "Potion of Poison Resistance", "potion");
         }
         else if (_currentLocal == "swamp")
         {
-            AddMultiple(5, "Weak Poison");
-            AddMultiple(5, "arrow");
-            AddMultiple(3, "Potion of Poison Resistance");
+            AddItems(5, "Weak Poison", "poison");
+            AddItems(5, "Arrow", "arrow");
+            AddItems(3, "Potion of Poison Resistance", "potion");
         }
         Random getRandomNum = new Random();
         int randomNum = getRandomNum.Next(3, 20);
@@ -40,11 +40,12 @@ public class ChestLoot : Loot
         }
     }
 
-    private void AddMultiple(int numToAdd, string adding)
+    private void AddItems(int numToAdd, string item, string type)
     {
         for (int i = 0; i < numToAdd; i++)
         {
-            potentialLoot.Add(adding);
+            string[] completeItem = {item, type};
+            potentialLoot.Add(completeItem);
         }
     }
 }
