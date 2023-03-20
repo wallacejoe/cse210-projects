@@ -2,6 +2,7 @@ using System;
 public class Environment
 {
     private Location _currentLocal;
+    private Character _playerCharacter;
     private List<Location> _allLocations = new List<Location>();
 
     /*Constructors*/
@@ -9,11 +10,7 @@ public class Environment
     {
         InitializeLocations();
         _currentLocal = _allLocations[0];
-    }
-
-    public Environment(Location currentLocal)
-    {
-        _currentLocal = currentLocal;
+        _playerCharacter = new Character();
     }
 
     /*Methods*/
@@ -49,7 +46,19 @@ public class Environment
             }
             else if (userInput == "3")
             {
-
+                string characterChoice = "";
+                while (characterChoice != "")
+                {
+                    Console.Clear();
+                    Console.WriteLine("Character menu:");
+                    Console.WriteLine("  1. Character stats");
+                    Console.WriteLine("  2. Character skills");
+                    Console.WriteLine("  3. Character spells");
+                    Console.WriteLine("  4. Character equipment");
+                    Console.WriteLine("  5. Exit Character menu");
+                    Console.Write("Select a choice from the menu: ");
+                    characterChoice = Console.ReadLine();
+                }
             }
             else if (userInput == "4")
             {
