@@ -32,6 +32,17 @@ public class Location
 
     public void InteractionMenu()
     {
-        
+        Console.WriteLine("  1. Interact with chest loot");
+        Console.WriteLine("  2. Interact with mob loot");
+        Console.Write("Select a choice from the menu: ");
+        string userInput = Console.ReadLine();
+        if (userInput == "1")
+        {
+
+        }
+        else if (userInput == "2")
+        {
+            
+        }
     }
 }
