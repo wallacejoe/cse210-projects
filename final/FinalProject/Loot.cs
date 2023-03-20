@@ -1,5 +1,5 @@
 using System;
-public class Loot
+public abstract class Loot
 {
     private List<string> _loot = new List<string>();
 
@@ -11,13 +11,10 @@ public class Loot
 
     }
 
-    public List<string> DisplayLoot()
+    public void DisplayLoot()
     {
 
     }
 
-    public List<string> RandomLoot()
-    {
-        
-    }
+    public abstract List<string> RandomLoot();
 }
