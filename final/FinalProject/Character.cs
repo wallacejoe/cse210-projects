@@ -5,8 +5,8 @@ public class Character
     private int _mana;
     private int _stamina;
     private int _xp;
-    private List<string> _skills = new List<string>();
-    private List<string> _spells = new List<string>();
+    private List<string[]> _skills = new List<string[]>();
+    private List<string[]> _spells = new List<string[]>();
     private List<string[]> _equipment = new List<string[]>();
     private string[] _equipedWeapon;
     private string[] _equipedArmor;
@@ -45,7 +45,7 @@ public class Character
         }
     }
 
-    public Character(int health, int mana, int stamina, int xp, List<string> skills, List<string> spells, List<string[]> equipment)
+    public Character(int health, int mana, int stamina, int xp, List<string[]> skills, List<string[]> spells, List<string[]> equipment)
     {
         _health = health;
         _mana = mana;
@@ -86,7 +86,44 @@ public class Character
             }
             else if (userInput == "2")
             {
+                Console.Clear();
+                Console.WriteLine("Skill menu:");
+                Console.WriteLine("  1. View your skills");
+                Console.WriteLine("  2. View all skills");
+                Console.WriteLine("  3. Acquire skill");
+                Console.Write("Select a choice from the menu: ");
+                string skillMenuChoice = Console.ReadLine();
 
+                if (skillMenuChoice == "1")
+                {
+                    try
+                    {
+                        int skillChoice = 0;
+                        while (skillChoice < _skills.Count())
+                        {
+                            Console.Clear();
+                            int listNum = 0;
+                            foreach (string skill in _skills[0])
+                            {
+                                listNum += 1;
+                                Console.WriteLine($"  {listNum}. {skill[0]}");
+                            }
+                            Console.WriteLine("  Enter. exit skill menu");
+                            Console.Write("Select a skill to view its description: ");
+                            skillChoice = int.Parse(Console.ReadLine());
+                            Console.WriteLine($"\n{_skills[skillChoice][0]}");
+                            Console.WriteLine(_skills[skillChoice][1]);
+                        }
+                    } catch {}
+                }
+                else if (skillMenuChoice == "2")
+                {
+
+                }
+                else if (skillMenuChoice == "3")
+                {
+
+                }
             }
             else if (userInput == "3")
             {
