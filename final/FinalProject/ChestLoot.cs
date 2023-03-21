@@ -2,7 +2,6 @@ using System;
 public class ChestLoot : Loot
 {
     private string _currentLocal;
-    private List<string[]> potentialLoot = new List<string[]>();
 
     /*Constructors*/
     public ChestLoot(string currentLocal)
@@ -36,16 +35,7 @@ public class ChestLoot : Loot
         int randomNum = getRandomNum.Next(3, 20);
         for (int i = 0; i < randomNum; i++)
         {
-            _loot.Add(potentialLoot[getRandomNum.Next(0, potentialLoot.Count())]);
-        }
-    }
-
-    private void AddItems(int numToAdd, string item, string type)
-    {
-        for (int i = 0; i < numToAdd; i++)
-        {
-            string[] completeItem = {item, type};
-            potentialLoot.Add(completeItem);
+            _loot.Add(_potentialLoot[getRandomNum.Next(0, _potentialLoot.Count())]);
         }
     }
 }

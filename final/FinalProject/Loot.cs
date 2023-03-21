@@ -3,6 +3,7 @@ public abstract class Loot
 {
     protected List<string[]> _loot = new List<string[]>();
     protected string _lootContainer;
+    protected List<string[]> _potentialLoot = new List<string[]>();
 
     /*Constructors*/
 
@@ -23,6 +24,15 @@ public abstract class Loot
         {
             lootNum += 1;
             Console.WriteLine($"  {lootNum}. {loot[0]}");
+        }
+    }
+
+    protected void AddItems(int numToAdd, string item, string type)
+    {
+        for (int i = 0; i < numToAdd; i++)
+        {
+            string[] completeItem = {item, type};
+            _potentialLoot.Add(completeItem);
         }
     }
 
