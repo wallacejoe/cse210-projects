@@ -114,9 +114,11 @@ public class Character
                             }
                             Console.WriteLine("  Enter. exit skill menu");
                             Console.Write("Select a skill to view its description: ");
-                            skillChoice = int.Parse(Console.ReadLine());
+                            skillChoice = int.Parse(Console.ReadLine()) - 1;
                             Console.WriteLine($"\n{_skills[skillChoice][0]}");
                             Console.WriteLine(_skills[skillChoice][1]);
+                            Console.Write("Press enter to continue:");
+                            Console.ReadLine();
                         }
                     } catch {}
                 }
@@ -149,9 +151,8 @@ public class Character
                 {
                     try
                     {
-                        List<string[]> allSkills = AllSkills();
                         int skillChoice = 0;
-                        while (skillChoice < allSkills.Count())
+                        while (skillChoice < _unclaimedSkills.Count())
                         {
                             Console.Clear();
                             int listNum = 0;
