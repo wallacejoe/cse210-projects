@@ -6,6 +6,7 @@ public class Character
     private int _stamina;
     private int _xp;
     private List<string[]> _skills = new List<string[]>();
+    private List<string[]> _unclaimedSkills;
     private List<string[]> _spells = new List<string[]>();
     private List<string[]> _equipment = new List<string[]>();
     private string[] _equipedWeapon;
@@ -16,9 +17,11 @@ public class Character
     {
         string userInput = "";
         _xp = 10;
+        _unclaimedSkills = AllSkills();
         Console.WriteLine("Create your character:");
         while (_xp > 0)
         {
+            Console.Clear();
             Console.WriteLine($"Increases left {_xp}");
             Console.WriteLine("  1. Increase health");
             Console.WriteLine("  2. Increase mana");
@@ -45,13 +48,14 @@ public class Character
         }
     }
 
-    public Character(int health, int mana, int stamina, int xp, List<string[]> skills, List<string[]> spells, List<string[]> equipment)
+    public Character(int health, int mana, int stamina, int xp, List<string[]> skills, List<string[]> unclaimedSkills, List<string[]> spells, List<string[]> equipment)
     {
         _health = health;
         _mana = mana;
         _stamina = stamina;
         _xp = xp;
         _skills = skills;
+        _unclaimedSkills = unclaimedSkills;
         _spells = spells;
         _equipment = equipment;
     }
@@ -103,7 +107,7 @@ public class Character
                         {
                             Console.Clear();
                             int listNum = 0;
-                            foreach (string skill in _skills[0])
+                            foreach (string[] skill in _skills)
                             {
                                 listNum += 1;
                                 Console.WriteLine($"  {listNum}. {skill[0]}");
@@ -118,11 +122,64 @@ public class Character
                 }
                 else if (skillMenuChoice == "2")
                 {
-
+                    try
+                    {
+                        List<string[]> allSkills = AllSkills();
+                        int skillChoice = 0;
+                        while (skillChoice < allSkills.Count())
+                        {
+                            Console.Clear();
+                            int listNum = 0;
+                            foreach (string[] skill in allSkills)
+                            {
+                                listNum += 1;
+                                Console.WriteLine($"  {listNum}. {skill[0]}");
+                            }
+                            Console.WriteLine("  Enter. exit skill menu");
+                            Console.Write("Select a skill to view its description: ");
+                            skillChoice = int.Parse(Console.ReadLine()) - 1;
+                            Console.WriteLine($"\n{allSkills[skillChoice][0]}");
+                            Console.WriteLine(allSkills[skillChoice][1]);
+                            Console.Write("Press enter to continue:");
+                            Console.ReadLine();
+                        }
+                    } catch {}
                 }
                 else if (skillMenuChoice == "3")
                 {
-
+                    try
+                    {
+                        List<string[]> allSkills = AllSkills();
+                        int skillChoice = 0;
+                        while (skillChoice < allSkills.Count())
+                        {
+                            Console.Clear();
+                            int listNum = 0;
+                            foreach (string[] skill in _unclaimedSkills)
+                            {
+                                listNum += 1;
+                                Console.WriteLine($"  {listNum}. {skill[0]} cost: {skill[2]}");
+                            }
+                            Console.WriteLine("  Enter. exit skill menu");
+                            Console.WriteLine("To acquire a skill, you must have xp equal to or greater than its cost");
+                            Console.Write("Select a skill to acquire: ");
+                            skillChoice = int.Parse(Console.ReadLine()) - 1;
+                            int skillCost = int.Parse(_unclaimedSkills[skillChoice][2]);
+                            if (_xp >= skillCost)
+                            {
+                                _xp -= skillCost;
+                                Console.WriteLine($"You have acquired {_unclaimedSkills[skillChoice][0]}");
+                                _skills.Add(_unclaimedSkills[skillChoice]);
+                                _unclaimedSkills.RemoveAt(skillChoice);
+                            }
+                            else
+                            {
+                                Console.WriteLine("You do not have enough experience");
+                            }
+                            Console.Write("Press enter to continue:");
+                            Console.ReadLine();
+                        }
+                    } catch {}
                 }
             }
             else if (userInput == "3")
@@ -199,6 +256,29 @@ public class Character
         }
         Console.Write("Select the item you'd like to equip: ");
         _equipedWeapon = weaponList[int.Parse(Console.ReadLine()) - 1];
+    }
+
+    private List<string[]> AllSkills()
+    {
+        List<string[]> allSkills = new List<string[]>();
+        allSkills.Add(AddSkillArray("Iron Skin", "Reduces all damage dealt to you by a set amount", "20"));
+        allSkills.Add(AddSkillArray("1", "description", "10"));
+        allSkills.Add(AddSkillArray("2", "description", "10"));
+        allSkills.Add(AddSkillArray("3", "description", "10"));
+        allSkills.Add(AddSkillArray("4", "description", "10"));
+        allSkills.Add(AddSkillArray("5", "description", "10"));
+        allSkills.Add(AddSkillArray("6", "description", "10"));
+        allSkills.Add(AddSkillArray("7", "description", "10"));
+        allSkills.Add(AddSkillArray("8", "description", "10"));
+        allSkills.Add(AddSkillArray("9", "description", "10"));
+
+        return allSkills;
+    }
+
+    private string[] AddSkillArray(string name, string description, string cost)
+    {
+        string[] skillArray = {name, description, cost};
+        return skillArray;
     }
 
     /*Getters and setters*/
