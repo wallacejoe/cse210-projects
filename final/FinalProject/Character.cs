@@ -146,7 +146,22 @@ public class Character
 
     private void EquipWeapon()
     {
-
+        List<string[]> weaponList = new List<string[]>();
+        foreach (string[] item in _equipment)
+        {
+            if (item[1] == "weapon")
+            {
+                weaponList.Add(item);
+            }
+        }
+        int listNum = 0;
+        foreach (string[] item in weaponList)
+        {
+            listNum += 1;
+            Console.WriteLine($"  {listNum}. {item[0]}");
+        }
+        Console.Write("Select the item you'd like to equip: ");
+        _equipedWeapon = weaponList[int.Parse(Console.ReadLine()) - 1];
     }
 
     /*Getters and setters*/
