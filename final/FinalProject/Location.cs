@@ -1,7 +1,7 @@
 using System;
 public class Location
 {
-    private List<Mobs> _mobs = new List<Mobs>();
+    private List<Mob> _mobs = new List<Mob>();
     private List<Loot> _loot = new List<Loot>();
     private string _description;
     private string _locationName;
@@ -11,11 +11,11 @@ public class Location
     {
         _description = description;
         _locationName = locationName;
-        _mobs.Add(new Mobs(_locationName));
+        _mobs.Add(new Mob(_locationName));
         _loot.Add(new ChestLoot(_locationName));
     }
 
-    public Location(string locationName, string description, List<Mobs> mobs, List<Loot> loot)
+    public Location(string locationName, string description, List<Mob> mobs, List<Loot> loot)
     {
         _description = description;
         _locationName = locationName;

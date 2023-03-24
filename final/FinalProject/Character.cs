@@ -270,9 +270,10 @@ public class Character
 
     private List<string[]> AllSkills()
     {
+        //Skills are formatted: name, description, type, value (if any), experience cost
         List<string[]> allSkills = new List<string[]>();
-        allSkills.Add(AddSkillArray("Iron Skin", "Reduces all damage dealt to you by a set amount", "20"));
-        allSkills.Add(AddSkillArray("1", "description", "10"));
+        allSkills.Add(AddSkillArray("Iron Skin", "Reduces all damage dealt to you by a set amount", "protection", "", "20"));
+        /*allSkills.Add(AddSkillArray("1", "description", "10"));
         allSkills.Add(AddSkillArray("2", "description", "10"));
         allSkills.Add(AddSkillArray("3", "description", "10"));
         allSkills.Add(AddSkillArray("4", "description", "10"));
@@ -280,16 +281,16 @@ public class Character
         allSkills.Add(AddSkillArray("6", "description", "10"));
         allSkills.Add(AddSkillArray("7", "description", "10"));
         allSkills.Add(AddSkillArray("8", "description", "10"));
-        allSkills.Add(AddSkillArray("9", "description", "10"));
+        allSkills.Add(AddSkillArray("9", "description", "10"));*/
 
         return allSkills;
     }
 
     //I couldn't find how to initialize an array with all it's content while
     //adding it to a list, so I decided to create a simple function to handle it.
-    private string[] AddSkillArray(string name, string description, string cost)
+    private string[] AddSkillArray(string name, string description, string type, string value, string cost)
     {
-        string[] skillArray = {name, description, cost};
+        string[] skillArray = {name, description, type, value, cost};
         return skillArray;
     }
 
