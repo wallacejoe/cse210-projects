@@ -5,6 +5,6 @@ class Program
     static void Main(string[] args)
     {
         Environment environment = new Environment();
-        environment.ActionMenu();
+        environment.MainMenu();
     }
 }

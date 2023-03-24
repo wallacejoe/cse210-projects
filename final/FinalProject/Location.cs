@@ -32,6 +32,8 @@ public class Location
         Console.WriteLine(_description);
     }
 
+    //This method returns a boolean value based on whether the user
+    //has chosen to change location.
     public bool InteractionMenu(Character player)
     {
         string userInput = "";
@@ -63,13 +65,10 @@ public class Location
                         }
                         Console.WriteLine($"  {lootNum += 1}. Exit loot menu");
                         Console.Write("Select a choice from the menu: ");
-                        try
-                        {
-                            lootInput = int.Parse(Console.ReadLine()) - 1;
+                        lootInput = int.Parse(Console.ReadLine()) - 1;
                         
-                            _loot[lootInput].DisplayLoot();
-                            player.AddEquipment(_loot[lootInput].ClaimLoot());
-                        } catch {}
+                        _loot[lootInput].DisplayLoot();
+                        player.AddEquipment(_loot[lootInput].ClaimLoot());
                     }
                 } catch {}
             }
@@ -84,6 +83,10 @@ public class Location
             else if (userInput == "4")
             {
                 return true;
+            }
+            else if (userInput == "c")
+            {
+                player.CharacterMenu();
             }
         }
         return false;

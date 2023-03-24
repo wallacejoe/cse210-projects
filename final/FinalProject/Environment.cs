@@ -14,17 +14,18 @@ public class Environment
     }
 
     /*Methods*/
-    public void ActionMenu()
+    public void MainMenu()
     {
         string userInput = "";
-        while (userInput != "4")
+        while (userInput != "5")
         {
             Console.Clear();
             Console.WriteLine("Main menu:");
             Console.WriteLine("  1. Interact with location");
             Console.WriteLine("  2. Move to new location");
             Console.WriteLine("  3. Character Menu");
-            Console.WriteLine("  4. Save and Quit");
+            Console.WriteLine("  4. Keyboard shortcuts");
+            Console.WriteLine("  5. Save and Quit");
             Console.Write("Select a choice from the menu: ");
             userInput = Console.ReadLine();
 
@@ -46,7 +47,8 @@ public class Environment
             }
             else if (userInput == "4")
             {
-
+                Console.Clear();
+                Console.WriteLine("c. Character menu");
             }
             else {
                 Console.Write("That input was not valid. Press enter to continue:");
