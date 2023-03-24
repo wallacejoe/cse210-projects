@@ -35,18 +35,18 @@ public class Location
     public void InteractionMenu(Character player)
     {
         string userInput = "";
-        while (userInput != "1")
+        while (userInput != "4")
         {
             LocationDescription();
             Console.WriteLine($"\nLocation menu:");
-            Console.WriteLine("  1. Return to Environment menu");
-            Console.WriteLine("  2. Interact with loot");
-            Console.WriteLine("  3. Combat");
-            Console.WriteLine("  4. Rest");
+            Console.WriteLine("  1. Interact with loot");
+            Console.WriteLine("  2. Combat");
+            Console.WriteLine("  3. Rest");
+            Console.WriteLine("  4. Main menu");
             Console.Write("Select a choice from the menu: ");
             userInput = Console.ReadLine();
 
-            if (userInput == "2")
+            if (userInput == "1")
             {
                 try
                 {
@@ -69,11 +69,11 @@ public class Location
                     }
                 } catch {}
             }
-            else if (userInput == "3")
+            else if (userInput == "2")
             {
                 
             }
-            else if (userInput == "4")
+            else if (userInput == "3")
             {
 
             }

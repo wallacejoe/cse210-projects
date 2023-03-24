@@ -64,7 +64,7 @@ public class Character
     public void CharacterMenu()
     {
         string userInput = "";
-        while (userInput != "7")
+        while (userInput != "5")
         {
             Console.Clear();
             Console.WriteLine("Character menu:");
@@ -72,9 +72,7 @@ public class Character
             Console.WriteLine("  2. Character skills");
             Console.WriteLine("  3. Character spells");
             Console.WriteLine("  4. Character equipment");
-            Console.WriteLine("  5. Equip Armor");
-            Console.WriteLine("  6. Equip Weapon");
-            Console.WriteLine("  7. Exit Character menu");
+            Console.WriteLine("  5. Exit Character menu");
             Console.Write("Select a choice from the menu: ");
             userInput = Console.ReadLine();
 
@@ -90,98 +88,7 @@ public class Character
             }
             else if (userInput == "2")
             {
-                Console.Clear();
-                Console.WriteLine("Skill menu:");
-                Console.WriteLine("  1. View your skills");
-                Console.WriteLine("  2. View all skills");
-                Console.WriteLine("  3. Acquire skill");
-                Console.Write("Select a choice from the menu: ");
-                string skillMenuChoice = Console.ReadLine();
-
-                if (skillMenuChoice == "1")
-                {
-                    try
-                    {
-                        int skillChoice = 0;
-                        while (skillChoice < _skills.Count())
-                        {
-                            Console.Clear();
-                            int listNum = 0;
-                            foreach (string[] skill in _skills)
-                            {
-                                listNum += 1;
-                                Console.WriteLine($"  {listNum}. {skill[0]}");
-                            }
-                            Console.WriteLine("  Enter. exit skill menu");
-                            Console.Write("Select a skill to view its description: ");
-                            skillChoice = int.Parse(Console.ReadLine()) - 1;
-                            Console.WriteLine($"\n{_skills[skillChoice][0]}");
-                            Console.WriteLine(_skills[skillChoice][1]);
-                            Console.Write("Press enter to continue:");
-                            Console.ReadLine();
-                        }
-                    } catch {}
-                }
-                else if (skillMenuChoice == "2")
-                {
-                    try
-                    {
-                        List<string[]> allSkills = AllSkills();
-                        int skillChoice = 0;
-                        while (skillChoice < allSkills.Count())
-                        {
-                            Console.Clear();
-                            int listNum = 0;
-                            foreach (string[] skill in allSkills)
-                            {
-                                listNum += 1;
-                                Console.WriteLine($"  {listNum}. {skill[0]}");
-                            }
-                            Console.WriteLine("  Enter. exit skill menu");
-                            Console.Write("Select a skill to view its description: ");
-                            skillChoice = int.Parse(Console.ReadLine()) - 1;
-                            Console.WriteLine($"\n{allSkills[skillChoice][0]}");
-                            Console.WriteLine(allSkills[skillChoice][1]);
-                            Console.Write("Press enter to continue:");
-                            Console.ReadLine();
-                        }
-                    } catch {}
-                }
-                else if (skillMenuChoice == "3")
-                {
-                    try
-                    {
-                        int skillChoice = 0;
-                        while (skillChoice < _unclaimedSkills.Count())
-                        {
-                            Console.Clear();
-                            int listNum = 0;
-                            foreach (string[] skill in _unclaimedSkills)
-                            {
-                                listNum += 1;
-                                Console.WriteLine($"  {listNum}. {skill[0]} cost: {skill[2]}");
-                            }
-                            Console.WriteLine("  Enter. exit skill menu");
-                            Console.WriteLine("To acquire a skill, you must have xp equal to or greater than its cost");
-                            Console.Write("Select a skill to acquire: ");
-                            skillChoice = int.Parse(Console.ReadLine()) - 1;
-                            int skillCost = int.Parse(_unclaimedSkills[skillChoice][2]);
-                            if (_xp >= skillCost)
-                            {
-                                _xp -= skillCost;
-                                Console.WriteLine($"You have acquired {_unclaimedSkills[skillChoice][0]}");
-                                _skills.Add(_unclaimedSkills[skillChoice]);
-                                _unclaimedSkills.RemoveAt(skillChoice);
-                            }
-                            else
-                            {
-                                Console.WriteLine("You do not have enough experience");
-                            }
-                            Console.Write("Press enter to continue:");
-                            Console.ReadLine();
-                        }
-                    } catch {}
-                }
+                SkillMenu();
             }
             else if (userInput == "3")
             {
@@ -198,25 +105,121 @@ public class Character
                 {
                     Console.WriteLine(item[0]);
                 }
-                Console.Write("Press enter to continue:");
-                Console.ReadLine();
-            }
-            else if (userInput == "5")
-            {
-                Console.Clear();
-                EquipArmor();
-            }
-            else if (userInput == "6")
-            {
-                Console.Clear();
-                EquipWeapon();
+                Console.WriteLine("Equipment menu:");
+                Console.WriteLine("  1. Equip armor");
+                Console.WriteLine("  2. Equip weapon");
+                Console.WriteLine("  3. Exit equipment menu");
+                Console.Write("Select a choice from the menu: ");
+                string equipChoice = Console.ReadLine();
+                if (equipChoice == "1")
+                {
+                    Console.Clear();
+                    EquipArmor();
+                }
+                else if (equipChoice == "2")
+                {
+                    Console.Clear();
+                    EquipWeapon();
+                }
             }
         }
     }
 
-    private void AcquireSkill()
+    //Previously the "AcquireSkill" method
+    private void SkillMenu()
     {
+        Console.Clear();
+        Console.WriteLine("Skill menu:");
+        Console.WriteLine("  1. View your skills");
+        Console.WriteLine("  2. View all skills");
+        Console.WriteLine("  3. Acquire skill");
+        Console.Write("Select a choice from the menu: ");
+        string userInput = Console.ReadLine();
 
+        if (userInput == "1")
+        {
+            try
+            {
+                int skillChoice = 0;
+                while (skillChoice < _skills.Count())
+                {
+                    Console.Clear();
+                    int listNum = 0;
+                    foreach (string[] skill in _skills)
+                    {
+                        listNum += 1;
+                        Console.WriteLine($"  {listNum}. {skill[0]}");
+                    }
+                    Console.WriteLine("  Enter. exit skill menu");
+                    Console.Write("Select a skill to view its description: ");
+                    skillChoice = int.Parse(Console.ReadLine()) - 1;
+                    Console.WriteLine($"\n{_skills[skillChoice][0]}");
+                    Console.WriteLine(_skills[skillChoice][1]);
+                    Console.Write("Press enter to continue:");
+                    Console.ReadLine();
+                }
+            } catch {}
+        }
+        else if (userInput == "2")
+        {
+            try
+            {
+                List<string[]> allSkills = AllSkills();
+                int skillChoice = 0;
+                while (skillChoice < allSkills.Count())
+                {
+                    Console.Clear();
+                    int listNum = 0;
+                    foreach (string[] skill in allSkills)
+                    {
+                        listNum += 1;
+                        Console.WriteLine($"  {listNum}. {skill[0]}");
+                    }
+                    Console.WriteLine("  Enter. exit skill menu");
+                    Console.Write("Select a skill to view its description: ");
+                    skillChoice = int.Parse(Console.ReadLine()) - 1;
+                    Console.WriteLine($"\n{allSkills[skillChoice][0]}");
+                    Console.WriteLine(allSkills[skillChoice][1]);
+                    Console.Write("Press enter to continue:");
+                    Console.ReadLine();
+                }
+            } catch {}
+        }
+        else if (userInput == "3")
+        {
+        try
+            {
+                int skillChoice = 0;
+                while (skillChoice < _unclaimedSkills.Count())
+                {
+                    Console.Clear();
+                    int listNum = 0;
+                    foreach (string[] skill in _unclaimedSkills)
+                    {
+                        listNum += 1;
+                        Console.WriteLine($"  {listNum}. {skill[0]} cost: {skill[2]}");
+                    }
+                    Console.WriteLine("  Enter. exit skill menu");
+                    Console.WriteLine("To acquire a skill, you must have xp equal to or greater than its cost");
+                    Console.Write("Select a skill to acquire: ");
+                    skillChoice = int.Parse(Console.ReadLine()) - 1;
+                    int skillCost = int.Parse(_unclaimedSkills[skillChoice][2]);
+                    if (_xp >= skillCost)
+                    {
+                        _xp -= skillCost;
+                        Console.WriteLine($"You have acquired {_unclaimedSkills[skillChoice][0]}");
+                        _skills.Add(_unclaimedSkills[skillChoice]);
+                        _unclaimedSkills.RemoveAt(skillChoice);
+                    }
+                    else
+                    {
+                        Console.WriteLine("You do not have enough experience");
+                    }
+                    Console.Write("Press enter to continue:");
+                    Console.ReadLine();
+                }
+            } catch {}
+        }
     }
 
     private void EquipArmor()
@@ -276,6 +279,8 @@ public class Character
         return allSkills;
     }
 
+    //I couldn't find how to initialize an array with all it's content while
+    //adding it to a list, so I decided to create a simple function to handle it.
     private string[] AddSkillArray(string name, string description, string cost)
     {
         string[] skillArray = {name, description, cost};

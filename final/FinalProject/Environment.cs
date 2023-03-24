@@ -20,7 +20,7 @@ public class Environment
         while (userInput != "4")
         {
             Console.Clear();
-            Console.WriteLine("Environment menu:");
+            Console.WriteLine("Main menu:");
             Console.WriteLine("  1. Interact with location");
             Console.WriteLine("  2. Move to new location");
             Console.WriteLine("  3. Character Menu");
