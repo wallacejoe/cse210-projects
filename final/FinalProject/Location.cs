@@ -32,17 +32,18 @@ public class Location
         Console.WriteLine(_description);
     }
 
-    public void InteractionMenu(Character player)
+    public bool InteractionMenu(Character player)
     {
         string userInput = "";
-        while (userInput != "4")
+        while (userInput != "5")
         {
             LocationDescription();
             Console.WriteLine($"\nLocation menu:");
             Console.WriteLine("  1. Interact with loot");
             Console.WriteLine("  2. Combat");
             Console.WriteLine("  3. Rest");
-            Console.WriteLine("  4. Main menu");
+            Console.WriteLine("  4. Move to knew location");
+            Console.WriteLine("  5. Main menu");
             Console.Write("Select a choice from the menu: ");
             userInput = Console.ReadLine();
 
@@ -62,10 +63,13 @@ public class Location
                         }
                         Console.WriteLine($"  {lootNum += 1}. Exit loot menu");
                         Console.Write("Select a choice from the menu: ");
-                        lootInput = int.Parse(Console.ReadLine()) - 1;
+                        try
+                        {
+                            lootInput = int.Parse(Console.ReadLine()) - 1;
                         
-                        _loot[lootInput].DisplayLoot();
-                        player.AddEquipment(_loot[lootInput].ClaimLoot());
+                            _loot[lootInput].DisplayLoot();
+                            player.AddEquipment(_loot[lootInput].ClaimLoot());
+                        } catch {}
                     }
                 } catch {}
             }
@@ -77,7 +81,12 @@ public class Location
             {
 
             }
+            else if (userInput == "4")
+            {
+                return true;
+            }
         }
+        return false;
     }
 
     /*Getters and setters*/

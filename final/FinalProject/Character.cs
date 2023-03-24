@@ -238,8 +238,11 @@ public class Character
             listNum += 1;
             Console.WriteLine($"  {listNum}. {item[0]}");
         }
-        Console.Write("Select the item you'd like to equip: ");
-        _equipedArmor = armorList[int.Parse(Console.ReadLine()) - 1];
+        try
+        {
+            Console.Write("Select the item you'd like to equip: ");
+            _equipedArmor = armorList[int.Parse(Console.ReadLine()) - 1];
+        } catch {}
     }
 
     private void EquipWeapon()
@@ -258,8 +261,11 @@ public class Character
             listNum += 1;
             Console.WriteLine($"  {listNum}. {item[0]}");
         }
-        Console.Write("Select the item you'd like to equip: ");
-        _equipedWeapon = weaponList[int.Parse(Console.ReadLine()) - 1];
+        try
+        {
+            Console.Write("Select the item you'd like to equip: ");
+            _equipedWeapon = weaponList[int.Parse(Console.ReadLine()) - 1];
+        } catch {}
     }
 
     private List<string[]> AllSkills()

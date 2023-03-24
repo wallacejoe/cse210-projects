@@ -30,19 +30,15 @@ public class Environment
 
             if (userInput == "1")
             {
-                _currentLocal.InteractionMenu(_playerCharacter);
+                bool localChange = _currentLocal.InteractionMenu(_playerCharacter);
+                if (localChange)
+                {
+                    ChangeLocation();
+                }
             }
             else if (userInput == "2")
             {
-                int listNum = 0;
-                foreach (Location local in _allLocations)
-                {
-                    listNum += 1;
-                    Console.WriteLine($"  {listNum}. {local.GetLocationName()}");
-                }
-                Console.Write("Enter the location you'd like to move to: ");
-                int chosenLocal = int.Parse(Console.ReadLine()) - 1;
-                _currentLocal = _allLocations[chosenLocal];
+                ChangeLocation();
             }
             else if (userInput == "3")
             {
@@ -57,6 +53,24 @@ public class Environment
                 Console.ReadLine();
             }
         }
+    }
+
+    private void ChangeLocation()
+    {
+        Console.Clear();
+        int listNum = 0;
+        foreach (Location local in _allLocations)
+        {
+            listNum += 1;
+            Console.WriteLine($"  {listNum}. {local.GetLocationName()}");
+        }
+        Console.Write("Enter the location you'd like to move to: ");
+        try
+        {
+            int chosenLocal = int.Parse(Console.ReadLine()) - 1;
+            _currentLocal = _allLocations[chosenLocal];
+        } catch {}
+        _currentLocal.InteractionMenu(_playerCharacter);
     }
 
     private void InitializeLocations()
