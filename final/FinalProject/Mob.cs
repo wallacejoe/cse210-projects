@@ -59,6 +59,13 @@ public class Mob
 
     public void DisplayStats()
     {
-        
+        Console.WriteLine($"Health: {_health}");
+        Console.WriteLine($"Attack: {_attack}");
+        Console.WriteLine($"Defense: {_defense}");
+        Console.WriteLine();
+        foreach (string[] skill in _skills)
+        {
+            Console.WriteLine($"{skill[0]}: {skill[1]}");
+        }
     }
 }

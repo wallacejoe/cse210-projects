@@ -5,6 +5,8 @@ public class Character
     private int _mana;
     private int _stamina;
     private int _xp;
+    private int _attack;
+    private int _defense;
     private List<string[]> _skills = new List<string[]>();
     private List<string[]> _unclaimedSkills;
     private List<string[]> _spells = new List<string[]>();
@@ -17,6 +19,8 @@ public class Character
     {
         string userInput = "";
         _xp = 10;
+        _attack = 5;
+        _defense = 5;
         _unclaimedSkills = AllSkills();
         Console.WriteLine("Create your character:");
         while (_xp > 0)
@@ -48,12 +52,14 @@ public class Character
         }
     }
 
-    public Character(int health, int mana, int stamina, int xp, List<string[]> skills, List<string[]> unclaimedSkills, List<string[]> spells, List<string[]> equipment)
+    public Character(int health, int mana, int stamina, int xp, int attack, int defense, List<string[]> skills, List<string[]> unclaimedSkills, List<string[]> spells, List<string[]> equipment)
     {
         _health = health;
         _mana = mana;
         _stamina = stamina;
         _xp = xp;
+        _attack = attack;
+        _defense = defense;
         _skills = skills;
         _unclaimedSkills = unclaimedSkills;
         _spells = spells;

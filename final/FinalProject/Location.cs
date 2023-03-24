@@ -42,9 +42,9 @@ public class Location
             LocationDescription();
             Console.WriteLine($"\nLocation menu:");
             Console.WriteLine("  1. Interact with loot");
-            Console.WriteLine("  2. Combat");
+            Console.WriteLine("  2. Combat menu");
             Console.WriteLine("  3. Rest");
-            Console.WriteLine("  4. Move to knew location");
+            Console.WriteLine("  4. Move to new location");
             Console.WriteLine("  5. Main menu");
             Console.Write("Select a choice from the menu: ");
             userInput = Console.ReadLine();

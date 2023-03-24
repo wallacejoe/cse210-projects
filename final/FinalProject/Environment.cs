@@ -17,15 +17,14 @@ public class Environment
     public void MainMenu()
     {
         string userInput = "";
-        while (userInput != "5")
+        while (userInput != "4")
         {
             Console.Clear();
             Console.WriteLine("Main menu:");
-            Console.WriteLine("  1. Interact with location");
-            Console.WriteLine("  2. Move to new location");
-            Console.WriteLine("  3. Character Menu");
-            Console.WriteLine("  4. Keyboard shortcuts");
-            Console.WriteLine("  5. Save and Quit");
+            Console.WriteLine("  1. Back to game");
+            Console.WriteLine("  2. Character Menu");
+            Console.WriteLine("  3. Keyboard shortcuts");
+            Console.WriteLine("  4. Save and Quit");
             Console.Write("Select a choice from the menu: ");
             userInput = Console.ReadLine();
 
@@ -39,13 +38,9 @@ public class Environment
             }
             else if (userInput == "2")
             {
-                ChangeLocation();
-            }
-            else if (userInput == "3")
-            {
                 _playerCharacter.CharacterMenu();
             }
-            else if (userInput == "4")
+            else if (userInput == "3")
             {
                 Console.Clear();
                 Console.WriteLine("c. Character menu");
