@@ -14,7 +14,7 @@ public class Combat
     /*Constructors*/
 
     /*Methods*/
-    public void CombatMenu()
+    public void CombatMenu(Character player)
     {
         string userInput = "";
         while (userInput != "4")
@@ -33,7 +33,22 @@ public class Combat
             }
             else if (userInput == "2")
             {
-                
+                int listNum = 0;
+                List<string[]> combatSkills = new List<string[]>();
+                foreach (string[] skill in player.GetSkills())
+                {
+                    if (skill[2] == "attack" || skill[2] == "defense")
+                    {
+                        combatSkills.Add(skill);
+                    }
+                }
+                foreach (string[] skill in combatSkills)
+                {
+                    listNum += 1;
+                    Console.WriteLine($"{listNum}. {skill[0]}: {2}");
+                }
+                Console.WriteLine("Select the skill you would like to use: ");
+                int skillChoice = int.Parse(Console.ReadLine());
             }
             else if (userInput == "3")
             {

@@ -305,4 +305,9 @@ public class Character
     {
         _equipment.Add(equipment);
     }
+
+    public List<string[]> GetSkills()
+    {
+        return _skills;
+    }
 }
