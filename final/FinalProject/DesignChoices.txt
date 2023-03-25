@@ -42,23 +42,6 @@ Combat:
 -This class will track and store active combat effects.
 -Combat results will be stored with relevant classes.
 
-PhysicalCombat:
--Determines the defenders physical protection.
--Determines the attackers physical attack.
--Adjusts characters stamina based on skill cost (not sure how this will work yet).
--Calculates the results of physical combat.
-
-MagicCombat:
--Determines the defenders magic protection.
--Determines the attackers magic attack.
--Adjusts characters mana based on spell cost (not sure how this will work yet).
--Calculates the results of magic combat.
-
-PsychicCombat:
--Determines the defenders psychic protection.
--Determines the attackers psychic attack.
--Calculates the results of psychic combat.
-
 
 File:
 -Will take serialized input from other classes and save it to a file.
