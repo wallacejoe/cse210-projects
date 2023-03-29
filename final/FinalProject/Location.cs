@@ -3,6 +3,7 @@ public class Location
 {
     private List<Mob> _mobs = new List<Mob>();
     private List<Loot> _loot = new List<Loot>();
+    private Combat _combat = new Combat();
     private string _description;
     private string _locationName;
 
@@ -74,7 +75,7 @@ public class Location
             }
             else if (userInput == "2")
             {
-                
+                _combat.CombatMenu(player, _mobs);
             }
             else if (userInput == "3")
             {

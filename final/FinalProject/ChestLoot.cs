@@ -16,19 +16,19 @@ public class ChestLoot : Loot
     {
         if (_currentLocal == "forest")
         {
-            AddItems(1, "Wooden Club", "weapon");
-            AddItems(5, "Arrow", "arrow");
+            AddItems(1, "Wooden Club", "weapon", "3");
+            AddItems(5, "Arrow", "arrow", "2");
             AddItems(3, "Bandage", "loot");
             AddItems(1, "Torch", "equipment");
             AddItems(3, "Weak Poison", "poison");
-            AddItems(1, "Leather Armor", "armor");
+            AddItems(1, "Leather Armor", "armor", "3");
             AddItems(1, "Wooden Sheild", "equipment");
             AddItems(1, "Potion of Poison Resistance", "potion");
         }
         else if (_currentLocal == "swamp")
         {
             AddItems(5, "Weak Poison", "poison");
-            AddItems(5, "Arrow", "arrow");
+            AddItems(5, "Arrow", "arrow", "2");
             AddItems(3, "Potion of Poison Resistance", "potion");
         }
         Random getRandomNum = new Random();

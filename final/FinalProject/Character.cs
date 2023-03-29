@@ -278,9 +278,9 @@ public class Character
     {
         //Skills are formatted: name, description, type, value (if any), experience cost
         List<string[]> allSkills = new List<string[]>();
-        allSkills.Add(AddSkillArray("Iron Skin", "Reduces all damage dealt to you by a set amount", "protection", "", "20"));
-        /*allSkills.Add(AddSkillArray("1", "description", "10"));
-        allSkills.Add(AddSkillArray("2", "description", "10"));
+        allSkills.Add(AddSkillArray("Iron Skin", "Reduces all damage dealt to you by a set amount", "protection", "10", "20"));
+        allSkills.Add(AddSkillArray("Grapple", "A physical attack, has a chance of stunning the target", "attack", "4", "10"));
+        /*allSkills.Add(AddSkillArray("2", "description", "10"));
         allSkills.Add(AddSkillArray("3", "description", "10"));
         allSkills.Add(AddSkillArray("4", "description", "10"));
         allSkills.Add(AddSkillArray("5", "description", "10"));
@@ -300,6 +300,11 @@ public class Character
         return skillArray;
     }
 
+    public void CalculateHealth(int damage)
+    {
+        _health -= damage;
+    }
+
     /*Getters and setters*/
     public void AddEquipment(string[] equipment)
     {
@@ -309,5 +314,25 @@ public class Character
     public List<string[]> GetSkills()
     {
         return _skills;
+    }
+
+    public int GetAttack()
+    {
+        return _attack;
+    }
+
+    public int GetDefense()
+    {
+        return _defense;
+    }
+
+    public string[] GetEquipedWeapon()
+    {
+        return _equipedWeapon;
+    }
+
+    public string[] GetEquipedArmor()
+    {
+        return _equipedArmor;
     }
 }

@@ -27,11 +27,11 @@ public abstract class Loot
         }
     }
 
-    protected void AddItems(int numToAdd, string item, string type)
+    protected void AddItems(int numToAdd, string item, string type, string value="")
     {
         for (int i = 0; i < numToAdd; i++)
         {
-            string[] completeItem = {item, type};
+            string[] completeItem = {item, type, value};
             _potentialLoot.Add(completeItem);
         }
     }

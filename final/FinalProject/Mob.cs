@@ -5,6 +5,7 @@ public class Mob
     private int _health;
     private int _attack;
     private int _defense;
+    private int _damage;
     private List<string[]> _skills = new List<string[]>();
     private bool _state = true;
     private string _currentLocal;
@@ -14,6 +15,7 @@ public class Mob
     {
         _currentLocal = currentLocal;
         RandomMob();
+        MobStats();
     }
 
     /*Methods*/
@@ -40,13 +42,15 @@ public class Mob
             _health = 5;
             _attack = 3;
             _defense = 5;
+            _damage = 2;
             _skills.Add(AddSkillArray("Infectious Bite", "A physical attack, deals mild poison damage", "attack", "2"));
         }
         else if (_type == "zombie")
         {
             _health = 10;
-            _attack = 4;
+            _attack = 3;
             _defense = 3;
+            _damage = 4;
             _skills.Add(AddSkillArray("Grapple", "A physical attack, has a chance of stunning the target", "attack", "4"));
         }
     }
@@ -67,5 +71,53 @@ public class Mob
         {
             Console.WriteLine($"{skill[0]}: {skill[1]}");
         }
+    }
+
+    public void CalculateDamage(int damage)
+    {
+        _health -= damage;
+        if (_health <= 0)
+        {
+            _state = false;
+        }
+    }
+
+    public void CheckState()
+    {
+        if (!_state)
+        {
+
+        }
+    }
+
+    /*Getters and setters*/
+    public List<string[]> GetSkills()
+    {
+        return _skills;
+    }
+
+    public int GetDamage()
+    {
+        return _damage;
+    }
+
+    public int GetAttack()
+    {
+        return _attack;
+    }
+
+    public int GetDefense()
+    {
+        return _defense;
+    }
+
+    public string GetMobType()
+    {
+        return _type;
+    }
+
+    public int GetHealth()
+    {
+        return _health;
     }
 }
