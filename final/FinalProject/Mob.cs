@@ -20,6 +20,12 @@ public class Mob
         MobStats();
     }
 
+    public Mob(string type, bool state)
+    {
+        _type = type;
+        MobStats();
+    }
+
     /*Methods*/
     public void RandomMob()
     {

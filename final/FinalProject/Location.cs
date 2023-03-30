@@ -89,8 +89,8 @@ public class Location
             }
             else if (userInput == "2")
             {
-                List<Loot> newLoot = _combat.GetNewLoot();
                 _mobs = _combat.CombatMenu(player, _mobs);
+                List<Loot> newLoot = _combat.GetNewLoot();
                 foreach (Loot loot in newLoot)
                 {
                     _loot.Add(loot);
@@ -154,6 +154,22 @@ public class Location
             }
         }
         return false;
+    }
+
+    public string[] Serialize()
+    {
+        string toSerialize = $"{_locationName}|/^|{_description}";
+        foreach (Mob mob in _mobs)
+        {
+            toSerialize += $"{mob.GetMobType()}";
+        }
+        string toSerialize2 = "";
+        /*foreach (Loot loot in _loot)
+        {
+            toSerialize2 += $"{loot.Serialize()}";
+        }*/
+        string[] allToSerialize = {toSerialize, toSerialize2};
+        return allToSerialize;
     }
 
     /*Getters and setters*/
