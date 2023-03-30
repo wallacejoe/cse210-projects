@@ -156,19 +156,24 @@ public class Location
         return false;
     }
 
-    public string[] Serialize()
+    public List<string> Serialize()
     {
-        string toSerialize = $"{_locationName}|/^|{_description}";
+        List<string> allToSerialize = new List<string>();
+        string toSerialize = "mobs";
+        allToSerialize.Add($"{_locationName}|/^|{_description}");
         foreach (Mob mob in _mobs)
         {
-            toSerialize += $"{mob.GetMobType()}";
+            toSerialize += $"|/^|{mob.GetMobType()}";
         }
-        string toSerialize2 = "";
-        /*foreach (Loot loot in _loot)
+        allToSerialize.Add(toSerialize);
+        foreach (Loot loot in _loot)
         {
-            toSerialize2 += $"{loot.Serialize()}";
-        }*/
-        string[] allToSerialize = {toSerialize, toSerialize2};
+            allToSerialize.Add("container");
+            foreach (string item in loot.Serialize())
+            {
+                allToSerialize.Add(item);
+            }
+        }
         return allToSerialize;
     }
 

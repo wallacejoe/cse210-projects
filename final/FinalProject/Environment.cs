@@ -44,10 +44,27 @@ public class Environment
             {
                 Console.Clear();
                 Console.WriteLine("c. Character menu");
+                Console.Write("Press enter to continue:");
+                Console.ReadLine();
             }
             else if (userInput == "4")
             {
-                
+                List<string> saveToFile = new List<string>();
+                Console.WriteLine("Leave blank if you'd like to quit without saving");
+                Console.Write("Enter the file you'd like to save to: ");
+                File file = new File(Console.ReadLine());
+                foreach (string line in _playerCharacter.Serialize())
+                {
+                    saveToFile.Add(line);
+                }
+                foreach (Location area in _allLocations)
+                {
+                    foreach (string line in area.Serialize())
+                    {
+                        saveToFile.Add(line);
+                    }
+                }
+                file.WriteToFile(saveToFile);
             }
             else {
                 Console.Write("That input was not valid. Press enter to continue:");
@@ -80,4 +97,10 @@ public class Environment
         _allLocations.Add(new Location("swamp", "This foul bog reeks of death and decay, and has several steaming pools of some unknown substance. Aside from a constant hiss from the pools, the swamp is unnaturally silent."));
     }
 
+    public List<string> Serialize()
+    {
+        List<string> listToSerialize = new List<string>();
+
+        return listToSerialize;
+    }
 }

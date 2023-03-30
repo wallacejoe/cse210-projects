@@ -36,6 +36,23 @@ public abstract class Loot
         }
     }
 
+    public List<string> Serialize()
+    {
+        List<string> serializedList = new List<string>();
+        serializedList.Add(_lootContainer);
+        foreach (string[] loot in _loot)
+        {
+            string serializedString = "loot";
+            foreach (string value in loot)
+            {
+                serializedString += $"|/^|{value}";
+            }
+            serializedList.Add(serializedString);
+        }
+
+        return serializedList;
+    }
+
     public abstract void RandomLoot();
 
     /*Getters and setters*/

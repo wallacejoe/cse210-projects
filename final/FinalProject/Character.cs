@@ -374,6 +374,73 @@ public class Character
         _activeEffects.Add(effect);
     }
 
+    public List<string> Serialize()
+    {
+        List<string> listToSerialize = new List<string>();
+        listToSerialize.Add($"character|/^|{_maxHealth}|/^|{_health}|/^|{_maxMana}|/^|{_mana}|/^|{_maxStamina}|/^|{_stamina}|/^|{_xp}|/^|{_attack}|/^|{_defense}");
+        try
+        {
+            foreach (string line in SerializeArray(_skills, "skill"))
+            {
+                listToSerialize.Add(line);
+            }
+        } catch{}
+        try
+        {
+            foreach (string line in SerializeArray(_unclaimedSkills, "un-skill"))
+            {
+                listToSerialize.Add(line);
+            }
+        } catch{}
+        try
+        {
+            foreach (string line in SerializeArray(_spells, "spell"))
+            {
+                listToSerialize.Add(line);
+            }
+        } catch{}
+        try
+        {
+            foreach (string line in SerializeArray(_equipment, "equipment"))
+            {
+                listToSerialize.Add(line);
+            }
+        } catch{}
+        try
+        {
+            string serializeWeapon = "equiped weapon";
+            foreach (string line in _equipedWeapon)
+            {
+                serializeWeapon += $"|/^|{line}";
+            }
+        } catch{}
+        try
+        {
+            string serializeArmor = "equiped armor";
+            foreach (string line in _equipedArmor)
+            {
+                serializeArmor += $"|/^|{line}";
+            }
+        } catch{}
+
+        return listToSerialize;
+    }
+
+    private List<string> SerializeArray(List<string[]> list, string identifier)
+    {
+        List<string> serializedList = new List<string>();
+        foreach (string[] array in list)
+        {
+            string serialized = $"{identifier}";
+            foreach (string value in array)
+            {
+                serialized += $"|/^|{value}";
+            }
+            serializedList.Add(serialized);
+        }
+        return serializedList;
+    }
+
     /*Getters and setters*/
 
     public List<string[]> GetActiveEffects()
@@ -394,6 +461,11 @@ public class Character
     public List<string[]> GetSkills()
     {
         return _skills;
+    }
+
+    public List<string[]> GetSpells()
+    {
+        return _spells;
     }
 
     public int GetAttack()

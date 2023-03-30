@@ -10,9 +10,16 @@ public class File
     }
 
     /*Methods*/
-    public void WriteToFile()
+    public void WriteToFile(List<string> lines)
     {
-
+        try
+        {
+            using (StreamWriter outputFile = new StreamWriter(_filename))
+            foreach (string line in lines)
+            {
+                outputFile.WriteLine(line);
+            }
+        } catch {Console.WriteLine("Error: Could not save to the chosen file.");}
     }
 
     public void Deserialize()
