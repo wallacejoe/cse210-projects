@@ -82,14 +82,6 @@ public class Mob
         }
     }
 
-    public void CheckState()
-    {
-        if (!_state)
-        {
-
-        }
-    }
-
     /*Getters and setters*/
     public List<string[]> GetSkills()
     {
@@ -119,5 +111,10 @@ public class Mob
     public int GetHealth()
     {
         return _health;
+    }
+
+    public bool GetState()
+    {
+        return _state;
     }
 }

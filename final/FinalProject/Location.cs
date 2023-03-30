@@ -72,10 +72,19 @@ public class Location
                         player.AddEquipment(_loot[lootInput].ClaimLoot());
                     }
                 } catch {}
+                foreach (Mob mob in _mobs)
+                {
+                    _combat.CombatAI(player, mob);
+                }
             }
             else if (userInput == "2")
             {
-                _combat.CombatMenu(player, _mobs);
+                List<Loot> newLoot = _combat.GetNewLoot();
+                _mobs = _combat.CombatMenu(player, _mobs);
+                foreach (Loot loot in newLoot)
+                {
+                    _loot.Add(loot);
+                }
             }
             else if (userInput == "3")
             {
@@ -83,6 +92,10 @@ public class Location
             }
             else if (userInput == "4")
             {
+                foreach (Mob mob in _mobs)
+                {
+                    _combat.CombatAI(player, mob);
+                }
                 return true;
             }
             else if (userInput == "c")

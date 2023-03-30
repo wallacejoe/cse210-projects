@@ -1,6 +1,7 @@
 using System;
 public class Character
 {
+    private int _maxHealth;
     private int _health;
     private int _mana;
     private int _stamina;
@@ -19,7 +20,7 @@ public class Character
     {
         string userInput = "";
         _xp = 10;
-        _attack = 5;
+        _attack = 6;
         _defense = 5;
         _unclaimedSkills = AllSkills();
         Console.WriteLine("Create your character:");
@@ -35,6 +36,7 @@ public class Character
 
             if (userInput == "1")
             {
+                _maxHealth += 1;
                 _health += 1;
                 _xp -= 1;
             }
@@ -52,8 +54,9 @@ public class Character
         }
     }
 
-    public Character(int health, int mana, int stamina, int xp, int attack, int defense, List<string[]> skills, List<string[]> unclaimedSkills, List<string[]> spells, List<string[]> equipment)
+    public Character(int maxHealth, int health, int mana, int stamina, int xp, int attack, int defense, List<string[]> skills, List<string[]> unclaimedSkills, List<string[]> spells, List<string[]> equipment)
     {
+        _maxHealth = maxHealth;
         _health = health;
         _mana = mana;
         _stamina = stamina;
@@ -300,15 +303,29 @@ public class Character
         return skillArray;
     }
 
-    public void CalculateHealth(int damage)
+    public void DecreaseHealth(int damage)
     {
         _health -= damage;
+    }
+
+    public void IncreaseHealth(int healing)
+    {
+        _health += healing;
+        if (_health > _maxHealth)
+        {
+            _health = _maxHealth;
+        }
     }
 
     /*Getters and setters*/
     public void AddEquipment(string[] equipment)
     {
         _equipment.Add(equipment);
+    }
+
+    public int GetHealth()
+    {
+        return _health;
     }
 
     public List<string[]> GetSkills()

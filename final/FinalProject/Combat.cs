@@ -10,14 +10,14 @@ using System;
 public class Combat
 {
     private List<string[]> _activeEffects = new List<string[]>();
-
+    private List<Loot> _newLoot = new List<Loot>();
     /*Constructors*/
 
     /*Methods*/
-    public void CombatMenu(Character player, List<Mob> mobs)
+    public List<Mob> CombatMenu(Character player, List<Mob> mobs)
     {
         string userInput = "";
-        while (userInput != "4")
+        while (userInput != "4" && player.GetHealth() > 0)
         {
             Console.Clear();
             Console.WriteLine("Combat menu:");
@@ -30,8 +30,21 @@ public class Combat
             
             if (userInput == "1")
             {
-                Mob defendingMob = ChooseTarget(mobs);
-                CombatResults(defendingMob, player);
+                try
+                {
+                    int mobTarget = ChooseTarget(mobs);
+                    Mob defendingMob = mobs[mobTarget];
+                    bool result = CombatResults(defendingMob, player);
+                    foreach (Mob mob in mobs)
+                    {
+                        CombatAI(player, mob);
+                    }
+                    if (!result)
+                    {
+                        _newLoot.Add(new MobLoot(mobs[mobTarget].GetMobType()));
+                        mobs.RemoveAt(mobTarget);
+                    }
+                } catch {}
             }
             else if (userInput == "2")
             {
@@ -52,27 +65,32 @@ public class Combat
                 Console.Write("Select the skill you would like to use: ");
                 int skillChoice = int.Parse(Console.ReadLine());
                 string[] chosenSkill = combatSkills[skillChoice];
+                foreach (Mob mob in mobs)
+                {
+                    CombatAI(player, mob);
+                }
             }
             else if (userInput == "3")
             {
 
             }
         }
+        return mobs;
     }
 
-    public void CombatAI(Character player, List<Mob> mobs)
+    public void CombatAI(Character player, Mob mob)
     {
-        foreach (Mob mob in mobs)
+        int attack = CalculateAttack(mob.GetAttack());
+        int defense = CalculateDefense(player.GetDefense());
+        int damage = mob.GetDamage();
+        attack -= defense;
+        if (attack > 0)
         {
-            int attack = CalculateAttack(mob.GetAttack());
-            int defense = CalculateDefense(player.GetDefense());
-            int damage = mob.GetDamage();
-            attack -= defense;
-            if (attack > 0)
-            {
-                attack += damage;
-                player.CalculateHealth(damage);
-            }
+            attack += damage;
+            player.DecreaseHealth(damage);
+            Console.WriteLine($"{mob.GetMobType()} dealt {attack} damage");
+            Console.Write("Press enter to continue: ");
+            Console.ReadLine();
         }
     }
 
@@ -81,21 +99,21 @@ public class Combat
 
     }
 
-    public int CalculateAttack(int attack, string effect="")
+    private int CalculateAttack(int attack, string effect="")
     {
         Random getRandomNum = new Random();
         int attackValue = getRandomNum.Next(0, attack);
         return attackValue;
     }
 
-    public int CalculateDefense(int defense, string effect="")
+    private int CalculateDefense(int defense, string effect="")
     {
         Random getRandomNum = new Random();
         int defenseValue = getRandomNum.Next(0, defense);
         return defenseValue;
     }
 
-    private Mob ChooseTarget(List<Mob> mobs)
+    private int ChooseTarget(List<Mob> mobs)
     {
         Console.Clear();
         int listNum = 0;
@@ -105,11 +123,10 @@ public class Combat
         }
         Console.Write("Select the mob you would like to attack: ");
         int mobTarget = int.Parse(Console.ReadLine()) - 1;
-        Mob targetMob = mobs[mobTarget];
-        return targetMob;
+        return mobTarget;
     }
 
-    public void CombatResults(Mob mob, Character player)
+    private bool CombatResults(Mob mob, Character player)
     {
         int attack = CalculateAttack(player.GetAttack());
         int defense = CalculateDefense(mob.GetDefense());
@@ -124,6 +141,21 @@ public class Combat
         {
             attack += damage;
             mob.CalculateDamage(attack);
+            Console.WriteLine($"You dealt {attack} damage");
+            Console.Write($"Press enter to continue:");
+            Console.ReadLine();
+            if (!mob.GetState())
+            {
+                return false;
+            }
         }
+        return true;
+    }
+
+    public List<Loot> GetNewLoot()
+    {
+        List<Loot> lootToAdd = _newLoot;
+        _newLoot.Clear();
+        return lootToAdd;
     }
 }

@@ -45,6 +45,10 @@ public class Environment
                 Console.Clear();
                 Console.WriteLine("c. Character menu");
             }
+            else if (userInput == "4")
+            {
+                
+            }
             else {
                 Console.Write("That input was not valid. Press enter to continue:");
                 Console.ReadLine();
