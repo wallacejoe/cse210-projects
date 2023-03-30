@@ -124,7 +124,8 @@ public class Character
                 Console.WriteLine("Equipment menu:");
                 Console.WriteLine("  1. Equip armor");
                 Console.WriteLine("  2. Equip weapon");
-                Console.WriteLine("  3. Exit equipment menu");
+                Console.WriteLine("  3. Use equipment");
+                Console.WriteLine("  4. Exit equipment menu");
                 Console.Write("Select a choice from the menu: ");
                 string equipChoice = Console.ReadLine();
                 if (equipChoice == "1")
@@ -136,6 +137,27 @@ public class Character
                 {
                     Console.Clear();
                     EquipWeapon();
+                }
+                else if (equipChoice == "3")
+                {
+                    Console.Clear();
+                    int listNum = 0;
+                    foreach (string[] item in _equipment)
+                    {
+                        listNum += 1;
+                        Console.WriteLine($"  {listNum}. {item[0]}");
+                    }
+                    Console.WriteLine("Select an item to use: ");
+                    try
+                    {
+                        int chosenItem = int.Parse(Console.ReadLine());
+                        string[] chosenEquipment = _equipment[chosenItem];
+                        if (chosenEquipment[1] == "healing")
+                        {
+                            int healing = int.Parse(chosenEquipment[2]);
+                            IncreaseHealth(healing);
+                        }
+                    } catch{}
                 }
             }
         }

@@ -18,14 +18,12 @@ public class MobLoot : Loot
         int randomNum = getRandomNum.Next(0, 5);
         if (_mob == "zombie")
         {
-            AddItems(1, "Wrath Pendant", "equipment");
-            AddItems(20, "Tattered Clothes", "armor");
+            AddItems(20, "Tattered Clothes", "armor", "1");
             randomNum = getRandomNum.Next(0, 1);
         }
         else if (_mob == "spider")
         {
             AddItems(5, "Weak Poison", "poison");
-            AddItems(2, "Potion of Poison Resistance", "potion");
             randomNum = getRandomNum.Next(0, 3);
         }
         for (int i = 0; i < randomNum; i++)

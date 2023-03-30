@@ -188,6 +188,8 @@ public class Combat
                             damage -= int.Parse(skill[3]);
                         }
                     }
+                    int armor = int.Parse(player.GetEquipedArmor()[2]);
+                    damage -= CalculateDefense(armor);
                     player.DecreaseHealth(damage);
                     Console.WriteLine($"{mob.GetMobType()} dealt {attack} damage");
                     Console.Write("Press enter to continue: ");
