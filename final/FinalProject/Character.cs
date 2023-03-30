@@ -150,12 +150,21 @@ public class Character
                     Console.WriteLine("Select an item to use: ");
                     try
                     {
-                        int chosenItem = int.Parse(Console.ReadLine());
+                        int chosenItem = int.Parse(Console.ReadLine()) - 1;
                         string[] chosenEquipment = _equipment[chosenItem];
                         if (chosenEquipment[1] == "healing")
                         {
                             int healing = int.Parse(chosenEquipment[2]);
                             IncreaseHealth(healing);
+                            _equipment.RemoveAt(chosenItem);
+                        }
+                        else if (chosenEquipment[1] == "poison")
+                        {
+                            Console.Write($"Would you like to poison {_equipedWeapon} (y/n)? ");
+                            if (Console.ReadLine() == "y")
+                            {
+                                _equipedWeapon[3] = "poison";
+                            }
                         }
                     } catch{}
                 }
@@ -166,7 +175,6 @@ public class Character
     //Previously the "AcquireSkill" method
     private void SkillMenu()
     {
-        _xp = 20;
         Console.Clear();
         Console.WriteLine("Skill menu:");
         Console.WriteLine("  1. View your skills");
@@ -347,6 +355,14 @@ public class Character
         _xp += xp;
     }
 
+    public void DeathReset()
+    {
+        _xp = 0;
+        _health = _maxHealth;
+        _stamina = _maxStamina;
+        _mana = _maxMana;
+    }
+
     public void AddEquipment(string[] equipment)
     {
         _equipment.Add(equipment);
@@ -413,6 +429,11 @@ public class Character
     public string[] GetEquipedWeapon()
     {
         return _equipedWeapon;
+    }
+
+    public void SetEquipedWeapon(string[] weapon)
+    {
+        _equipedWeapon = weapon;
     }
 
     public string[] GetEquipedArmor()

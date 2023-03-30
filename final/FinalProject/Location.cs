@@ -96,6 +96,31 @@ public class Location
             {
                 player.CharacterMenu();
             }
+            if (player.GetHealth() <= 0)
+            {
+                Console.Clear();
+                Console.WriteLine("You have been defeated");
+                Console.WriteLine("  1. Respawn");
+                Console.WriteLine("  2. Load saved game");
+                Console.WriteLine("  3. Exit to main menu");
+                Console.Write("Select a choice from the menu: ");
+                string deathInput = Console.ReadLine();
+                player.DeathReset();
+                _mobs.Clear();
+                _loot.Clear();
+                if (deathInput == "1")
+                {
+                    
+                }
+                else if (deathInput == "2")
+                {
+
+                }
+                else if (deathInput == "3")
+                {
+                    return false;
+                }
+            }
         }
         return false;
     }

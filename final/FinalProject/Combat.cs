@@ -62,12 +62,20 @@ public class Combat
                         {
                             string[] equipedWeapon = player.GetEquipedWeapon();
                             damage = int.Parse(equipedWeapon[2]);
+                            if (equipedWeapon[3] == "poison")
+                            {
+                                equipedWeapon[3] = "";
+                                player.SetEquipedWeapon(equipedWeapon);
+                                damage += 3;
+                            }
                         } catch {}
                         bool result = CombatResults(defendingMob, playerAttack, damage);
                         CombatAI(player, mobs);
                         if (!result)
                         {
                             _newLoot.Add(new MobLoot(mobs[mobTarget].GetMobType()));
+                            int gainedXP = mobs[mobTarget].GetXP();
+                            player.IncreaseXP(gainedXP);
                             mobs.RemoveAt(mobTarget);
                         }
                     } catch {}
@@ -119,6 +127,8 @@ public class Combat
                                 if (!result)
                                 {
                                     _newLoot.Add(new MobLoot(mobs[mobTarget].GetMobType()));
+                                    int gainedXP = mobs[mobTarget].GetXP();
+                                    player.IncreaseXP(gainedXP);
                                     mobs.RemoveAt(mobTarget);
                                 }
                             }
@@ -188,10 +198,13 @@ public class Combat
                             damage -= int.Parse(skill[3]);
                         }
                     }
-                    int armor = int.Parse(player.GetEquipedArmor()[2]);
-                    damage -= CalculateDefense(armor);
+                    try
+                    {
+                        int armor = int.Parse(player.GetEquipedArmor()[2]);
+                        damage -= CalculateDefense(armor);
+                    } catch{}
                     player.DecreaseHealth(damage);
-                    Console.WriteLine($"{mob.GetMobType()} dealt {attack} damage");
+                    Console.WriteLine($"{mob.GetMobType()} dealt {damage} damage");
                     Console.Write("Press enter to continue: ");
                     Console.ReadLine();
                 }
