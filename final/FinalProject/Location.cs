@@ -31,6 +31,19 @@ public class Location
         Console.WriteLine(_locationName);
         Console.WriteLine();
         Console.WriteLine(_description);
+        Console.WriteLine();
+        Console.WriteLine("Mobs in this location:");
+        if (_mobs.Count() <= 0)
+        {
+            Console.WriteLine("There are no mobs");
+        }
+        else
+        {
+            foreach (Mob mob in _mobs)
+            {
+                Console.WriteLine(mob.GetMobType());
+            }
+        }
     }
 
     //This method returns a boolean value based on whether the user
