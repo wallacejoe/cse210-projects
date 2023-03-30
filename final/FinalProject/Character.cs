@@ -411,9 +411,19 @@ public class Character
         return _stamina;
     }
 
+    public int GetMaxStamina()
+    {
+        return _maxStamina;
+    }
+
     public void SetStamina(int stamina)
     {
         _stamina = stamina;
+    }
+
+    public int GetMaxMana()
+    {
+        return _maxMana;
     }
 
     public int GetMana()

@@ -85,7 +85,29 @@ public class Location
             }
             else if (userInput == "3")
             {
-
+                if (_mobs.Count() > 0)
+                {
+                    Console.Clear();
+                    Console.WriteLine("You may not rest with mobs nearby");
+                    Console.Write("Press enter to continue:");
+                    Console.ReadLine();
+                }
+                else
+                {
+                    Random getRandomNum = new Random();
+                    int randomNum = getRandomNum.Next(0, 10);
+                    if (randomNum < 3)
+                    {
+                        _mobs.Add(new Mob(_locationName));
+                        _mobs.Add(new Mob(_locationName));
+                    }
+                    else
+                    {
+                        player.IncreaseHealth(3);
+                        player.SetMana(player.GetMaxMana());
+                        player.SetStamina(player.GetMaxStamina());
+                    }
+                }
             }
             else if (userInput == "4")
             {
@@ -108,11 +130,7 @@ public class Location
                 player.DeathReset();
                 _mobs.Clear();
                 _loot.Clear();
-                if (deathInput == "1")
-                {
-                    
-                }
-                else if (deathInput == "2")
+                if (deathInput == "2")
                 {
 
                 }
