@@ -1,12 +1,14 @@
 using System;
 public class Mob
 {
+    private int _xp;
     private string _type;
     private int _health;
     private int _attack;
     private int _defense;
     private int _damage;
     private List<string[]> _skills = new List<string[]>();
+    private List<string[]> _activeEffects = new List<string[]>();
     private bool _state = true;
     private string _currentLocal;
 
@@ -39,19 +41,20 @@ public class Mob
     {
         if (_type == "spider")
         {
+            _xp = 5;
             _health = 5;
             _attack = 3;
             _defense = 5;
             _damage = 2;
-            _skills.Add(AddSkillArray("Infectious Bite", "A physical attack, deals mild poison damage", "attack", "2"));
         }
         else if (_type == "zombie")
         {
+            _xp = 10;
             _health = 10;
             _attack = 3;
             _defense = 3;
             _damage = 4;
-            _skills.Add(AddSkillArray("Grapple", "A physical attack, has a chance of stunning the target", "attack", "4"));
+            _skills.Add(AddSkillArray("Grapple", "A physical attack, has a chance of stunning the target", "attack", "3"));
         }
     }
 
@@ -83,9 +86,30 @@ public class Mob
     }
 
     /*Getters and setters*/
+    public void AddActiveEffects(string name, string value)
+    {
+        string[] effect = {name, value};
+        _activeEffects.Add(effect);
+    }
+
+    public List<string[]> GetActiveEffects()
+    {
+        return _activeEffects;
+    }
+
+    public void SetActiveEffects(List<string[]> newEffects)
+    {
+        _activeEffects = newEffects;
+    }
+
     public List<string[]> GetSkills()
     {
         return _skills;
+    }
+
+    public int GetXP()
+    {
+        return _xp;
     }
 
     public int GetDamage()

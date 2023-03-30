@@ -3,7 +3,9 @@ public class Character
 {
     private int _maxHealth;
     private int _health;
+    private int _maxMana;
     private int _mana;
+    private int _maxStamina;
     private int _stamina;
     private int _xp;
     private int _attack;
@@ -14,6 +16,7 @@ public class Character
     private List<string[]> _equipment = new List<string[]>();
     private string[] _equipedWeapon;
     private string[] _equipedArmor;
+    private List<string[]> _activeEffects = new List<string[]>();
 
     /*Constructors*/
     public Character()
@@ -42,11 +45,13 @@ public class Character
             }
             else if (userInput == "2")
             {
+                _maxMana += 2;
                 _mana += 2;
                 _xp -= 1;
             }
             else if (userInput == "3")
             {
+                _maxStamina += 2;
                 _stamina += 2;
                 _xp -= 1;
             }
@@ -54,11 +59,13 @@ public class Character
         }
     }
 
-    public Character(int maxHealth, int health, int mana, int stamina, int xp, int attack, int defense, List<string[]> skills, List<string[]> unclaimedSkills, List<string[]> spells, List<string[]> equipment)
+    public Character(int maxHealth, int health, int maxMana, int mana, int maxStamina, int stamina, int xp, int attack, int defense, List<string[]> skills, List<string[]> unclaimedSkills, List<string[]> spells, List<string[]> equipment)
     {
         _maxHealth = maxHealth;
         _health = health;
+        _maxMana = maxMana;
         _mana = mana;
+        _maxStamina = maxStamina;
         _stamina = stamina;
         _xp = xp;
         _attack = attack;
@@ -137,6 +144,7 @@ public class Character
     //Previously the "AcquireSkill" method
     private void SkillMenu()
     {
+        _xp = 20;
         Console.Clear();
         Console.WriteLine("Skill menu:");
         Console.WriteLine("  1. View your skills");
@@ -196,7 +204,7 @@ public class Character
         }
         else if (userInput == "3")
         {
-        try
+            try
             {
                 int skillChoice = 0;
                 while (skillChoice < _unclaimedSkills.Count())
@@ -206,13 +214,13 @@ public class Character
                     foreach (string[] skill in _unclaimedSkills)
                     {
                         listNum += 1;
-                        Console.WriteLine($"  {listNum}. {skill[0]} cost: {skill[2]}");
+                        Console.WriteLine($"  {listNum}. {skill[0]} cost: {skill[5]}");
                     }
                     Console.WriteLine("  Enter. exit skill menu");
                     Console.WriteLine("To acquire a skill, you must have xp equal to or greater than its cost");
                     Console.Write("Select a skill to acquire: ");
                     skillChoice = int.Parse(Console.ReadLine()) - 1;
-                    int skillCost = int.Parse(_unclaimedSkills[skillChoice][2]);
+                    int skillCost = int.Parse(_unclaimedSkills[skillChoice][5]);
                     if (_xp >= skillCost)
                     {
                         _xp -= skillCost;
@@ -279,27 +287,22 @@ public class Character
 
     private List<string[]> AllSkills()
     {
-        //Skills are formatted: name, description, type, value (if any), experience cost
+        //Skills are formatted: name, description, type, value (if any), stamina cost (if any), experience cost, effect (if any)
         List<string[]> allSkills = new List<string[]>();
-        allSkills.Add(AddSkillArray("Iron Skin", "Reduces all damage dealt to you by a set amount", "protection", "10", "20"));
-        allSkills.Add(AddSkillArray("Grapple", "A physical attack, has a chance of stunning the target", "attack", "4", "10"));
-        /*allSkills.Add(AddSkillArray("2", "description", "10"));
-        allSkills.Add(AddSkillArray("3", "description", "10"));
-        allSkills.Add(AddSkillArray("4", "description", "10"));
-        allSkills.Add(AddSkillArray("5", "description", "10"));
-        allSkills.Add(AddSkillArray("6", "description", "10"));
-        allSkills.Add(AddSkillArray("7", "description", "10"));
-        allSkills.Add(AddSkillArray("8", "description", "10"));
-        allSkills.Add(AddSkillArray("9", "description", "10"));*/
+        allSkills.Add(AddSkillArray("Stone Skin", "Reduces all damage dealt to you by a set amount", "protection", "1", "0", "20", ""));
+        allSkills.Add(AddSkillArray("Grapple", "A physical attack, has a chance of stunning the target", "attack", "3", "2", "10", "stun"));
+        allSkills.Add(AddSkillArray("Dodge", "Allows you to perform a \"Dogde\" that increases your defense", "Defense", "2", "1", "5", ""));
+        allSkills.Add(AddSkillArray("Rage", "You fly into a rage, causing your attacks to deal increased damage", "attack", "3", "5", "20", "rage"));
+        allSkills.Add(AddSkillArray("Deception", "Decrease all opponents attack by confusing them", "cunning", "0", "2", "20", "confusion"));
 
         return allSkills;
     }
 
     //I couldn't find how to initialize an array with all it's content while
     //adding it to a list, so I decided to create a simple function to handle it.
-    private string[] AddSkillArray(string name, string description, string type, string value, string cost)
+    private string[] AddSkillArray(string name, string description, string type, string value, string cost, string xpCost, string effect)
     {
-        string[] skillArray = {name, description, type, value, cost};
+        string[] skillArray = {name, description, type, value, cost, xpCost, effect};
         return skillArray;
     }
 
@@ -317,10 +320,32 @@ public class Character
         }
     }
 
-    /*Getters and setters*/
+    public void IncreaseXP(int xp)
+    {
+        _xp += xp;
+    }
+
     public void AddEquipment(string[] equipment)
     {
         _equipment.Add(equipment);
+    }
+
+    public void AddActiveEffects(string name, string value)
+    {
+        string[] effect = {name, value};
+        _activeEffects.Add(effect);
+    }
+
+    /*Getters and setters*/
+
+    public List<string[]> GetActiveEffects()
+    {
+        return _activeEffects;
+    }
+
+    public void SetActiveEffects(List<string[]> newEffects)
+    {
+        _activeEffects = newEffects;
     }
 
     public int GetHealth()
@@ -341,6 +366,26 @@ public class Character
     public int GetDefense()
     {
         return _defense;
+    }
+
+    public int GetStamina()
+    {
+        return _stamina;
+    }
+
+    public void SetStamina(int stamina)
+    {
+        _stamina = stamina;
+    }
+
+    public int GetMana()
+    {
+        return _mana;
+    }
+
+    public void SetMana(int mana)
+    {
+        _mana = mana;
     }
 
     public string[] GetEquipedWeapon()
