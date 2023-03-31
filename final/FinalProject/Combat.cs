@@ -159,7 +159,80 @@ public class Combat
                 }
                 else if (userInput == "3")
                 {
+                    Console.Clear();
+                    int listNum = 0;
+                    List<string[]> combatSpells = new List<string[]>();
+                    //Creates a list containing only combat spells
+                    foreach (string[] spell in player.GetSpells())
+                    {
+                        if (spell[2] == "attack" || spell[2] == "defense" || spell[2] == "cunning")
+                        {
+                            combatSpells.Add(spell);
+                        }
+                    }
+                    //Lists all combat spells
+                    foreach (string[] spell in combatSpells)
+                    {
+                        listNum += 1;
+                        Console.WriteLine($"{listNum}. {spell[0]}: {spell[5]}");
+                    }
+                    try
+                    {
+                        Console.Write("Select the spell you would like to use: ");
+                        int spellChoice = int.Parse(Console.ReadLine()) - 1;
+                        string[] chosenSpell = combatSpells[spellChoice];
+                        if (int.Parse(chosenSpell[4]) <= player.GetStamina())
+                        {
+                            int afterCost = player.GetStamina() - int.Parse(chosenSpell[4]);
+                            player.SetStamina(afterCost);
+                            //Handles a chosen attack spell
+                            if (chosenSpell[2] == "attack")
+                            {
+                                int mobTarget = ChooseTarget(mobs);
+                                Mob defendingMob = mobs[mobTarget];
+                                int damage = int.Parse(chosenSpell[3]);
+                                int playerAttack = CalculateAttack(player.GetAttack(), chosenSpell[6]);
+                                if (chosenSpell[6] == "stun")
+                                {
+                                    defendingMob.AddActiveEffects("stun", "1");
+                                }
+                                if (chosenSpell[6] == "rage")
+                                {
+                                    player.AddActiveEffects("rage", "3");
+                                }
+                                bool result = CombatResults(defendingMob, playerAttack, damage);
+                                if (!result)
+                                {
+                                    _newLoot.Add(new MobLoot(mobs[mobTarget].GetMobType()));
+                                    int gainedXP = mobs[mobTarget].GetXP();
+                                    player.IncreaseXP(gainedXP);
+                                    mobs.RemoveAt(mobTarget);
+                                }
+                            }
+                            //Handles a chosen defense spell
+                            else if (chosenSpell[2] == "defense")
+                            {
+                                _increasedPlayerDefense += int.Parse(chosenSpell[4]);
+                            }
+                            //Handles a chosen cunning spell
+                            else if (chosenSpell[2] == "cunning")
+                            {
+                                foreach (Mob mob in mobs)
+                                {
+                                    mob.AddActiveEffects(chosenSpell[6], "2");
+                                }
+                            }
 
+                            //Calculates the combat results of each mob in the area
+                            CombatAI(player, mobs);
+                        }
+                        else
+                        {
+                            Console.WriteLine("You do not have the required stamina");
+                            Console.Write("Press enter to continue:");
+                            Console.ReadLine();
+                        }
+                    } catch{}
                 }
             }
         }

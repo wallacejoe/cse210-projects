@@ -110,7 +110,7 @@ public class Character
             }
             else if (userInput == "3")
             {
-
+                SpellMenu();
             }
             else if (userInput == "4")
             {
@@ -166,6 +166,25 @@ public class Character
                             if (Console.ReadLine() == "y")
                             {
                                 _equipedWeapon[3] = "poison";
+                            }
+                        }
+                        else if (chosenEquipment[1] == "spell")
+                        {
+                            bool alreadyHave = false;
+                            foreach (string[] spell in _spells)
+                            {
+                                if (spell[0] == chosenEquipment[0])
+                                {
+                                    alreadyHave = true;
+                                }
+                            }
+                            if (alreadyHave)
+                            {
+                                Console.WriteLine("You already know this spell");
+                            }
+                            else
+                            {
+                                _spells.Add(AddSpellArray(chosenEquipment[0], chosenEquipment[4], chosenEquipment[6], chosenEquipment[2], chosenEquipment[5], chosenEquipment[3]));
                             }
                         }
                     } catch{}
@@ -271,6 +290,70 @@ public class Character
         }
     }
 
+    private void SpellMenu()
+    {
+        Console.Clear();
+        Console.WriteLine("Spell menu:");
+        Console.WriteLine("  1. View your spells");
+        Console.WriteLine("  2. Use spell");
+        Console.Write("Select a choice from the menu: ");
+        string userInput = Console.ReadLine();
+
+        if (userInput == "1")
+        {
+            try
+            {
+                int spellChoice = 0;
+                while (spellChoice < _spells.Count())
+                {
+                    Console.Clear();
+                    int listNum = 0;
+                    foreach (string[] spell in _spells)
+                    {
+                        listNum += 1;
+                        Console.WriteLine($"  {listNum}. {spell[0]}");
+                    }
+                    Console.WriteLine("  Enter. exit spell menu");
+                    Console.Write("Select a spell to view its description: ");
+                    spellChoice = int.Parse(Console.ReadLine()) - 1;
+                    Console.WriteLine($"\n{_spells[spellChoice][0]}");
+                    Console.WriteLine(_spells[spellChoice][1]);
+                    Console.Write("Press enter to continue:");
+                    Console.ReadLine();
+                }
+            } catch {}
+        }
+        else if (userInput == "2")
+        {
+            Console.Clear();
+            int listNum = 0;
+            foreach (string[] spell in _spells)
+            {
+                listNum += 1;
+                Console.WriteLine($"  {listNum}. {spell[0]}");
+            }
+            Console.WriteLine("Select a spell to use: ");
+            try
+            {
+                int chosenSpellNum = int.Parse(Console.ReadLine()) - 1;
+                string[] chosenSpell = _spells[chosenSpellNum];
+                if (_mana > int.Parse(chosenSpell[4]))
+                {
+                    _mana -= int.Parse(chosenSpell[4]);
+                    if (chosenSpell[5] == "healing")
+                    {
+                        int healing = int.Parse(chosenSpell[3]);
+                        IncreaseHealth(healing);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("You don't have enough mana for this spell");
+                }
+            } catch{}
+        }
+    }
+
     private void EquipArmor()
     {
         List<string[]> armorList = new List<string[]>();
@@ -336,6 +419,12 @@ public class Character
     {
         string[] skillArray = {name, description, type, value, cost, xpCost, effect};
         return skillArray;
+    }
+
+    private string[] AddSpellArray(string name, string description, string type, string value, string cost, string effect)
+    {
+        string[] spellArray = {name, description, type, value, cost, effect};
+        return spellArray;
     }
 
     public void DecreaseHealth(int damage)

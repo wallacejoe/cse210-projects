@@ -12,8 +12,22 @@ public class Location
     {
         _description = description;
         _locationName = locationName;
-        _mobs.Add(new Mob(_locationName));
-        _loot.Add(new ChestLoot(_locationName));
+        if (locationName == "forest")
+        {
+            _mobs.Add(new Mob(_locationName));
+            _loot.Add(new ChestLoot(_locationName));
+        }
+        else if (locationName == "swamp")
+        {
+            _mobs.Add(new Mob(_locationName));
+            _mobs.Add(new Mob(_locationName));
+            _loot.Add(new ChestLoot(_locationName));
+        }
+        else if (locationName == "mage tower")
+        {
+            _mobs.Add(new Mob(_locationName));
+            _loot.Add(new ChestLoot(_locationName));
+        }
     }
 
     public Location(string locationName, string description, List<Mob> mobs, List<Loot> loot)

@@ -38,6 +38,10 @@ public class Mob
         {
             potentialMobs = new List<string>{"spider", "zombie"};
         }
+        else if (_currentLocal == "mage tower")
+        {
+            potentialMobs = new List<string>{"golem"};
+        }
         Random getRandomNum = new Random();
         int randomNum = getRandomNum.Next(0, potentialMobs.Count());
         _type = potentialMobs[randomNum];
@@ -61,6 +65,15 @@ public class Mob
             _defense = 3;
             _damage = 4;
             _skills.Add(AddSkillArray("Grapple", "A physical attack, has a chance of stunning the target", "attack", "3"));
+        }
+        else if (_type == "golem")
+        {
+            _xp = 30;
+            _health = 25;
+            _attack = 3;
+            _defense = 4;
+            _damage = 8;
+            //_skills.Add(AddSkillArray());
         }
     }
 

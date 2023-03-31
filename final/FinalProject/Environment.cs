@@ -38,11 +38,15 @@ public class Environment
 
             if (userInput == "1")
             {
-                bool localChange = _currentLocal.InteractionMenu(_playerCharacter);
-                if (localChange)
+                bool localChange;
+                do
                 {
-                    ChangeLocation();
-                }
+                    localChange = _currentLocal.InteractionMenu(_playerCharacter);
+                    if (localChange)
+                    {
+                        ChangeLocation();
+                    }
+                } while (localChange);
             }
             else if (userInput == "2")
             {
@@ -97,13 +101,13 @@ public class Environment
             int _chosenLocal = int.Parse(Console.ReadLine()) - 1;
             _currentLocal = _allLocations[_chosenLocal];
         } catch {}
-        _currentLocal.InteractionMenu(_playerCharacter);
     }
 
     private void InitializeLocations()
     {
         _allLocations.Add(new Location("forest", "A dense forest, thick enough to block most light, unnerving sounds eminate from the trees around you."));
         _allLocations.Add(new Location("swamp", "This foul bog reeks of death and decay, and has several steaming pools of some unknown substance. Aside from a constant hiss from the pools, the swamp is unnaturally silent."));
+        _allLocations.Add(new Location("mage tower", "A large mystical tower, might not want to spend too much time here."));
     }
 
     public List<string> Serialize()
