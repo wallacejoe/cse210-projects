@@ -59,7 +59,7 @@ public class Character
         }
     }
 
-    public Character(int maxHealth, int health, int maxMana, int mana, int maxStamina, int stamina, int xp, int attack, int defense, List<string[]> skills, List<string[]> unclaimedSkills, List<string[]> spells, List<string[]> equipment)
+    public Character(int maxHealth, int health, int maxMana, int mana, int maxStamina, int stamina, int xp, int attack, int defense, List<string[]> skills, List<string[]> unclaimedSkills, List<string[]> spells, List<string[]> equipment, string[] equipedWeapon, string[] equipedArmor)
     {
         _maxHealth = maxHealth;
         _health = health;
@@ -74,6 +74,8 @@ public class Character
         _unclaimedSkills = unclaimedSkills;
         _spells = spells;
         _equipment = equipment;
+        _equipedWeapon = equipedWeapon;
+        _equipedArmor = equipedArmor;
     }
 
     /*Methods*/

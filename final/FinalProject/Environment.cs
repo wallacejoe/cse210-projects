@@ -13,6 +13,15 @@ public class Environment
         _playerCharacter = new Character();
     }
 
+    public Environment(Character playerCharacter)
+    {
+        //_currentLocal = currentLocal;
+        _playerCharacter = playerCharacter;
+        //_allLocations = allLocations;
+        InitializeLocations();
+        _currentLocal = _allLocations[0];
+    }
+
     /*Methods*/
     public void MainMenu()
     {
