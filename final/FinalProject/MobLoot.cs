@@ -11,6 +11,12 @@ public class MobLoot : Loot
         RandomLoot();
     }
 
+    public MobLoot(List<string[]> loot, string container)
+    {
+        _loot = loot;
+        _lootContainer = container;
+    }
+
     /*Methods*/
     public override void RandomLoot()
     {

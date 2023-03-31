@@ -160,7 +160,6 @@ public class Location
     {
         List<string> allToSerialize = new List<string>();
         string toSerialize = "mobs";
-        allToSerialize.Add($"{_locationName}|/^|{_description}");
         foreach (Mob mob in _mobs)
         {
             toSerialize += $"|/^|{mob.GetMobType()}";
@@ -168,12 +167,12 @@ public class Location
         allToSerialize.Add(toSerialize);
         foreach (Loot loot in _loot)
         {
-            allToSerialize.Add("container");
             foreach (string item in loot.Serialize())
             {
                 allToSerialize.Add(item);
             }
         }
+        allToSerialize.Add($"location|/^|{_locationName}|/^|{_description}");
         return allToSerialize;
     }
 

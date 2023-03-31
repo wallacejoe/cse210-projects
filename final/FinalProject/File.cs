@@ -9,6 +9,12 @@ public class File
     private List<string[]> _equipment = new List<string[]>();
     private string[] _equipedWeapon;
     private string[] _equipedArmor;
+    private List<Location> _locations = new List<Location>();
+    private List<Mob> _mobs = new List<Mob>();
+    private List<Loot> _loot = new List<Loot>();
+    private List<string[]> _items = new List<string[]>();
+    private string _container;
+    private int _localNum;
 
     /*Constructors*/
     public File(string filename)
@@ -34,6 +40,7 @@ public class File
         try
         {
             string[] lines = System.IO.File.ReadAllLines(_filename);
+            int locationNum = -1;
 
             foreach (string line in lines)
             {
@@ -68,7 +75,45 @@ public class File
                     _equipedArmor = splitLine.Skip(1).ToArray();
                 }
                 /*Deserialize Locations*/
-                
+                else if (splitLine[0] == "mobs")
+                {
+                    splitLine = splitLine.Skip(1).ToArray();
+                    foreach (string mob in splitLine)
+                    {
+                        _mobs.Add(new Mob(mob, true));
+                    }
+                }
+                else if (splitLine[0] == "container")
+                {
+                    _container = splitLine[1];
+                    List<string[]> newItems = new List<string[]>(_items);
+                    if (_container == "Chest")
+                    {
+                        _loot.Add(new ChestLoot(newItems, _container));
+                    }
+                    else if (_container == "Corpse")
+                    {
+                        _loot.Add(new MobLoot(newItems, _container));
+                    }
+                    _items.Clear();
+                }
+                else if (splitLine[0] == "loot")
+                {
+                    _items.Add(splitLine.Skip(1).ToArray());
+                }
+                else if (splitLine[0] == "location")
+                {
+                    List<Mob> newMobs = new List<Mob>(_mobs);
+                    List<Loot> newLoot = new List<Loot>(_loot);
+                    locationNum += 1;
+                    _locations.Add(new Location(splitLine[1], splitLine[2], newMobs, newLoot));
+                    _mobs.Clear();
+                    _loot.Clear();
+                }
+                else if (splitLine[0] == "current local")
+                {
+                    _localNum = int.Parse(splitLine[1]);
+                }
             }
         } catch {
             Console.WriteLine("Error: could not load the chosen file.");
@@ -79,5 +124,15 @@ public class File
     {
         Character _character = new Character(_characterStats[0], _characterStats[1], _characterStats[2], _characterStats[3], _characterStats[4], _characterStats[5], _characterStats[6], _characterStats[7], _characterStats[8], _skills, _unSkills, _spells, _equipment, _equipedWeapon, _equipedArmor);
         return _character;
+    }
+
+    public List<Location> CreateLocationClasses()
+    {
+        return _locations;
+    }
+
+    public int GetLocalNum()
+    {
+        return _localNum;
     }
 }

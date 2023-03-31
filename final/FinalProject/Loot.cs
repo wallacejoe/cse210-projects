@@ -39,7 +39,6 @@ public abstract class Loot
     public List<string> Serialize()
     {
         List<string> serializedList = new List<string>();
-        serializedList.Add(_lootContainer);
         foreach (string[] loot in _loot)
         {
             string serializedString = "loot";
@@ -49,6 +48,7 @@ public abstract class Loot
             }
             serializedList.Add(serializedString);
         }
+        serializedList.Add($"container|/^|{_lootContainer}");
 
         return serializedList;
     }

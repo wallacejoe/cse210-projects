@@ -1,3 +1,4 @@
+current local|/^|0
 character|/^|6|/^|6|/^|0|/^|0|/^|8|/^|8|/^|0|/^|6|/^|5
 un-skill|/^|Stone Skin|/^|Reduces all damage dealt to you by a set amount|/^|protection|/^|1|/^|0|/^|20|/^|
 un-skill|/^|Grapple|/^|A physical attack, has a chance of stunning the target|/^|attack|/^|3|/^|2|/^|10|/^|stun
@@ -5,18 +6,14 @@ un-skill|/^|Dodge|/^|Allows you to perform a "Dogde" that increases your defense
 un-skill|/^|Rage|/^|You fly into a rage, causing your attacks to deal increased damage|/^|attack|/^|3|/^|5|/^|20|/^|rage
 un-skill|/^|Deception|/^|Decrease all opponents attack by confusing them|/^|cunning|/^|0|/^|2|/^|20|/^|confusion
 equipment|/^|Bandage|/^|healing|/^|2|/^|
-forest|/^|A dense forest, thick enough to block most light, unnerving sounds eminate from the trees around you.
 mobs|/^|spider
-container
-Chest
 loot|/^|Weak Poison|/^|poison|/^||/^|
 loot|/^|Weak Poison|/^|poison|/^||/^|
 loot|/^|Healing Potion|/^|healing|/^|5|/^|
 loot|/^|Weak Poison|/^|poison|/^||/^|
-swamp|/^|This foul bog reeks of death and decay, and has several steaming pools of some unknown substance. Aside from a constant hiss from the pools, the swamp is unnaturally silent.
+container|/^|Chest
+location|/^|forest|/^|A dense forest, thick enough to block most light, unnerving sounds eminate from the trees around you.
 mobs|/^|zombie
-container
-Chest
 loot|/^|Weak Poison|/^|poison|/^||/^|
 loot|/^|Weak Poison|/^|poison|/^||/^|
 loot|/^|Weak Poison|/^|poison|/^||/^|
@@ -25,3 +22,5 @@ loot|/^|Healing Potion|/^|healing|/^|5|/^|
 loot|/^|Weak Poison|/^|poison|/^||/^|
 loot|/^|Weak Poison|/^|poison|/^||/^|
 loot|/^|Healing Potion|/^|healing|/^|5|/^|
+container|/^|Chest
+location|/^|swamp|/^|This foul bog reeks of death and decay, and has several steaming pools of some unknown substance. Aside from a constant hiss from the pools, the swamp is unnaturally silent.

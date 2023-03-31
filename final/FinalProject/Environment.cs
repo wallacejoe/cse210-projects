@@ -2,6 +2,7 @@ using System;
 public class Environment
 {
     private Location _currentLocal;
+    private int _chosenLocal = 0;
     private Character _playerCharacter;
     private List<Location> _allLocations = new List<Location>();
 
@@ -9,17 +10,15 @@ public class Environment
     public Environment()
     {
         InitializeLocations();
-        _currentLocal = _allLocations[0];
+        _currentLocal = _allLocations[_chosenLocal];
         _playerCharacter = new Character();
     }
 
-    public Environment(Character playerCharacter)
+    public Environment(int localNum, Character playerCharacter, List<Location> allLocations)
     {
-        //_currentLocal = currentLocal;
         _playerCharacter = playerCharacter;
-        //_allLocations = allLocations;
-        InitializeLocations();
-        _currentLocal = _allLocations[0];
+        _allLocations = allLocations;
+        _currentLocal = _allLocations[localNum];
     }
 
     /*Methods*/
@@ -62,6 +61,7 @@ public class Environment
                 Console.WriteLine("Leave blank if you'd like to quit without saving");
                 Console.Write("Enter the file you'd like to save to: ");
                 File file = new File(Console.ReadLine());
+                saveToFile.Add($"current local|/^|{_chosenLocal}");
                 foreach (string line in _playerCharacter.Serialize())
                 {
                     saveToFile.Add(line);
@@ -94,8 +94,8 @@ public class Environment
         Console.Write("Enter the location you'd like to move to: ");
         try
         {
-            int chosenLocal = int.Parse(Console.ReadLine()) - 1;
-            _currentLocal = _allLocations[chosenLocal];
+            int _chosenLocal = int.Parse(Console.ReadLine()) - 1;
+            _currentLocal = _allLocations[_chosenLocal];
         } catch {}
         _currentLocal.InteractionMenu(_playerCharacter);
     }

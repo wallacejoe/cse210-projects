@@ -11,6 +11,12 @@ public class ChestLoot : Loot
         RandomLoot();
     }
 
+    public ChestLoot(List<string[]> loot, string container)
+    {
+        _loot = loot;
+        _lootContainer = container;
+    }
+
     /*Methods*/
     public override void RandomLoot()
     {

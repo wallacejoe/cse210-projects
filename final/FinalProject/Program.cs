@@ -15,7 +15,7 @@ class Program
             File file = new File(filename);
             file.Deserialize();
             Character loadCharacter = file.CreateCharacterClass();
-            environment = new Environment(loadCharacter);
+            environment = new Environment(file.GetLocalNum(), loadCharacter, file.CreateLocationClasses());
         }
         else
         {
