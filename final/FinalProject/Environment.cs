@@ -9,7 +9,7 @@ public class Environment
     /*Constructors*/
     public Environment()
     {
-        InitializeLocations();
+        InitializeStartingLocations();
         _currentLocal = _allLocations[_chosenLocal];
         _playerCharacter = new Character();
     }
@@ -107,20 +107,53 @@ public class Environment
             listNum += 1;
             Console.WriteLine($"  {listNum}. {local.GetLocationName()}");
         }
+        if (_chosenLocal + 2 > _allLocations.Count())
+        {
+            listNum += 1;
+            Console.WriteLine($"  {listNum}. New location");
+        }
         Console.Write("Enter the location you'd like to move to: ");
         try
         {
             int chosenNum = int.Parse(Console.ReadLine()) - 1;
-            _chosenLocal = localNum[chosenNum];
-            _currentLocal = _allLocations[_chosenLocal];
+            if (chosenNum == localNum.Count())
+            {
+                InitializeNewLocation();
+                _chosenLocal = _allLocations.Count() - 1;
+                _currentLocal = _allLocations[_allLocations.Count() - 1];
+            }
+            else
+            {
+                _chosenLocal = localNum[chosenNum];
+                _currentLocal = _allLocations[_chosenLocal];
+            }
         } catch {}
     }
 
-    private void InitializeLocations()
+    private void InitializeStartingLocations()
     {
         _allLocations.Add(new Location("forest", "A dense forest, thick enough to block most light, unnerving sounds eminate from the trees around you."));
         _allLocations.Add(new Location("swamp", "This foul bog reeks of death and decay, and has several steaming pools of some unknown substance. Aside from a constant hiss from the pools, the swamp is unnaturally silent."));
         _allLocations.Add(new Location("mage tower", "A large mystical tower, might not want to spend too much time here."));
+    }
+
+    private void InitializeNewLocation()
+    {
+        Random getRandomNum = new Random();
+        List<string[]> locations = new List<string[]>();
+        locations.Add(AddArray("forest", "A dense forest, thick enough to block most light, unnerving sounds eminate from the trees around you."));
+        locations.Add(AddArray("swamp", "This foul bog reeks of death and decay, and has several steaming pools of some unknown substance. Aside from a constant hiss from the pools, the swamp is unnaturally silent."));
+        locations.Add(AddArray("mage tower", "A large mystical tower, might not want to spend too much time here."));
+        
+        int randomNum = getRandomNum.Next(0, locations.Count());
+        string[] chosenLocal = locations[randomNum];
+        _allLocations.Add(new Location(chosenLocal[0], chosenLocal[1]));
+    }
+
+    private string[] AddArray(string name, string description)
+    {
+        string[] array = {name, description};
+        return array;
     }
 
     public List<string> Serialize()

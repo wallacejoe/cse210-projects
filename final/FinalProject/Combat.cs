@@ -236,6 +236,10 @@ public class Combat
                     } catch{}
                 }
             }
+            if (userInput == "c")
+            {
+                player.CharacterMenu();
+            }
         }
         return mobs;
     }
