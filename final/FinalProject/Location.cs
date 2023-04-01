@@ -139,7 +139,10 @@ public class Location
             else if (userInput == "4")
             {
                 _combat.CombatAI(player, _mobs);
-                return true;
+                if (player.GetHealth() > 0)
+                {
+                    return true;
+                }
             }
             else if (userInput == "c")
             {
@@ -150,18 +153,13 @@ public class Location
                 Console.Clear();
                 Console.WriteLine("You have been defeated");
                 Console.WriteLine("  1. Respawn");
-                Console.WriteLine("  2. Load saved game");
-                Console.WriteLine("  3. Exit to main menu");
+                Console.WriteLine("  2. Exit to main menu");
                 Console.Write("Select a choice from the menu: ");
                 string deathInput = Console.ReadLine();
                 player.DeathReset();
                 _mobs.Clear();
                 _loot.Clear();
                 if (deathInput == "2")
-                {
-
-                }
-                else if (deathInput == "3")
                 {
                     return false;
                 }
