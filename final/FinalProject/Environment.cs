@@ -90,7 +90,19 @@ public class Environment
     {
         Console.Clear();
         int listNum = 0;
+        List<Location> locationOptions = new List<Location>();
+        List<int> localNum = new List<int>();
         foreach (Location local in _allLocations)
+        {
+            if (listNum == _chosenLocal -1 || listNum == _chosenLocal +1)
+            {
+                locationOptions.Add(local);
+                localNum.Add(listNum);
+            }
+            listNum += 1;
+        }
+        listNum = 0;
+        foreach (Location local in locationOptions)
         {
             listNum += 1;
             Console.WriteLine($"  {listNum}. {local.GetLocationName()}");
@@ -98,7 +110,8 @@ public class Environment
         Console.Write("Enter the location you'd like to move to: ");
         try
         {
-            int _chosenLocal = int.Parse(Console.ReadLine()) - 1;
+            int chosenNum = int.Parse(Console.ReadLine()) - 1;
+            _chosenLocal = localNum[chosenNum];
             _currentLocal = _allLocations[_chosenLocal];
         } catch {}
     }
