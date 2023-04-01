@@ -321,7 +321,7 @@ public class Character
                 if (_mana >= int.Parse(chosenSpell[4]))
                 {
                     _mana -= int.Parse(chosenSpell[4]);
-                    if (chosenSpell[5] == "healing")
+                    if (chosenSpell[2] == "healing")
                     {
                         int healing = int.Parse(chosenSpell[3]);
                         IncreaseHealth(healing);
@@ -404,7 +404,9 @@ public class Character
                     if (alreadyHave)
                     {
                         Console.WriteLine("You already know this spell");
-                        }
+                        Console.Write("Press enter to continue:");
+                        Console.ReadLine();
+                    }
                     else
                     {
                         _spells.Add(AddSpellArray(chosenEquipment[0], chosenEquipment[4], chosenEquipment[6], chosenEquipment[2], chosenEquipment[5], chosenEquipment[3]));

@@ -41,7 +41,7 @@ public class ChestLoot : Loot
         {            //    name    loot type    value    effect    description    cost    type
             maxSize = 2;
             minSize = 1;
-            AddItems(1, "shock", "spell", "2", "", "A basic attack spell, has no extraordinary effects", "1", "attack");
+            AddItems(1, "shock", "spell", "3", "", "A basic attack spell, has no extraordinary effects", "1", "attack");
             AddItems(5, "healing hands", "spell", "2", "", "Heals the caster by a small amount (2HP)", "2", "healing");
             AddItems(3, "Iron Sword", "weapon", "5");
         }

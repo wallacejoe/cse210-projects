@@ -1,10 +1,11 @@
-current local|/^|1
-character|/^|9|/^|6|/^|6|/^|6|/^|6|/^|6|/^|10|/^|6|/^|5
+current local|/^|3
+character|/^|9|/^|9|/^|6|/^|6|/^|6|/^|6|/^|15|/^|6|/^|5
 skill|/^|Deception|/^|Decrease all opponents attack by confusing them|/^|cunning|/^|0|/^|2|/^|20|/^|confusion
 un-skill|/^|Stone Skin|/^|Reduces all damage dealt to you by a set amount|/^|protection|/^|1|/^|0|/^|20|/^|
 un-skill|/^|Grapple|/^|A physical attack, has a chance of stunning the target|/^|attack|/^|3|/^|2|/^|10|/^|stun
 un-skill|/^|Dodge|/^|Allows you to perform a "Dogde" that increases your defense|/^|Defense|/^|2|/^|1|/^|5|/^|
 un-skill|/^|Rage|/^|You fly into a rage, causing your attacks to deal increased damage|/^|attack|/^|3|/^|5|/^|20|/^|rage
+spell|/^|healing hands|/^|Heals the caster by a small amount (2HP)|/^|healing|/^|2|/^|2|/^|
 equipment|/^|Weak Poison|/^|poison|/^||/^||/^||/^||/^|
 equipment|/^|Bandage|/^|healing|/^|2|/^||/^||/^||/^|
 equipment|/^|Weak Poison|/^|poison|/^||/^||/^||/^||/^|
@@ -16,11 +17,17 @@ equipment|/^|Weak Poison|/^|poison|/^||/^||/^||/^||/^|
 equipment|/^|Weak Poison|/^|poison|/^||/^||/^||/^||/^|
 equipment|/^|Weak Poison|/^|poison|/^||/^||/^||/^||/^|
 equipment|/^|Weak Poison|/^|poison|/^||/^||/^||/^||/^|
+equipment|/^|healing hands|/^|spell|/^|2|/^||/^|Heals the caster by a small amount (2HP)|/^|2|/^|healing
+equipment|/^|Wooden Club|/^|weapon|/^|2|/^||/^||/^||/^|
+equipment|/^|Weak Poison|/^|poison|/^||/^||/^||/^||/^|
+equipment|/^|Weak Poison|/^|poison|/^||/^||/^||/^||/^|
+equipment|/^|Weak Poison|/^|poison|/^||/^||/^||/^||/^|
+equipment|/^|Weak Poison|/^|poison|/^||/^||/^||/^||/^|
 mobs
 container|/^|Chest
 container|/^|Corpse
 location|/^|forest|/^|A dense forest, thick enough to block most light, unnerving sounds eminate from the trees around you.
-mobs
+mobs|/^|zombie|/^|spider
 container|/^|Chest
 container|/^|Corpse
 container|/^|Corpse
@@ -28,6 +35,9 @@ container|/^|Corpse
 container|/^|Corpse
 location|/^|swamp|/^|This foul bog reeks of death and decay, and has several steaming pools of some unknown substance. Aside from a constant hiss from the pools, the swamp is unnaturally silent.
 mobs|/^|golem
-loot|/^|healing hands|/^|spell|/^|2|/^||/^|Heals the caster by a small amount (2HP)|/^|2|/^|healing
 container|/^|Chest
 location|/^|mage tower|/^|A large mystical tower, might not want to spend too much time here.
+mobs
+container|/^|Chest
+container|/^|Corpse
+location|/^|forest|/^|A dense forest, thick enough to block most light, unnerving sounds eminate from the trees around you.
