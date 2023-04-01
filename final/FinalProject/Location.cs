@@ -14,18 +14,18 @@ public class Location
         _locationName = locationName;
         if (locationName == "forest")
         {
-            _mobs.Add(new ForestMob(_locationName));
+            _mobs.Add(new ForestMob());
             _loot.Add(new ChestLoot(_locationName));
         }
         else if (locationName == "swamp")
         {
-            _mobs.Add(new SwampMob(_locationName));
-            _mobs.Add(new SwampMob(_locationName));
+            _mobs.Add(new SwampMob());
+            _mobs.Add(new SwampMob());
             _loot.Add(new ChestLoot(_locationName));
         }
         else if (locationName == "mage tower")
         {
-            _mobs.Add(new MageTowerMob(_locationName));
+            _mobs.Add(new MageTowerMob());
             _loot.Add(new ChestLoot(_locationName));
         }
     }
