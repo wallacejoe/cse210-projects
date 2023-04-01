@@ -236,13 +236,13 @@ public class Combat
                     } catch{}
                 }
             }
-            else
-            {
-                CombatAI(player, mobs);
-            }
             if (userInput == "c")
             {
                 player.CharacterMenu();
+            }
+            else
+            {
+                CombatAI(player, mobs);
             }
         }
         return mobs;
