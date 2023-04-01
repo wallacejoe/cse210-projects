@@ -68,6 +68,7 @@ public class Location
         while (userInput != "5")
         {
             LocationDescription();
+            player.DisplayStatLine();
             Console.WriteLine($"\nLocation menu:");
             Console.WriteLine("  1. Interact with loot");
             Console.WriteLine("  2. Combat menu");

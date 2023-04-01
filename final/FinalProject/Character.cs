@@ -23,6 +23,8 @@ public class Character
     {
         string userInput = "";
         _xp = 10;
+        _maxHealth = 5;
+        _health = 5;
         _attack = 6;
         _defense = 5;
         _unclaimedSkills = AllSkills();
@@ -82,7 +84,7 @@ public class Character
     public void CharacterMenu()
     {
         string userInput = "";
-        while (userInput != "5")
+        while (userInput != "6")
         {
             Console.Clear();
             Console.WriteLine("Character menu:");
@@ -90,16 +92,17 @@ public class Character
             Console.WriteLine("  2. Character skills");
             Console.WriteLine("  3. Character spells");
             Console.WriteLine("  4. Character equipment");
-            Console.WriteLine("  5. Exit Character menu");
+            Console.WriteLine("  5. Character level-up");
+            Console.WriteLine("  6. Exit Character menu");
             Console.Write("Select a choice from the menu: ");
             userInput = Console.ReadLine();
 
             if (userInput == "1")
             {
                 Console.Clear();
-                Console.WriteLine($"Health: {_health}");
-                Console.WriteLine($"Mana: {_mana}");
-                Console.WriteLine($"Stamina: {_stamina}");
+                Console.WriteLine($"Health: {_health}/{_maxHealth}");
+                Console.WriteLine($"Mana: {_mana}/{_maxMana}");
+                Console.WriteLine($"Stamina: {_stamina}/{_maxStamina}");
                 Console.WriteLine($"Experience: {_xp}");
                 Console.Write("Press enter to continue:");
                 Console.ReadLine();
@@ -114,80 +117,58 @@ public class Character
             }
             else if (userInput == "4")
             {
-                Console.Clear();
-                Console.WriteLine("Currently equiped items:");
-                Console.WriteLine(_equipedWeapon);
-                Console.WriteLine(_equipedArmor);
-                Console.WriteLine($"\nOther items:");
-                foreach (string[] item in _equipment)
+                EquipmentMenu();
+            }
+            else if (userInput == "5")
+            {
+                Console.WriteLine("Available stats:");
+                Console.WriteLine("  1. Health cost: 10xp");
+                Console.WriteLine("  2. Mana cost: 5xp");
+                Console.WriteLine("  3. Stamina cost: 5xp");
+                if (_attack < 10)
                 {
-                    Console.WriteLine(item[0]);
+                    Console.WriteLine("  4. Attack cost: 25xp");
                 }
-                Console.WriteLine("Equipment menu:");
-                Console.WriteLine("  1. Equip armor");
-                Console.WriteLine("  2. Equip weapon");
-                Console.WriteLine("  3. Use equipment");
-                Console.WriteLine("  4. Exit equipment menu");
-                Console.Write("Select a choice from the menu: ");
-                string equipChoice = Console.ReadLine();
-                if (equipChoice == "1")
+                if (_defense < 10)
                 {
-                    Console.Clear();
-                    EquipArmor();
+                    Console.WriteLine("  5. Defense cost: 25xp");
                 }
-                else if (equipChoice == "2")
+                Console.WriteLine("Enter. Back to game");
+                Console.Write("Select a stat to level up: ");
+                string levelInput = Console.ReadLine();
+                if (levelInput == "1" && _xp >= 10)
                 {
-                    Console.Clear();
-                    EquipWeapon();
+                    _xp -= 10;
+                    _maxHealth += 1;
+                    _health += 1;
                 }
-                else if (equipChoice == "3")
+                else if (levelInput == "2" && _xp >= 5)
                 {
-                    Console.Clear();
-                    int listNum = 0;
-                    foreach (string[] item in _equipment)
-                    {
-                        listNum += 1;
-                        Console.WriteLine($"  {listNum}. {item[0]}");
-                    }
-                    Console.WriteLine("Select an item to use: ");
-                    try
-                    {
-                        int chosenItem = int.Parse(Console.ReadLine()) - 1;
-                        string[] chosenEquipment = _equipment[chosenItem];
-                        if (chosenEquipment[1] == "healing")
-                        {
-                            int healing = int.Parse(chosenEquipment[2]);
-                            IncreaseHealth(healing);
-                            _equipment.RemoveAt(chosenItem);
-                        }
-                        else if (chosenEquipment[1] == "poison")
-                        {
-                            Console.Write($"Would you like to poison {_equipedWeapon} (y/n)? ");
-                            if (Console.ReadLine() == "y")
-                            {
-                                _equipedWeapon[3] = "poison";
-                            }
-                        }
-                        else if (chosenEquipment[1] == "spell")
-                        {
-                            bool alreadyHave = false;
-                            foreach (string[] spell in _spells)
-                            {
-                                if (spell[0] == chosenEquipment[0])
-                                {
-                                    alreadyHave = true;
-                                }
-                            }
-                            if (alreadyHave)
-                            {
-                                Console.WriteLine("You already know this spell");
-                            }
-                            else
-                            {
-                                _spells.Add(AddSpellArray(chosenEquipment[0], chosenEquipment[4], chosenEquipment[6], chosenEquipment[2], chosenEquipment[5], chosenEquipment[3]));
-                            }
-                        }
-                    } catch{}
+                    _xp -= 5;
+                    _maxMana += 1;
+                    _mana += 1;
+                }
+                else if (levelInput == "3" && _xp >= 5)
+                {
+                    _xp -= 5;
+                    _maxStamina += 1;
+                    _stamina += 1;
+                }
+                else if (levelInput == "4" && _xp >= 25 && _attack < 10)
+                {
+                    _xp -= 25;
+                    _attack += 1;
+                }
+                else if (levelInput == "5" && _xp >= 25 && _defense < 10)
+                {
+                    _xp -= 25;
+                    _defense += 1;
+                }
+                else if (levelInput == "1" || levelInput == "2" || levelInput == "3" || levelInput == "4" || levelInput == "5")
+                {
+                    Console.WriteLine("You don't have enough experience");
+                    Console.Write("Press enter to conitnue:");
+                    Console.ReadLine();
                 }
             }
         }
@@ -332,7 +313,7 @@ public class Character
                 listNum += 1;
                 Console.WriteLine($"  {listNum}. {spell[0]}");
             }
-            Console.WriteLine("Select a spell to use: ");
+            Console.Write("Select a spell to use: ");
             try
             {
                 int chosenSpellNum = int.Parse(Console.ReadLine()) - 1;
@@ -349,6 +330,85 @@ public class Character
                 else
                 {
                     Console.WriteLine("You don't have enough mana for this spell");
+                }
+            } catch{}
+        }
+    }
+
+    private void EquipmentMenu()
+    {
+        Console.Clear();
+        Console.WriteLine("Currently equiped items:");
+        Console.WriteLine(_equipedWeapon);
+        Console.WriteLine(_equipedArmor);
+        Console.WriteLine($"\nOther items:");
+        foreach (string[] item in _equipment)
+        {
+            Console.WriteLine(item[0]);
+        }
+        Console.WriteLine("Equipment menu:");
+        Console.WriteLine("  1. Equip armor");
+        Console.WriteLine("  2. Equip weapon");
+        Console.WriteLine("  3. Use equipment");
+        Console.WriteLine("  4. Exit equipment menu");
+        Console.Write("Select a choice from the menu: ");
+        string equipChoice = Console.ReadLine();
+        if (equipChoice == "1")
+        {
+            Console.Clear();
+            EquipArmor();
+        }
+        else if (equipChoice == "2")
+        {
+            Console.Clear();
+            EquipWeapon();
+        }
+        else if (equipChoice == "3")
+        {
+            Console.Clear();
+            int listNum = 0;
+            foreach (string[] item in _equipment)
+            {
+                listNum += 1;
+                Console.WriteLine($"  {listNum}. {item[0]}");
+            }
+            Console.WriteLine("Select an item to use: ");
+            try
+            {
+                int chosenItem = int.Parse(Console.ReadLine()) - 1;
+                string[] chosenEquipment = _equipment[chosenItem];
+                if (chosenEquipment[1] == "healing")
+                {
+                    int healing = int.Parse(chosenEquipment[2]);
+                    IncreaseHealth(healing);
+                    _equipment.RemoveAt(chosenItem);
+                }
+                else if (chosenEquipment[1] == "poison")
+                {
+                    Console.Write($"Would you like to poison {_equipedWeapon[0]} (y/n)? ");
+                    if (Console.ReadLine() == "y")
+                    {
+                        _equipedWeapon[3] = "poison";
+                    }
+                }
+                else if (chosenEquipment[1] == "spell")
+                {
+                    bool alreadyHave = false;
+                    foreach (string[] spell in _spells)
+                    {
+                        if (spell[0] == chosenEquipment[0])
+                        {
+                            alreadyHave = true;
+                        }
+                    }
+                    if (alreadyHave)
+                    {
+                        Console.WriteLine("You already know this spell");
+                        }
+                    else
+                    {
+                        _spells.Add(AddSpellArray(chosenEquipment[0], chosenEquipment[4], chosenEquipment[6], chosenEquipment[2], chosenEquipment[5], chosenEquipment[3]));
+                    }
                 }
             } catch{}
         }
@@ -411,6 +471,11 @@ public class Character
         allSkills.Add(AddSkillArray("Deception", "Decrease all opponents attack by confusing them", "cunning", "0", "2", "20", "confusion"));
 
         return allSkills;
+    }
+
+    public void DisplayStatLine()
+    {
+        Console.WriteLine($"HP:{_health}/{_maxHealth} Mana:{_mana}/{_maxMana} Stamina:{_stamina}/{_maxStamina} XP:{_xp}");
     }
 
     //I couldn't find how to initialize an array with all it's content while

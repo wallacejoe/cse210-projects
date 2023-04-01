@@ -22,6 +22,7 @@ public class Combat
         while (userInput != "4" && player.GetHealth() > 0)
         {
             Console.Clear();
+            player.DisplayStatLine();
             Console.WriteLine("Combat menu:");
             Console.WriteLine("  1. Basic Attack");
             Console.WriteLine("  2. Combat Skill");
@@ -369,7 +370,7 @@ public class Combat
 
     public List<Loot> GetNewLoot()
     {
-        List<Loot> lootToAdd = _newLoot;
+        List<Loot> lootToAdd = new List<Loot>(_newLoot);
         _newLoot.Clear();
         return lootToAdd;
     }
