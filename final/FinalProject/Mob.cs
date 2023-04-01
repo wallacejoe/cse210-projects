@@ -1,83 +1,26 @@
 using System;
 public class Mob
 {
-    private int _xp;
-    private string _type;
-    private int _health;
-    private int _attack;
-    private int _defense;
-    private int _damage;
-    private List<string[]> _skills = new List<string[]>();
-    private List<string[]> _activeEffects = new List<string[]>();
+    protected int _xp;
+    protected string _type;
+    protected int _health;
+    protected int _attack;
+    protected int _defense;
+    protected int _damage;
+    protected List<string[]> _skills = new List<string[]>();
+    protected List<string[]> _activeEffects = new List<string[]>();
     private bool _state = true;
-    private string _currentLocal;
 
     /*Constructors*/
-    public Mob(string currentLocal)
-    {
-        _currentLocal = currentLocal;
-        RandomMob();
-        MobStats();
-    }
+    public Mob(){}
 
-    public Mob(string type, bool state)
+    public Mob(string type)
     {
         _type = type;
-        MobStats();
     }
 
     /*Methods*/
-    public void RandomMob()
-    {
-        List<string> potentialMobs = new List<string>{};
-        if (_currentLocal == "forest")
-        {
-            potentialMobs = new List<string>{"spider"};
-        }
-        else if (_currentLocal == "swamp")
-        {
-            potentialMobs = new List<string>{"spider", "zombie"};
-        }
-        else if (_currentLocal == "mage tower")
-        {
-            potentialMobs = new List<string>{"golem"};
-        }
-        Random getRandomNum = new Random();
-        int randomNum = getRandomNum.Next(0, potentialMobs.Count());
-        _type = potentialMobs[randomNum];
-    }
-
-    private void MobStats()
-    {
-        if (_type == "spider")
-        {
-            _xp = 5;
-            _health = 5;
-            _attack = 3;
-            _defense = 5;
-            _damage = 2;
-        }
-        else if (_type == "zombie")
-        {
-            _xp = 10;
-            _health = 10;
-            _attack = 3;
-            _defense = 3;
-            _damage = 4;
-            _skills.Add(AddSkillArray("Grapple", "A physical attack, stuns the target", "attack", "3", "stun"));
-        }
-        else if (_type == "golem")
-        {
-            _xp = 30;
-            _health = 25;
-            _attack = 3;
-            _defense = 4;
-            _damage = 8;
-            _skills.Add(AddSkillArray("Pummel", "A flurry of blows, deals high damage and stuns the target", "attack", "5", "stun"));
-        }
-    }
-
-    private string[] AddSkillArray(string name, string description, string type, string value, string effect)
+    protected string[] AddSkillArray(string name, string description, string type, string value, string effect)
     {
         string[] skillArray = {name, description, type, value, effect};
         return skillArray;

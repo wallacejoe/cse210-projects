@@ -14,18 +14,18 @@ public class Location
         _locationName = locationName;
         if (locationName == "forest")
         {
-            _mobs.Add(new Mob(_locationName));
+            _mobs.Add(new ForestMob(_locationName));
             _loot.Add(new ChestLoot(_locationName));
         }
         else if (locationName == "swamp")
         {
-            _mobs.Add(new Mob(_locationName));
-            _mobs.Add(new Mob(_locationName));
+            _mobs.Add(new SwampMob(_locationName));
+            _mobs.Add(new SwampMob(_locationName));
             _loot.Add(new ChestLoot(_locationName));
         }
         else if (locationName == "mage tower")
         {
-            _mobs.Add(new Mob(_locationName));
+            _mobs.Add(new MageTowerMob(_locationName));
             _loot.Add(new ChestLoot(_locationName));
         }
     }
@@ -36,7 +36,18 @@ public class Location
         _locationName = locationName;
         foreach (string mob in mobs)
         {
-            _mobs.Add(new Mob(mob, true));
+            if (_locationName == "forest")
+            {
+                _mobs.Add(new ForestMob(mob));
+            }
+            else if (_locationName == "swamp")
+            {
+                _mobs.Add(new SwampMob(mob));
+            }
+            else if (_locationName == "mage tower")
+            {
+                _mobs.Add(new MageTowerMob(mob));
+            }
         }
         _loot = loot;
     }
