@@ -236,6 +236,10 @@ public class Combat
                     } catch{}
                 }
             }
+            else
+            {
+                CombatAI(player, mobs);
+            }
             if (userInput == "c")
             {
                 player.CharacterMenu();
@@ -250,7 +254,6 @@ public class Combat
         {
             int attack = CalculateAttack(mob.GetAttack());
             int defense = CalculateDefense(player.GetDefense() + _increasedPlayerDefense);
-            int damage = mob.GetDamage();
             bool incapacitated = false;
             foreach (string[] effect in mob.GetActiveEffects())
             {
@@ -265,7 +268,33 @@ public class Combat
             }
             if (!incapacitated)
             {
+                Random getRandomNum = new Random();
+                int attackType = getRandomNum.Next(0, 2);
+                int damage = mob.GetDamage();
                 attack -= defense;
+
+                //Determines what skill the mob will use
+                if (attackType == 0)
+                {
+                    try
+                    {
+                        List<string[]> mobSkills = mob.GetSkills();
+                        int mobChoice = getRandomNum.Next(0, mobSkills.Count());
+                        string[] mobSkill = mobSkills[mobChoice];
+                        damage = int.Parse(mobSkill[3]);
+                        if (attack > 0)
+                        {
+                            if (mobSkill[4] == "stun")
+                            {
+                                player.AddActiveEffects("stun", "2");
+                                Console.WriteLine("You have been stunned, you cannot take a combat action");
+                                Console.Write("Press enter to continue");
+                                Console.ReadLine();
+                            }
+                        }
+                    } catch{}
+                }
+
                 if (attack > 0)
                 {
                     damage += attack;
@@ -310,7 +339,7 @@ public class Combat
         //Decrease the duration of each mob effect
         foreach (Mob mob in mobs)
         {
-            newEffects.Clear();
+            List<string[]> newMobEffects = new List<string[]>();
             foreach (string[] effect in mob.GetActiveEffects())
             {
                 int effectCount = int.Parse(effect[1]);
@@ -318,9 +347,9 @@ public class Combat
                 if (effectCount > 0)
                 {
                     effect[1] = $"{effectCount}";
-                    newEffects.Add(effect);
+                    newMobEffects.Add(effect);
                 }
-                mob.SetActiveEffects(newEffects);
+                mob.SetActiveEffects(newMobEffects);
             }
         }
     }

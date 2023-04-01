@@ -30,11 +30,14 @@ public class Location
         }
     }
 
-    public Location(string locationName, string description, List<Mob> mobs, List<Loot> loot)
+    public Location(string locationName, string description, List<string> mobs, List<Loot> loot)
     {
         _description = description;
         _locationName = locationName;
-        _mobs = mobs;
+        foreach (string mob in mobs)
+        {
+            _mobs.Add(new Mob(mob, true));
+        }
         _loot = loot;
     }
 

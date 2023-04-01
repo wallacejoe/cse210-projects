@@ -64,7 +64,7 @@ public class Mob
             _attack = 3;
             _defense = 3;
             _damage = 4;
-            _skills.Add(AddSkillArray("Grapple", "A physical attack, has a chance of stunning the target", "attack", "3"));
+            _skills.Add(AddSkillArray("Grapple", "A physical attack, stuns the target", "attack", "3", "stun"));
         }
         else if (_type == "golem")
         {
@@ -73,13 +73,13 @@ public class Mob
             _attack = 3;
             _defense = 4;
             _damage = 8;
-            //_skills.Add(AddSkillArray());
+            _skills.Add(AddSkillArray("Pummel", "A flurry of blows, deals high damage and stuns the target", "attack", "5", "stun"));
         }
     }
 
-    private string[] AddSkillArray(string name, string description, string type, string value)
+    private string[] AddSkillArray(string name, string description, string type, string value, string effect)
     {
-        string[] skillArray = {name, description, type, value};
+        string[] skillArray = {name, description, type, value, effect};
         return skillArray;
     }
 
@@ -88,6 +88,7 @@ public class Mob
         Console.WriteLine($"Health: {_health}");
         Console.WriteLine($"Attack: {_attack}");
         Console.WriteLine($"Defense: {_defense}");
+        Console.WriteLine($"Damage: {_damage}");
         Console.WriteLine();
         foreach (string[] skill in _skills)
         {

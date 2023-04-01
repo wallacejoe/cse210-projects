@@ -10,7 +10,7 @@ public class File
     private string[] _equipedWeapon;
     private string[] _equipedArmor;
     private List<Location> _locations = new List<Location>();
-    private List<Mob> _mobs = new List<Mob>();
+    private List<string> _mobs = new List<string>();
     private List<Loot> _loot = new List<Loot>();
     private List<string[]> _items = new List<string[]>();
     private string _container;
@@ -80,7 +80,7 @@ public class File
                     splitLine = splitLine.Skip(1).ToArray();
                     foreach (string mob in splitLine)
                     {
-                        _mobs.Add(new Mob(mob, true));
+                        _mobs.Add(mob);
                     }
                 }
                 else if (splitLine[0] == "container")
@@ -103,7 +103,7 @@ public class File
                 }
                 else if (splitLine[0] == "location")
                 {
-                    List<Mob> newMobs = new List<Mob>(_mobs);
+                    List<string> newMobs = new List<string>(_mobs);
                     List<Loot> newLoot = new List<Loot>(_loot);
                     locationNum += 1;
                     _locations.Add(new Location(splitLine[1], splitLine[2], newMobs, newLoot));
