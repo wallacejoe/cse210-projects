@@ -24,7 +24,7 @@ public class ChestLoot : Loot
         int minSize = 3;
         if (_currentLocal == "forest")
         {
-            AddItems(1, "Wooden Club", "weapon", "3");
+            AddItems(1, "Wooden Club", "weapon", "2");
             AddItems(4, "Bandage", "healing", "2");
             AddItems(3, "Weak Poison", "poison");
             AddItems(1, "Leather Armor", "armor", "3");
@@ -43,6 +43,7 @@ public class ChestLoot : Loot
             minSize = 1;
             AddItems(1, "shock", "spell", "2", "", "A basic attack spell, has no extraordinary effects", "1", "attack");
             AddItems(5, "healing hands", "spell", "2", "", "Heals the caster by a small amount (2HP)", "2", "healing");
+            AddItems(3, "Iron Sword", "weapon", "5");
         }
         Random getRandomNum = new Random();
         int randomNum = getRandomNum.Next(minSize, maxSize);

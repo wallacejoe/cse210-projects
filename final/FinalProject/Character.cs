@@ -318,7 +318,7 @@ public class Character
             {
                 int chosenSpellNum = int.Parse(Console.ReadLine()) - 1;
                 string[] chosenSpell = _spells[chosenSpellNum];
-                if (_mana > int.Parse(chosenSpell[4]))
+                if (_mana >= int.Parse(chosenSpell[4]))
                 {
                     _mana -= int.Parse(chosenSpell[4]);
                     if (chosenSpell[5] == "healing")
